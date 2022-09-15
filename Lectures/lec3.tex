@@ -1,0 +1,114 @@
+\section{Second Quantization Continued}
+\subsection{Second Quantization in the Schrodinger Picture}
+Last time, we were in the middle of a mathematical construction. We established a Hilbert space\footnote{Small mathematical detail we will not worry about; quantum states belong to a projective space, rather than a true vector space.}, with creation/annhilation operators with commutation relations:
+\begin{equation}
+    [\psi_\sigma(\v{x}), \psi^{\dag\rho}(\v{y})] = \delta_\sigma^\rho \delta^3(\v{x} - \v{y}).
+\end{equation}
+and
+\begin{equation}
+    [\psi_\sigma(\v{x}), \psi_{\rho}(\v{y})] = [\psi^{\dag \sigma}(\v{x}), \psi^{\dag\rho}(\v{y})] = 0.
+\end{equation}
+and we could obtain basis states by operating (mutually commuting)\footnote{If the particles were somehow distinguishable, this entire construction would fail; this commutativity would not make sense.} creation operators on the vacuum state:
+\begin{equation}
+    \psi^{\dag\sigma_1}(\v{x}_1)\ldots\psi^{\dag\sigma_N}(\v{x}_N)\ket{0}.
+\end{equation}
+where the vacuum state is normalized:
+\begin{equation}
+    \braket{0}{0} = 1
+\end{equation}
+and is sent to zero by the anhilation operators:
+\begin{equation}
+    \psi_\sigma(\v{x})\ket{0} = 0, \bra{0}\psi^{\dag\sigma}(\v{x}) = 0.
+\end{equation}
+Now, consider a superposition:
+\begin{equation}\label{eq-psit}
+    \int d^3x_1 \ldots d^3x_N \psi_{\sigma_1\ldots \sigma_N}(\v{x}_1, \ldots, \v{x}_N, t)\psi^{\dag\sigma_{1}}(\v{x}_1)\ldots\psi^{\dag\sigma_N}(\v{x}_N)\ket{0}.
+\end{equation}
+where one can think of $\psi_{\sigma_1\ldots \sigma_N}(\v{x}_1, \ldots, \v{x}_N, t)$ as the coefficients of the sum (though of course the labels vary continuously, so we have integrals instead) - we will see shortly that this is the wavefunction of the system. Of course we also implicitly sum over the spin labels according to the Einstein summation convention. We will worry about normalization later on. Note that we still have not done anything physical here, so let us now do that; we want to set up our many-particle Schrodinger Equation in this second quantization language. Let us give the integral in Eq. \eqref{eq-psit} a name; let's call it $\ket{\Psi(t)}$. We want to find some sort of equation which tells us how this object evolves in time. This should be given by:
+\begin{equation}\label{eq-SEsecondq}
+    i\hbar \dpd{}{t}\ket{\Psi(t)} = H\ket{\Psi(t)}.
+\end{equation}
+such that the above equation is equivalent to the old Schrodinger Equation \eqref{eq-SEinteracting}; but note that it is written much more economically. In order to do so, we need to specify the Hamiltonian. In order to do so, we use the fact that the potential term in the SE can be decomposed into one, two, three, and in general $N$ body interaction terms. We obtain:
+\begin{equation}
+    \begin{split}
+        H = \int d^3 x \frac{\hbar^2}{2m}\nabla \psi^{\dag\sigma}(\v{x})\cdot \nabla \psi_\sigma(\v{x}) &+ \int d^3x V(\v{x}) \psi^{\dag\sigma}(\v{x})\psi_\sigma(\v{x})
+        \\ &+ \frac{1}{2!}\int d^3x d^3y V(\v{x}, \v{y})\psi^{\dag\sigma}(\v{x})\psi^{\dag\rho}(\v{y})\psi_\rho(\v{y})\psi_\sigma(\v{x})
+        \\ &+ \frac{1}{3!}\int d^3x d^3y d^3z V(\v{x}, \v{y}, \v{z})\psi^{\dag\sigma}(\v{x})\psi^{\dag\rho}(\v{y})\psi^{\dag\tau}(\v{z})\psi_\tau(\v{z})\psi_\rho(\v{y})\psi_\sigma(\v{x})
+        \\ &+ \ldots
+    \end{split}
+\end{equation}
+Clearly if we did not have a decomposition of the potential into $N$-body terms, this decomposition would not work out. Note that in the above Hamiltonian, we have assumed that the potential interaction doesn't care about the spin (but if it did, we would make the $V$s into a matrix, which depends on the spin; see the textbook for a more general formula). The terms in the above sum get successively complex (three body interactions are already a nightmare\footnote{They are of interest in nuclear physics, but we won't generally concern ourselves with them here}), but for most physical scenarios we only have up to two-body interactions.
+
+We look back at Eq. \eqref{eq-SEsecondq}; on the LHS the time derivative affects only the $\psi_{\sigma_1\ldots\sigma_N}(\v{x}_1, \ldots, \v{x}_N, t)$. On the RHS we get a mixture of terms from $H$ acting on $\ket{\Psi(t)}$. We could then collect terms to see how the various terms act on $\psi_{\sigma_1\ldots\sigma_N}(\v{x}_1, \ldots, \v{x}_N, t)$; doing so, we would completely reproduce the old $N$-body Schrodinger equation in \eqref{eq-SEinteracting}, with the only caveat that we have not specified the particle number. To this end, we consider the number operator:
+\begin{equation}\label{eq-numberoperator}
+    \mathcal{N} = \int d^3 x \psi^{\dag\sigma}(\v{x})\psi_\sigma(\v{x})
+\end{equation}
+Which when acted on an arbitrary state $\ket{\Psi(t)}$ counts the particle number. So we could supplement Eq. \eqref{eq-SEsecondq} with Eq. \eqref{eq-numberoperator}, and pairing this with knowledge of what $\psi^{\dag\sigma}(\v{x})$, $\psi_\sigma(\v{x})$ are from the commutation relations, we have a completely equivalent formulation of quantum mechanics. Note that we have really done nothing here, just rewrote the same thing in a different language.
+
+We have established an example of a non-relativistic quantum field theory. There is a further step we can take to write this down, however. Note that all of our work above was in the Schrodinger picture, where the states are time-dependent and the operators are time-independent. We will find it useful to recast this in the Heisenberg picture\footnote{Though note that this rewrite would not be doing anything physically}, where the states are time-independent and the operators are time-dependent. Let us begin this reconstruction now.
+
+\subsection{Review of the Heisenberg Picture}
+We can write the time-dependent quantum state that solves Eq. \eqref{eq-SEsecondq} as:
+\begin{equation}\label{eq-SEsol}
+    \ket{\Psi(t)} = e^{-\frac{i}{\hbar}Ht}\ket{\psi(0)}.
+\end{equation}
+Where $\ket{0}$ is the initial state of the system at time zero. Now, the expectation value of an operator $\mathcal{O}$ in the Schrodinger picture can be written as:
+\begin{equation}
+    \avg{\mathcal{O}}(t) = \bra{\Psi(t)}\mathcal{O}\ket{\Psi(t)}.
+\end{equation}
+Now, substituting in Eq. \eqref{eq-SEsol} to the above, we have:
+\begin{equation}
+    \avg{\mathcal{O}}(t) = \bra{\Psi(0)}e^{\frac{i}{\hbar}Ht}\mathcal{O}e^{-\frac{i}{\hbar}Ht}\ket{\psi(0)}
+\end{equation}
+So now we can define the time dependent operator:
+\begin{equation}
+    \mathcal{O}(t) = e^{\frac{i}{\hbar}Ht}\mathcal{O}e^{-\frac{i}{\hbar}Ht}
+\end{equation}
+and hence the expectation value can be written in the Heisenberg picture as:
+\begin{equation}
+    \avg{\mathcal{O}}(t) =\bra{\Psi(0)}\mathcal{O}(t)\ket{\psi(0)}.
+\end{equation}
+And the time-dependence of the operators are described by the Heisenberg equation of motion:
+\begin{equation}
+    \dpd{}{t}\mathcal{O}(t) = \frac{i}{\hbar}[H, \mathcal{O}(t)].
+\end{equation}
+For most QM problems, this is a much harder picture to solve problems in; however this is the way we will proceed, as things will look much more like a QFT in this formalism.
+
+\subsection{Second Quantization in the Heisenberg Picture}
+In the Heisenberg picture, we can study the time evolution of the annhilation/creation operators:
+\begin{equation}\label{eq-Heqmotionsecondq}
+    i\hbar\dpd{}{t}\psi_\sigma(\v{x}, t) = [\psi_\sigma(\v{x}, t), H].
+\end{equation}
+Note that $H$ here is time independent, but $\psi_\sigma$ has acquired a time-dependence in the Heisenberg picture. Now taking the commutation relations for $\psi_\sigma$ from our previous construction, we find:
+\begin{equation}
+    [\psi_{\sigma_1}(\v{x}_1, t), \psi_{\sigma_2}(\v{x}_2, t)] = 0
+\end{equation}
+in the case where the time $t$s are the same. It is the same story with the $\psi^{\dag\sigma}$s:
+\begin{equation}
+    [\psi^{\dag\sigma_1}(\v{x}_1, t), \psi^{\dag\sigma_2}(\v{x}_2, t)] = 0
+\end{equation}
+and the final commutation relation:
+\begin{equation}
+    [\psi_{\sigma_1}(\v{x}_1, t), \psi^{\dag\sigma_2}(\v{x}_2, t)] = \delta_{\sigma_1}^{\sigma_2}\delta^3(\v{x}_1 - \v{x}_2).
+\end{equation}
+In order to remind us that the times should be the same when we look at the above operators, we call these the \emph{equal-time commutation relations}. They give us enough algebra to figure out what \eqref{eq-Heqmotionsecondq}. So let us do just that.
+\begin{equation}
+    \begin{split}
+        i\hbar \dpd{}{t}\psi_\sigma(\v{x}, t) = &-\frac{\hbar^2\nabla^2}{2m}\psi_\sigma(\v{x}, t) + V(\v{x})\psi_\sigma(\v{x}, t)
+        \\ &+ \int d^3 y V(\v{x}, \v{y})\psi^{\dag\rho}(\v{y})\psi_\rho(\v{y})\psi_\sigma(\v{x}, t) + \ldots
+    \end{split}
+\end{equation}
+This is a lot simpler, and it \emph{looks} like $\psi_\sigma(\v{x}, t)$ satisfies a Schrodinger equation up to the second term (even though it is an operator and not a wavefunction). However then it becomes nonlinear as we add more terms (recall that the SE is linear). It does appear to satisfy the propogation of waves, and we will call it a \emph{field equation}. So, in the Heisenberg picture, we obtain an equivalent formulation of quantum mechanics by imposing the equal-time commutation relations and the field equation, as well as the number operator constraint:
+\begin{equation}\label{eq-Nconstraint}
+    \mathcal{N}\ket{\Psi} = N\ket{\Psi}.
+\end{equation}
+So this is an example of a full-blown quantum field theory, which we could turn around and use field-theoretic methods to attack. It is very easy to generalize this to the case where we have an infinite number of particles. It is also easy to generalize this to a system where the number of particles is not fixed (where we get rid of the constraint imposed by Eq. \eqref{eq-Nconstraint}).
+
+\subsection{From Bosons to Fermions}
+Everything we said here concerns bosons (from the construction of the operators to the Fock space states). For fermions, we want totally antisymmetric states. In order to do this, we simply replace the commutation relations of the annhilation/creation operators with anticommutation relations. By this one simple change, we obtain the fermionic field theory rather than the bosonic field theory.
+
+Also note; if we have multiple types of particles, we have multiple field equations, with cross terms in the equations of motion; but we will not be too concerned about this scenario here.
+
+A fun note: the number of fermions is either even or odd. There is no dynamical process which can change the parity (fermion superselection rule; important for (e.g.) condensed matter in the study of topological insulators). The flip of the sign of the state should not change anything about the universe (irrelevancy of the global phase).
+
+Next time, we will try to solve a simple many-particle system in the Heisenberg picture. We will see that it is not as abstract as it currently looks!

@@ -1,0 +1,123 @@
+\section{Many Particles Continued, Second Quantization}
+\subsection{Bosons and Fermions}
+Recall the many-particle Schrodinger Equation:
+\begin{equation}
+    i\hbar\dpd{}{t}\psi(\v{x}_1, \ldots, \v{x}_N, t) = \left(\sum_{i=1}^N \frac{-\hbar^2\nabla_i^2}{2m} + V(\v{x}_1, \ldots, \v{x}_N)\right)\psi(\v{x}_1, \ldots, \v{x}_N, t).
+\end{equation}
+
+This is the fundamental mathematical problem we are to solve when doing QM. There are depressingly few examples which are exactly solvable (almost none), such as single-particle potentials (where potentials such as the harmonic oscillator, hydrogen atom, infinite square well are exactly solvable). If we include two-particle potentials and $N \geq 3$, things are very difficult. There are a few low-dimensional examples solved with sophisticated techniques, and a couple solutions for $N = 2$, but that's about it. We've seen a few of these in prior QM courses. It may be depressing that we are talking about equations we can't solve, but we don't have to write down solutions; there are at least existence theorems for solutions (requiring boundary conditions/initial values; the initial value determines it uniquely and deterministically at later times). 
+
+We have gone out of our way to make the particles identical here; all particles have the same mass $m$, and the potential is a symmetric function of its arguments (it is unchanged under permutation of indices on the coordinates). This gives this equation a very high degree of symmetry\footnote{Symmetry will be a central focus in future lectures.}. This tells us that if we manage to find a solution, we obtain another solution by permuting the labels:
+\begin{equation}
+    \psi(\v{x}_{1}, \ldots, \v{x}_{N}, t) \to \psi(\v{x}_{P(1)}, \ldots, \v{x}_{P(N)}, t)
+\end{equation}
+so one solution gives us $N!$ solutions, and then by the principle of superposition we actually obtain an infinite number. But to be different quantum states, they should be linearly independent as vectors, i.e.:
+\begin{equation}
+    c_1\psi + c_2\psi_P = 0
+\end{equation}
+can only be solved by $c_1 = c_2 = 0$. If they are linearly independent, then $\psi_P = - \frac{c_1}{c_2}\psi$ (or $e^{i\phi}\psi$ if the states are normalized). So which is it? At this point, mathematics doesn't help us, but mother nature does come to the rescue and chooses one of these; nature says that they always have to be linearly dependent; so there is only one state\footnote{Perhaps the only time in life where nature picks the simplest path...}. After you find one solution, you have \emph{not} found $N!$ solutions, but just the one. Given this, we can consider a particular interchange where we swap of the two labels. If we do it twice, we should come back to the same state:
+\begin{equation}
+    \psi_P = -\frac{c_1}{c_2}\psi = \left(-\frac{c_1}{c_2}\right)^2 \psi_P
+\end{equation}
+so this tells us that $(-c_1/c_2)^2 = 1$, i.e. $-c_1/c_2$ is either $1$ or $-1$. If we do an interchange of labels, we will have two cases:
+\begin{equation}
+    \psi(\v{x}_{P(1)}, \ldots, \v{x}_{P(N)}, t) = \psi(\v{x}_{1}, \ldots, \v{x}_{N}, t) 
+\end{equation}
+where no change happens for any permutation; such particles are known as \textbf{bosons}. Or, we can have:
+\begin{equation}
+    \psi(\v{x}_{P(1)}, \ldots, \v{x}_{P(N)}, t) = (-1)^{\deg(P)}\psi(\v{x}_{1}, \ldots, \v{x}_{N}, t) 
+\end{equation}
+where $\deg(P)$ is the number of neighbours necessary to interchange to put the labels back in order (this is easily seen to be defined $\mod 2$). Such particles are known as \textbf{fermions}\footnote{These two are the only possibilities in three dimensions; in lower dimensions particles known as \emph{anyons} are also possible (and useful for fault-tolerant topological quantum computing, as it turns out!), but these are outside the scope of the course. In relativistic physics, there are theorems that tell you particles are always bosons/fermions, but these theorems always have caveats; so in some sense this uniqueness of particle types comes down to what has been observed (and certainly this is the case for NRQM).}. 
+
+Note that this affects the counting of states quite severely. For indistinguishable particles, we have only one state (rather than a multiplicity of states) when we find a solution. Bosons are said to follow Bose-Einstein statistics, while Fermions follow Fermi-Dirac\footnote{Named after their founders; though really it was Bose that wrote to Einstein first, and the F-D was really due to Pauli...} statistics.
+
+\subsection{Particles with Spin}
+How do we account for the spin of particles? If we were just writing the SE for one particle with spin, we would write:
+\begin{equation}
+    i\hbar\dpd{}{t}\psi_\sigma(\v{x}, t) = \left(-\frac{\hbar^2}{2m}\nabla^2 + V(\v{x})\right)\psi_\sigma(\v{x}, t)
+\end{equation}
+where $\sigma$ is a discrete index that runs over the possible spin polarizations of the particle:
+\begin{equation}
+    \sigma = -J, -J + 1, \ldots, J-1, J.
+\end{equation}
+Of course the potential could have a dependence on the spin (e.g. spin-orbit coupling, spin-spin coupling):
+\begin{equation}
+    \sum_{\tau=-J}^\tau V_\sigma^\tau(\v{x})\psi_\tau(\v{x}, t).
+\end{equation}
+Though we do not consider such interactions here, they are of immense importance in nuclear and AMO physics. If we have multiple particles with spin, our wavefunction can now be written as:
+\begin{equation}
+    \psi_{\sigma_1, \ldots, \sigma_N}(\v{x}_1, \ldots, \v{x}_N, t).
+\end{equation}
+If we want to symmetrize or anti-symmetrize, we permute both the position and the spin labels:
+\begin{equation}
+    \psi_{\sigma_1, \ldots, \sigma_N}(\v{x}_1, \ldots, \v{x}_N, t) = \pm \psi_{\sigma_{P(1)}, \ldots, \sigma_{P(N)}}(\v{x}_{P(1)}, \ldots, \v{x}_{P(N)}, t).
+\end{equation}
+
+
+\subsection{The Potential}
+
+Another comment is on the multi-particle potential energy function. If the particles do not interact with one another, we have:
+\begin{equation}
+    V(\v{x}_1, \ldots, \v{x}_N) = \sum_{i=1}^N V(\v{x}_i)
+\end{equation}
+But we could also have the sum of two-body potentials:
+\begin{equation}
+    V(\v{x}_1, \ldots, \v{x}_N) = \sum_{i=1}^N V(\v{x}_i) + \sum_{i < j}V(\v{x}_i, \v{x}_j)
+\end{equation}
+But if we study nuclear or condensed matter physics, we also have higher-body interactions:
+\begin{equation}
+    V(\v{x}_1, \ldots, \v{x}_N) = \sum_{i=1}^N V(\v{x}_i) + \sum_{i < j}V(\v{x}_i, \v{x}_j) + \sum_{i < j < k}V(\v{x}_i, \v{x}_j, \v{x}_k) + \ldots.
+\end{equation}
+Now we might think; how might we separate/determine these in a unique way? The experimentalist answer is to put particles in one, or two, or three (or more) at a time to determine the $N$-particle forces one at a time. For the purposes of our course, we will generally limit ourselves to studying up to two-body interactions. Three-body interactions and higher rarely do things for us (exception: nucleons in the nucleus).
+
+\subsection{Second Quantization}
+
+We've written down a problem we will never solve; we have done this in order to rewrite the problem. This rewrite is required for a few reasons; first, we may have an open quantum system, so the number of particles is \emph{not} fixed (we can get around it in the picture we have painted above, e.g. by using the average number of particles, but it isn't ideal). Another point to make is that for a finite number of particles and an infinite volume, we get zero density; we would prefer to describe things with finite (instead of zero) density. We could fix this in the current picture by putting space into a finite box, but again this is another band-aid we require. Perhaps the biggest reason for the rewrite is for mathematical elegance. We now leave physics behind for a few moments to construct a useful formalism.
+
+We keep the spin, and write down an object $\psi_\sigma(\v{x})$. Note that $\psi$ here is \emph{not} a wavefunction here. It is instead an operator. Operators operate on states, the most trivial of which is given by the empty vacuum $\ket{0}$. This is the state of our many-particle system with no particles in it. We will assume that $\psi_\sigma(\v{x})$ has the property that:
+\begin{equation}
+    \psi_\sigma(\v{x})\ket{0} = 0.
+\end{equation}
+And we will also assume that $\ket{0}$ is normalized:
+\begin{equation}
+    \braket{0}{0} = 1.
+\end{equation}
+Note that $\ket{0}$ is not the zero vector of our vector space (as the above normalization condition should make clear). We will also assume the existence (and uniqueness) of the dual space, which contains the bra $\bra{0}$ which satisfies:
+\begin{equation}
+    \bra{0}\psi^{\dag\sigma}(\v{x}) = 0.
+\end{equation}
+We then need only one more step; the commutation relations that these operators obey. We will assume that:
+\begin{equation}
+    [\psi_\sigma(\v{x}), \psi_{\rho}(\v{y})] = 0, \quad \forall \v{x}, \v{y}, \sigma, \rho
+\end{equation}
+Taking the Hermitian adjoint of the above, we obtain:
+\begin{equation}
+    [\psi^{\dag\sigma}(\v{x}), \psi^{\dag\rho}(\v{y})] = 0, \quad \forall \v{x}, \v{y}, \sigma, \rho.
+\end{equation}
+We need something that doesn't commute for these to be operators (rather than numbers); we have a relation reminiscent of the annhilation/creation operators of the quantum harmonic oscillator:
+\begin{equation}
+    [\psi_\sigma(\v{x}), \psi^{\dag\rho}(\v{y})] = \delta_\rho^\sigma \delta^3(\v{x} - \v{y}).
+\end{equation}
+When we do relativistic physics, the contra and covariant coordinates (up/down labels) will become important; for now they are just labels without too much significance (just helps us to keep track). We can now consider a family of states:
+\begin{equation}
+    \ket{0}, \psi^{\dag\sigma}(\v{x})\ket{0}, \psi^{\dag\sigma}(\v{x})\psi^{\dag\rho}(\v{y})\ket{0}, \ldots
+\end{equation}
+we can think of these as the basis vectors of our vector space, given the name the \emph{Fock space}. A general vector in Fock space is given by a linear combination of the above basis vectors. Among these vectors, we can find the matrix elements of $\psi_\sigma$, $\psi^{\sigma}$ and so on. We can now write down the density operator:
+\begin{equation}
+    \rho(\v{x}) = \psi^{\dag\sigma}(\v{x})\psi_\sigma(\v{x}).
+\end{equation}
+When we pair an covariant/contravariant quantity (up/down label), there is an implied sum (Einstein summation convention); we have omitted a $\sum_{\sigma=-J}^J$ in the above expression. Now, if we operate the density operator on the vacuum state, we have:
+\begin{equation}
+    \rho(\v{x})\ket{0} = \psi^{\dag\sigma}(\v{x})\psi_\sigma(\v{x})\ket{0} = 0.
+\end{equation}
+We can use the commutation algebra to look at an arbitrary basis vector and the action of $\rho(\v{x})$ on it:
+\begin{equation}
+    \rho(\v{x})\psi^{\dag\sigma_1}(\v{x}_1)\ldots \psi^{\dag\sigma_N}(\v{x}_N)\ket{0} = \sum_{i=1}^N \delta(\v{x} - \v{x}_i)\psi^{\dag\sigma_1}(\v{x}_1)\ldots \psi^{\dag\sigma_N}(\v{x}_N)\ket{0}
+\end{equation}
+In other words, the basis states are eigenstates of $\rho(\v{x})$ with eigenvalues $\sum_{i=1}^N \delta(\v{x} - \v{x}_i)$. 
+
+Note that the basis states are not really physical quantum mechanical states; the particles are at fixed positions and at fixed spins. Another point to make is that since the $\psi^{\sigma}$s commute with each other, it is a completely symmetric state, i.e. a state of bosons. It's not possible to say which bosons are sitting at which position, and has bose-einstein statistics built in. Nature has been very kind to us; if nature did not have such statistics, we would not be able to use such construction.
+
+Next time, we will discuss what happens when the $\psi_\sigma$s are fermions rather than bosons. We will also look for how we formulate the Schrodinger equation in this second quantization language.
+
+A remark on the Fock space; it is a continuously infinite basis. Not clear that this is a separable Hilbert space, which is where we do QM in. One of the tenets is that the basis for such a space is countable (of which what we have is not). We could improve this by replacing the construction of $\psi^{\dag\sigma}(\v{x})$s with $\int d^x f_i(\v{x})\psi^{\dag\sigma}(\v{x})$ where $f_i$ are square integrable functions. But this is not actually discrete. You can use a Cantor diagonalization argument to show that there will be an uncountable number of states. To get a Hilbert space, you need to restrict yourself to states with a finite total number of particles. Then consider Cauchy sequences of such basis states, and consider all of the basis states plus limits of such Cauchy sequences, giving a Hilbert space. But this is a subtetly that we will not really consider for the remainder of the course.

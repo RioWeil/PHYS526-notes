@@ -1,0 +1,56 @@
+\section{Motivation and Many Particles}
+
+\subsection{Why QFT?}
+\begin{enumerate}
+    \item Natural way to study QM systems with large number of DOFs
+    \item To reconcile special relativity and quantum mechanics (``QM + SR = QFT''). No way to do ``regular'' QM in a relativistic setting. Mainly because $E = mc^2$, so energy can convert into mass; e.g. highly energetic collisions in the LHC which produce a large number of particles. You need a framework which can account for a large type and an arbitrary number of quantum-mechanical particles.
+    \item If you take point quantum mechanics and replace the NRQM Hamiltonian (with non-relativistic momentum) with the relativistic version of $H = \sqrt{p^2c^2 + m^2c^4} = mc^2 + \frac{p^2}{2m} + \cdots$, you find that the particle disperses (much like in the non-relativistic case) but it spreads in such a way that it violates causality; i.e. it can disperse outside of the light cone. There is no way to repair this in single-particle point quantum mechanics. QFT fixes this beautifully. It introduces an antiparticle, and says that the acausal process is actually a superposition of two processes, one with the particle and one with the antiparticle, and one  ``tune'' the superposition so there is a destructive interference of the acausal behavior.
+\end{enumerate} 
+
+\subsection{A one-particle QM system}
+Let's review a one-particle system. It is described by a wavefunction $\psi(\v{x}, t)$, which satisfies the Schrodinger equation:
+
+\begin{equation}
+    i\hbar \dpd{}{t}\psi(\v{x}, t) = \left(-\frac{\hbar^2 \nabla^2}{2m} + V(\v{x})\right)\psi(\v{x}, t).
+\end{equation}
+
+In the above equation, $H = -\frac{\hbar^2 \nabla^2}{2m} + V(\v{x})$ is the Hamiltonian (the so called ``energy''), where the first term is the kinetic energy and the second term is the position-dependent potential energy (e.g. due to gravitational interaction, electronic interactions). Note we assume that the potential is velocity-independent to simplify things. We take the momentum to be:
+\begin{equation}
+    \v{p} \coloneqq -i\hbar\nabla
+\end{equation}
+so the kinetic energy is of course:
+\begin{equation}
+    \frac{\v{p}}{2m} = -\frac{\hbar^2\nabla^2}{2m}.
+\end{equation}
+The nabla operator is defined as $\nabla = \m{\pd{}{x}, \pd{}{y},\pd{}{z}}$, and so $\nabla^2 = \pd[2]{}{x} + \pd[2]{}{y} + \pd[2]{}{z}$. Note that the Schrodinger equation is linear (and its validity can be confirmed in experiment, though we take it as an axiom in NRQM). To the wavefunction we can associate a probability amplitude:
+\begin{equation}
+    \abs{\psi(\v{x}, t)}^2d^3x = \text{ Probability of finding particle in volume $d^3x$ at position $\v{x}$, time $t$.}
+\end{equation}
+And since we must find the particle somewhere, we have the normalization condition:
+\begin{equation}
+    \int \abs{\psi(\v{x}, t)}^2 d^3x = 1.
+\end{equation}
+
+We have not yet specified where the particle is allowed to be. If the particle is confined to some region (e.g. a box) then we require the enforcement of boundary conditions on the wavefunction (e.g. $\psi(x, 0) = \psi(x, L) = 0$ for a infinite square well). For our purposes, we will take $\v{x} \in \RR^3$ (no confinement), with the boundary condition specified by the normalization condition (but sometimes we even relax this, e.g. with plane waves, where we might specify the BC as the existence of the Fourier transform). 
+
+\subsection{A many-particle QM system}
+We now move to a many-particle quantum mechanical system. How does the Schrodinger equation look in this case? For an identical $N$-particle system, a natural generalization is:
+\begin{equation}\label{eq-SEinteracting}
+    i\hbar\dpd{}{t}\psi(\v{x}_1, \v{x}_2, \ldots, \v{x}_N, t) = \left(\sum_{i=1}^N\frac{-\hbar^2\nabla_i^2}{2m} + V(\v{x}_1, \v{x}_2, \ldots, \v{x}_N)\right)\psi(\v{x}_1, \v{x}_2, \ldots, \v{x}_N, t).
+\end{equation}
+
+But why is this a natural generalization? Suppose Alice and Bob have a particle each, and are studying the particles in two far-apart labs. They both analyze their experiment using a one-particle Schrodinger equation (Alice should not have to take into account Bob's particle on the other side of the world, and vise versa! Physics should be local). Perhaps they are doing similar experiments, and start exchanging emails, and want to describe the system as a composite. The natural way to create a composite system would be to multiply the wavefunction of particle one by the wavefunction of particle two:
+\begin{equation}
+    \psi(\v{x}_1, \v{x}_2, t) = \psi_1(\v{x}_1, t)\psi_2(\v{x}_2, t)
+\end{equation}
+this follows naturally from the probabilistic interpretation of the wavefunctions (when we compose two probability distributions, we take their product, not their sum). We could then show that the product of the two wavefunctions satisfies the composite SE Eq. \eqref{eq-SEinteracting} if they satisfy their individual one-particle Schrodinger equations, i.e.:
+\begin{equation}
+    i\hbar\dpd{}{t}\psi_1(\v{x}_1, t)\psi_2(\v{x}_2, t) = \left(-\frac{-\hbar^2\nabla^2}{2m} - \frac{\hbar^2\nabla_2^2}{2m} + V(\v{x}_1) + V(\v{x}_2)\right)\psi_1(\v{x}_1, t)\psi_2(\v{x}_2, t).
+\end{equation}
+However, if we introduce an interaction between the two particles (e.g. a Coloumb interaction), taking the composite wavefunction as the product no longer becomes valid; however Eq. \eqref{eq-SEinteracting} still holds.
+
+We now return to the assumption that the particles are identical. Of course this means that $m_1 = m_2 = \ldots m_N$, but this has the more interesting implication that $V$ is symmetric in its arguments, i.e.
+\begin{equation}
+    V(\v{x}_{P(1)}, \v{x}_{P(2)}, \ldots, \v{x}_{P(N)}) =  V(\v{x}_1, \v{x}_2, \ldots, \v{x}_N)
+\end{equation}
+for any permutation $(P(1), \ldots P(N))$ of $(1, \ldots N)$. There are $N!$ permutation of $N$ objects. This is what it means for the particles to be identical, as they feel interactions in  a way such that the interaction is left unchanged by swapping any of the particles.
