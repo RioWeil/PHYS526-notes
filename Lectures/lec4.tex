@@ -1,0 +1,122 @@
+\section{Weakly Interacting Particles}
+\subsection{Review of QFT construction}
+To briefly recap, we have taken the $N$-particle SE:
+\begin{equation}
+    i\hbar\dpd{}{t}\psi_{\sigma_1\ldots\sigma_N}(\v{x}_1, \ldots, \v{x}_N, t) = \left(\sum_{i=1}^N -\frac{\hbar^2\nabla^2_i}{2m} + \sum_{i < j}\lambda\delta(\v{x}_i - \v{x}_j)\right)\psi_{\sigma_1\ldots\sigma_N}(\v{x}_1, \ldots, \v{x}_N, t)
+\end{equation}
+(here with a short-range repulsive interaction) with the normalization condition:
+\begin{equation}
+    \int d^3x_1\ldots d^3x_N \psi^{\dag\sigma_1\ldots\sigma_N}(\v{x}_1, \ldots \v{x}_N, t)\psi_{\sigma_1\ldots\sigma_N}(\v{x}_1, \ldots \v{x}_N, t) = 1.
+\end{equation}
+and we have shown that it is completely equivalent to the field equation:
+\begin{equation}
+    \left(i\hbar\dpd{}{t} + \frac{\hbar^2\nabla^2}{2m}\right)\psi_{\sigma}(\v{x}, t) = \lambda\psi^{\dag\rho}(\v{x}, t)\psi_\rho(\v{x}, t)\psi_\sigma(\v{x}, t)
+\end{equation}
+where the $\psi_\sigma$ are field operators with equal-time commutation relations:
+\begin{equation}
+    [\psi_\sigma(\v{x}, t), \psi^{\dag\rho}(\v{y}, t)] = \delta_\sigma^\rho \delta^3(\v{x} - \v{y}).
+\end{equation}
+(the other commutation relations are zero). Actually, the two are almost equivalent; we also have to put in the number operator:
+\begin{equation}
+    \mathcal{N} = \int d^3 \psi^{\dag\sigma}(\v{x}, t)\psi_\sigma(\v{x}, t)
+\end{equation}
+which specifies the number of particles in the system; note that $\mathcal{N}$ commutes with $H$ and so is time-independent (and we can take the $t$ in the above expression to be whatever we like; useful when we want to apply the equal-time commutation relations). We will in the near future find a more clever way to show that this is time-independent. 
+
+The field equation and the operators already give us a QFT; the number operator is auxilary and only necessary for a complete equivalence to the old formulation. We can also bring the information about the Hamiltonian along with us (useful as the eigenvalues of the Hamiltonian provide valuable information):
+\begin{equation}
+    H = \int d^3x \frac{\hbar^2}{2m}\nabla\psi^{\dag\sigma}(\v{x}, t)\cdot \nabla \psi_\sigma(\v{x}, t) + \frac{\lambda}{2}\psi^{\dag\sigma}(\v{x}, t)\psi^{\dag\rho}(\v{x}, t)\psi_\rho(\v{x}, t)\psi_\sigma(\v{x}, t).
+\end{equation}
+But again we will find a more sophisticated way to derive these later (from the field equations and commutation relations) using the fact that quantities are conserved.
+
+Even for this very simple interaction potential, it is impossible to solve this analytically (for 1-D some work may be possible). So what do we do? Perhaps we can solve an approximation to it; we look at the limit in which the interaction is small/weak. We should have to define what ``small'' means, but let us avoid that for the moment.
+
+In statistical mechanics, we never say the particles are never completley non-interacting, as the particles need to transfer energy in order to reach thermal equilibrium. We assume the interaction is there, but quite weak. But similar to that case, at a first pass we can just throw away the interaction and solve the non-interacting scenario.
+
+\subsection{Weakly (Non) Interacting Particles (Bosons)}
+In the limit of no interaction $(\lambda \to 0)$ we have:
+\begin{equation}
+    \left(i\hbar\dpd{}{t} + \frac{\hbar^2\nabla^2}{2m}\right)\psi_\sigma(\v{x}, t) = 0.
+\end{equation}
+Now we have a linear rather than a nonlinear PDE to solve. Not only this, but the one above is very easy to solve; there is no $x$ or $t$ dependence in the above, so we can solve it simply by a Fourier transform. Plugging in a plane wave, we have:
+\begin{equation}
+    \left(i\hbar\dpd{}{t} + \frac{\hbar^2\nabla^2}{2m}\right)e^{i\v{k}\cdot\v{x} - \frac{i}{\hbar}\frac{\hbar\v{k}^2}{2m}t} = 0
+\end{equation}
+where the above equation is easily verified by the observations that $\pd{}{t}e^{i\omega t} = i\omega e^{i\omega t}$ and $\nabla e^{i\v{k} \cdot \v{x}} = i\v{k}e^{i\v{k} \cdot \v{x}}$. However note we have really found a continuum of solutions, as the above works for any value of $\v{k}$. At this point we need to convince ourselves that we have found the complete set of solutions, but of course the set of plane waves are complete so we have just that. A most general solution is written as a linear combination:
+\begin{equation}
+    \psi_\sigma(\v{x}, t) = \int \frac{d^3k}{(2\pi)^{3/2}}e^{i\v{k}\cdot \v{x} - i\frac{\hbar\v{k}^2}{2m}t}a_\sigma(\v{k})
+\end{equation}
+where the $a_\sigma(\v{k})$ can be thought of the coefficients of the expansion. $\psi^{\dag\sigma}(\v{x}, t)$ can then easily be found to be:
+\begin{equation}
+    \psi^{\dag\sigma}(\v{x}, t) = \int \frac{d^3k}{(2\pi)^{3/2}}e^{-i\v{k}\cdot\v{x} + i\frac{\hbar\v{k}^2}{2m}t}a^{\dag\sigma}(\v{k}).
+\end{equation}
+Using the commutation relations for the field operators, we can then find the commutation relations for the $a_\sigma/a^{\dag\sigma}$ to be:
+\begin{equation}
+    [a_\sigma(\v{k}), a_\rho(\v{l})] = [a^{\dag\sigma}(\v{k}, a^{\dag\rho}(\v{l})] = 0
+\end{equation}
+\begin{equation}
+    [a_\sigma(\v{k}), a^{\dag\rho}(\v{l})] = \delta_\sigma^\rho\delta^3(\v{k} - \v{l}).
+\end{equation}
+which is extremely similar in form to the commutation algebra of the $\psi$s. We can then construct the vector space that the $a$s act on. Letting $\ket{0}$ be the empty vacuum state, we have:
+\begin{equation}
+    a_\sigma(\v{k})\ket{0} = 0, \forall \v{k}, \sigma
+\end{equation}
+and the vector space has a basis composed of vectors of the form:
+\begin{equation}\label{eq-Fockstates}
+    a^{\dag\sigma_1}(\v{k}_1)\ldots a^{\dag\sigma_N}(\v{k}_N)\ket{0}.
+\end{equation}
+The dual statement of the above is:
+\begin{equation}
+    \bra{0}a^{\dag\sigma}(\v{k}) = 0, \forall \v{k}, \sigma
+\end{equation}
+We can now calculate matrix elements using the commutation algebra:
+\begin{equation}
+    \bra{0}a_{\sigma_1}(\v{k}_1)\ldots a_{\sigma_m}(\v{k}_m)a^{\dag\rho_1}(\v{l}_1)\ldots a^{\dag\rho_m}(\v{l}_n)\ket{0} = \delta_{mn}\sum_P \delta(\v{k} - \v{l}_{P(1)})\delta_{\sigma_1}^{\rho_{\sigma(1)}}\ldots \delta(\v{k}_n - \v{l}_{P(m)})\delta_{\sigma_n}^{\rho_{P(m)}}
+\end{equation}
+which is messy, but really comes from the fact that the matrix element is symmetric in its arguments of $\v{k}_i, \v{l}_j$. Sometimes due to this symmetry we enforce a $\frac{1}{N!}$ to normalize for all permutations (which can be useful for some applications). This concludes the boson story, but what about fermions?
+
+\subsection{Weakly (Non) Interacting Particles (Fermions)}
+For bosons, we initially enforced symmetry of the wavefunction in the arguments. For fermions, we enforce antisymmetry instead. All commutators become anticommutators; and the structure of the above argument holds basically exactly the same with the commutation relations for $\psi$ replaced with anti-commutation relations. When we get to the $a$s, we also replace the commutators with anticommutators.
+
+When we compute the matrix elements, we get negative signs from the anticommutation relations, so:
+\begin{equation}
+    \bra{0}a_{\sigma_1}(\v{k}_1)\ldots a_{\sigma_m}(\v{k}_m)a^{\dag\rho_1}(\v{l}_1)\ldots a^{\dag\rho_m}(\v{l}_n)\ket{0} = \delta_{mn}\sum_P (-1)^{\deg(P)}\delta(\v{k} - \v{l}_{P(1)})\delta_{\sigma_1}^{\rho_{\sigma(1)}}\ldots \delta(\v{k}_n - \v{l}_{P(m)})\delta_{\sigma_n}^{\rho_{P(m)}}
+\end{equation}
+There's not much of a difference so far; but we will find the many-particle states are profoundly different for bosons and fermions.
+
+\subsection{Understanding our solution to the theory}
+We now ask: in what sense have we ``solved'' this theory? To start, we can take our plane wave solution and plug it into the number and Hamiltonian operators. Doing so, we obtain:
+\begin{equation}
+    \mathcal{N} = \int d^3k a^{\dag\sigma}(\v{k})a_\sigma(\v{k})
+\end{equation}
+\begin{equation}
+    H = \int d^3k\frac{\hbar^2\v{k}^2}{2m}a^{\dag\sigma}(\v{k})a_\sigma(\v{k}).
+\end{equation}
+We find that this closely resembles the harmonic oscillator, and also that $\mathcal{N}$ and $H$ are explicitly time-independent. Also, if we take our states (Eq. \eqref{eq-Fockstates}), we see that they are indeed eigenstates of these operators (can be determined through the commutation algebra, or by interpreting these as harmonic oscillator eigenstates\footnote{The quote that ``space is just a bunch of harmonic oscillators'' is salient here.}):
+\begin{equation}
+    \mathcal{N}a^{\dag\sigma_1}(\v{k}_1)\ldots a^{\dag\sigma_N}(\v{k}_N)\ket{0} = Na^{\dag\sigma_1}(\v{k}_1)\ldots a^{\dag\sigma_N}(\v{k}_N)\ket{0}
+\end{equation}
+\begin{equation}
+    Ha^{\dag\sigma_1}(\v{k}_1)\ldots a^{\dag\sigma_N}(\v{k}_N)\ket{0} = \left(\sum_{i=1}^N \frac{\hbar^2\v{k}_i^2}{2m}\right)\left(a^{\dag\sigma_1}(\v{k}_1)\ldots a^{\dag\sigma_N}(\v{k}_N)\ket{0}\right).
+\end{equation}
+Note that this discussion applies equally as well to bosons and fermions.
+
+\subsection{Degenerate Fermi Gas - Vacuum State}
+We have found a complete solution in the non-interacting limit, from which we can draw out some information. If we think about a high-energy state where bosons/fermions can be treated the same, can we derive familiar results (e.g. high $T$ limit for ideal gas/ideal gas law)? As a teaser for next time: we will start to study fermionic systems, which are slightly easier to understand. Consider a state with an infinite number of fermionic particles (as we want a finite density, if we have infinite space then we need infinite particles; in CM you may instead consider a finite number of particles in a box with boundary conditions). We will like to look at the low-energy states of such a system. If I had only one particle, its lowest energy state would be $\v{k} = \v{0}$, the state with a constant wavefunction. If I had two fermions, the first can have energy zero, but the second one cannot; this is because if we had two fermions in the same state, then $\{a^{\dag\sigma}(\v{k})a^{\dag\sigma}(\v{k})\} = (2a^{\dag\sigma}(\v{k}))^2 = 0$ (although we could have two different spin states); so $a^{\dag\sigma}(\v{k}))^2\ket{0} = 0$ is the zero vector and hence not a real quantum state. This is of course the famous \emph{Pauli exclusion principle}. The next $\v{k}$ above zero is slightly ill-defined in the infinite-space limit (as we have a continuum)\footnote{Here it might be nice to be a CM physicist instead...} but let us imagine it. The $N$-particle ground state would be:
+\begin{equation}
+    \ket{\mathcal{O}} = \prod_{\v{k} < k_F, \sigma}\left(a^{\dag\sigma}(\v{k})\right)\ket{0}.
+\end{equation}
+Note that the above is really mathematical nonsense due to the continuity of $\v{k}$. We call $\ket{\mathcal{O}}$ the vacuum (different from the empty vacuum $\ket{0}$). Note that the vacuum state we will stick with for the rest of the course, while the empty vacuum we will abandon when we get to relativistic field theory; it is not accessible in that limit. Let us define the vacuum state algebraically instead of the nonsense definition we have above (though we can heuristically understand the below algebraic constraints based on the nonsense equation we have above):
+\begin{equation}
+    a^{\dag\sigma}(\v{k})\ket{\mathcal{O}} = 0 \text{ if } \abs{\v{k}} \leq k_F
+\end{equation}
+\begin{equation}
+    a_\sigma(\v{k})\ket{\mathcal{O}} = 0 \text{ if } \abs{\v{k}} > k_F.
+\end{equation}
+\begin{equation}
+    \braket{\mathcal{O}}{\mathcal{O}} = 0.
+\end{equation}
+Note that the $\leq$ does not really matter in the above equation; the Fermi surface where $\abs{\v{k}} = k_F$ is a set of zero measure. $k_F$ here is known as the Fermi wavenumber and from this we can construct $\hbar k_F$ the Fermi momentum, and $\e_F = \frac{\hbar^2 k_F^2}{2m}$ the Fermi energy. 
+
+This construction is how we will deal with fermions next day!
+
+
