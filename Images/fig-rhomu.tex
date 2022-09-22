@@ -1,0 +1,28 @@
+\documentclass[10pt]{standalone}
+\usepackage{commands}
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = center,
+            xlabel = \(\mu\),
+            ylabel = {\(\rho\)},
+            yticklabels={,,}
+            xticklabels={,,}
+        ]
+        \addplot [
+            domain=-10:0, 
+            samples=100, 
+            color=red,
+        ]
+        {0};
+        \addplot [
+            domain=0:10, 
+            samples=100, 
+            color=red,
+            ]
+            {x^(3/2)};
+        
+        \end{axis}
+    \end{tikzpicture}
+\end{document}
