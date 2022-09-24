@@ -1,0 +1,14 @@
+\documentclass[10pt]{standalone}
+\usepackage{commands}
+
+\begin{document}
+\begin{tikzpicture}
+    \draw[-latex] (0, -1) -- (0, 3);
+    \draw[-latex] (-1, 0) -- (3, 0);
+    \node[right] at (0, 3) {$\omega(\v{k})$};
+    \node[above] at (3, 0) {$\abs{\v{k}}$};
+    \draw [thick, blue, -latex] plot [smooth, tension=1] coordinates { (0,0) (1,1) (1.5,0.5) (2.5,2)};
+    \draw[purple, dashed] (0, 0) -- (1, 1.5) -- (2, 3);
+    \draw[red, dashed] (0, 0) -- (1.5, 0.47) -- (2.5, 0.78);
+\end{tikzpicture}
+\end{document}

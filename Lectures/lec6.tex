@@ -14,13 +14,10 @@ Of course this looks crazy, as these particles with $\v{k} = \v{0}$ have infinit
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}
-        \draw[] (0, 0) -- (2, 0) -- (2, 2) -- (0, 2) -- cycle;
-    \end{tikzpicture}
+    \includegraphics[]{Images/fig-bosonBC.pdf}
 
-    \textcolor{blue}{TODO: box with hard boundary conditions}
-    \caption{<caption>}
-    \label{<label>}
+    \caption{Two possible views as the problem. We can constrain the bosons to a box of side length $L$ with hard boundaries, constraining the ground state wavefunction to look like $\sqrt{\frac{2}{L}}\sin(\frac{2\pi x}{L})$. Alteratively, we can assume our system is a finite patch out of infinite space, in which case the ground state wavefunctions are plane waves with infinite wavelength, i.e. constant in space.}
+    \label{fig-bosonBC}
 \end{figure}
 
 In fact, the wavefunction and the energy would be quite sensitive to the boundary conditions. This is not something that we really want\footnote{as theorists in a QFT class, anyway; maybe not if you work at SBQMI down the street.}. We could do the opposite and remove the walls, and assume that our system is a finite patch within infinite space. Then a piece of the system should look fairly generic. But what happens then? The wavefunction would be constant over all space if $\v{k} = \v{0}$, so the probability of finding it anywhere in space is equal. So, our state is not something with a constant particle number. So at the outset, we can take this point of view that the particle number is not fixed; an approach that particle physicists and field theorists love. One could instead take a closed system and study it through this method, but there is not a consensus as to whether the two approaches are actually equivalent. But we will take the field theorists approach, here.
@@ -79,9 +76,10 @@ Note that in the textbook that there is a section which reviews Landau's famous 
 
 \begin{figure}[htbp]
     \centering
-    \textcolor{blue}{TODO: pipe with sound wave}
-    \caption{<caption>}
-    \label{<label>}
+    \includegraphics[]{Images/fig-superfluidpipe.pdf}
+
+    \caption{In Landau's argument for superfluids, we consider a superfluid travelling in a pipe, and wavelike excitations/quasiparticles with wavenumber $\v{k}$ and frequency $\omega(\v{k})$.}
+    \label{fig-superfluidpipe}
 \end{figure}
 
 
@@ -93,16 +91,15 @@ The argument is beautiful in how it invokes Galilean relativity/symmetry (do rea
 
 So, the important goal for us; can we find this using our model? What do the elementary excitations look like?
 
-Note that this argument doesn't really agree with experiments. $v_c$ is smaller than what we would expect from Landau's argument. The explanation is that the curve could look like the roton curve, below. Then the RHS would not be the slope of the starting part, but the smaller slope.
+A small aside; this argument doesn't really agree with experiments. $v_c$ as measured is smaller than what we would expect from Landau's argument. The explanation is that the dispersion relation $\omega(\v{k})$ as measured in experiment takes the form of the roton curve as seen in the below figure. Then $v_c$ is not the slope of the purple curve (as would be predicted theoretically) but instead is the slope of the red curve (less than the theoretically predicted value).
 
 \begin{figure}[htbp]
     \centering
-    \textcolor{blue}{ROton curves and experiment (review this...)}
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+    \includegraphics[]{Images/fig-rotoncurve.pdf}
 
-These roton curves are seen experimentally. There are other things that can be observed experimentally, like vortices (and these can compete with the energies of the phonons). At least in the ideal case, the argument and its result proves useful.
+    \caption{Plot of the experimental dispersion relation for superfluids (roton dispersion relation). From this we can see the reason for the experimental disagreement of the Landau argument for determining the critical velocity $v_c$ of superfluids, as the local minimum in the roton curve shifts the critical velocity to be the slope of the red curve, rather than the Landau theoretical prediction of the purple curve.}
+    \label{fig-rotoncurve}
+\end{figure}
 
 \subsection{Introducing a Small Interaction to our QFT}
 We introduce a weak repulsive interaction between the bosons that supresses the Bose-Einstein condensation. They will want to be far apart and run away from our system; so we add a chemical potential to balance this and draw them back in (so we end up with a finite density at the end). Let us write down a Hamiltonian\footnote{A remark: model building is often much easier than the actual toying with the (e.g. field) equations...} for this:
