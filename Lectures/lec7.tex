@@ -18,9 +18,9 @@ We noted that the classical part $\eta$ was very important in the weak-coupling 
 \end{equation}
 Where $\delta \eta \sim \sqrt{\lambda}$. For small $\lambda$ (though this is not entirely a trivial statement; $\lambda$ has dimensions, so what it is small compared to?), it is meaningful to analyze the leading terms (i.e. a classical Hamiltonian). We can plug in $\eta$ to where the $\psi$s are in the Hamiltonian, and we get something that looks like a potential:
 \begin{equation}
-    V(\eta) = V(-\mu\abs{\eta}^2 + \frac{\lambda}{2}\abs{\eta}^4)
+    V(\eta) = \mathcal{V}(-\mu\abs{\eta}^2 + \frac{\lambda}{2}\abs{\eta}^4)
 \end{equation}
-Minimizing $V$ with respect to $\eta$, we find:
+apologies for the confusing notation; $V$ on the left is the potential, $\mathcal{V}$ on the right is a volume. Minimizing $V$ (the potential) with respect to $\eta$, we find:
 \begin{equation}
     \eta = \sqrt{\frac{\mu}{\lambda}}.
 \end{equation}
@@ -36,9 +36,9 @@ Looking at the Hamiltonian, we notice that there is a symmetry; namely, the Hami
 
 \begin{figure}[htbp]
     \centering
-    \textcolor{blue}{TODO: 3d Plot of $V$ vs. $\eta$.}
-    \caption{<caption>}
-    \label{<label>}
+    \includegraphics[]{Images/fig-etapotential.pdf}
+    \caption{3D plot of the potential $V$ as a function of $\eta$. We take $\mathcal{V} = 1, \mu = 1, \lambda = 1/10$.The blue ring corresponds to $\eta = \sqrt{\frac{\mu}{\lambda}}e^{i\theta}$ which minimizes the potential, which is radially symmetric.}
+    \label{fig-etapotential}
 \end{figure}
 
 The idea is that the potential is completely symmetric under rotation, but the solution is not. This is something known as spontaneous symmetry breaking. Classical analogy: which way does chalk fall when one lets go of it from the top position. A priori, there is a symmetry; there is no preference to how it falls. But when we actually do the experiment, it falls somewhere as we perturb it somehow when releasing (breaking the symmetry) or an air molecule bounces off of it and causes it to fall. Quantum mechanically, the chalk is described by the rigid rotator Hamiltonian:

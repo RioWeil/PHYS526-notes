@@ -1,0 +1,13 @@
+\documentclass[10pt]{standalone}
+\usepackage{commands}
+
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[domain=-3.5:3.5, y domain = -3.5:3.5]
+    \addplot3[surf] {-(x^2+y^2) + (x^2 + y^2)^2/20};
+    \end{axis}
+    \node[] at (2, -0.5) {$\text{Re}\eta$};
+    \node[] at (6.7, 0.1) {$\text{Im}\eta$};
+    \node[] at (-0.5, 4.2) {$V(\eta)$};
+\end{tikzpicture}
+\end{document}
