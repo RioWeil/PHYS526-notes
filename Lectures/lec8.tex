@@ -1,0 +1,108 @@
+\section{The Action Principle}
+We revert a little bit back into classical field theory. Technically, the field equation and the commutation relations we have constructed define our QFT, and give us all the information we need. So changing the formalism needs some justification; that justification is that classical field theory has a lot of structure, we can lift back into QFT to learn more about QFT. This logic is fairly obscure in most textbooks, but we will explore it a bit deeper. We will find the classical to quantum transition to be relatively straightforwards. For generic quantum theories, this is not the case, but quantum field theories tend to be simple as far as mechanical things go. This is not just because we like simple things, but because the internal consistency of quantum field theories doesn't let them be extremely complicated.
+
+\subsection{The Action \& Lagrangians}
+The action is defined as the following integral over spacetime:
+\begin{equation}
+    S = \int d^3x dt \L = S[\psi, \psi^\dag]
+\end{equation}
+where $\L$ is the Lagrangian density. It is a functional; it maps functions $\psi, \psi^\dag$ onto a number $S$. We consider the Lagrangian density:
+\begin{equation}
+    \L = \frac{i\hbar}{2}\psi^{\dag\sigma}\dpd{\psi_\sigma}{t} - \frac{i\hbar}{2}\dpd{\psi^{\dag\sigma}}{t}\psi_\sigma - \frac{\hbar^2}{2m}\nabla \psi^{\dag\sigma} \cdot \nabla \psi_\sigma + \mu \psi^{\dag\sigma}\psi_\sigma - \frac{\lambda}{2}(\psi^{\dag\sigma}\psi_\sigma)^2.
+\end{equation}
+this is the Lagrangian that would recover our non-relativistic quantum field theory (we just conjured this up, with some guidelines; namely that it reproduces the field equation that we want. The field equation is the primitive here, and the Lagrangian we reverse engineer\footnote{But note that once we start to familiarize ourselves with Lagrangians, we will find it easier to write down a Lagrangian and derive the field equations etc. from there. It is a slightly shorter presentation of all of the data encoded in the field equation and commutation relations.}). From this Lagrangian we can not only recover the field equation but also the commutator.
+
+Note that for free field theories, we will in general only consider Lagrangians that are quadratic in the fields; this allows for the equations of motion to be linear. For interacting field theories we may have higher order terms. 
+
+Now, if we consider the relation of the Lagrangian to the Hamiltonian:
+\begin{equation}
+    \L = P\dot{Q} - H(P, Q) =  i\hbar\psi^{\dag\sigma}\dpd{\psi_\sigma}{t} - \ldots
+\end{equation}
+We can identify $Q$ with $\psi_{\sigma}(\v{x}, t)$ and $P$ with $i\hbar \psi^{\dag\rho}(\v{x}, t)$. The Poisson bracket then gives us:
+\begin{equation}
+    \{\psi_{\sigma}(\v{x}, t), i\hbar\psi^{\dag\rho}(\v{x}, t)\} = \delta_{\sigma}^\rho \delta^3(\v{x} - \v{y})
+\end{equation}
+So if we then go from classical to quantum by changing the Poisson brackets to commutators and introducing a factor if $i\hbar$, we have:
+\begin{equation}
+    [\psi_{\sigma}(\v{x}, t), i\hbar\psi^{\dag\rho}(\v{x}, t)] = i\hbar\delta_{\sigma}^\rho \delta^3(\v{x} - \v{y}) \implies [\psi_{\sigma}(\v{x}, t), \psi^{\dag\rho}(\v{x}, t)] = \delta_{\sigma}^\rho \delta^3(\v{x} - \v{y}).
+\end{equation}
+Next, how do we get the field equation? The action principle states that the action functional, considered as a mapping of classical fields obeying the appropriate boundary conditions to the real numbers, is stationary when it is evaluated on the field configurations which obey the classical equations of motion, that is, the classical field equation. So, the Lagrangian encodes the field equation, and we can suss it out through some calculus of variations/functional calculus.
+
+\subsection{Deriving the Euler-Lagrange Equations}
+We write down a formal mathematical criteria for what this means. $\psi, \psi^\dag$ are a ``stationary point'' (of course one remembers these are actually functions) when:
+\begin{equation}
+    S[\psi + \delta \psi, \psi^\dag + \delta \psi^\dag] = S[\psi, \psi^\dag] + O((\delta\psi)^2, (\delta \psi^{\dag})^{2}, \delta\psi\delta\psi^{\dag}) = S[\psi, \psi^\dag] + \delta S
+\end{equation}
+One might ask what a ``nearby point'' in function space actually is (i.e. what does $\delta \psi$ mean?); we avoid this discussion as our applications tend to be simple. 
+
+We can now define the variation of the action as follows (by considering the variation of the Lagrangian, treating it as a function of $\psi_\sigma, \psi^{\dag\sigma}$ and its spatial/time derivatives):
+
+\begin{equation}
+    \begin{split}
+        \delta S &= \int dt d^3 x \delta \L
+        \\ &=\int dt d^3x \left[ \delta \psi_\sigma(\v{x}, t) \dpd{\L}{\psi_\sigma(\v{x}, t)} + \delta \dot{\psi}_\sigma(\v{x}, t) \dpd{\L}{\dot{\psi}_\sigma(\v{x}, t)} + \delta \nabla \psi_\sigma(\v{x}, t)\dpd{\L}{\nabla \psi_\sigma(\v{x}, t)} + (\psi_\sigma \iff \psi^{\dag\sigma})\right]
+    \end{split}
+\end{equation}
+where $(\psi_\sigma \iff \psi^{\dag\sigma})$ denotes we have all the same terms, replacing the $\psi$s with their Hermitian conjugate. We can then consider that:
+\begin{equation}
+    \delta(\nabla \psi_\sigma(\v{x}, t)) = \nabla(\delta \psi_\sigma(\v{x}, t))
+\end{equation}
+i.e. the variation of the derivative is the derivative of the variation, and the same with the time derivatives:
+\begin{equation}
+    \delta(\dpd{}{t}\psi_\sigma(\v{x}, t)) = \dpd{}{t}(\delta\psi_\sigma(\v{x}, t))
+\end{equation}
+We can then rewrite the variation of the action as:
+\begin{equation}
+    \delta S = \int dtd^3x \left[\delta \psi_\sigma(\v{x}, t)\left(\dpd{\L}{\psi_\sigma} - \dpd{}{t}\dpd{\L}{\dot{\psi}_\sigma} - \nabla \cdot \dpd{\L}{\nabla \psi_\sigma}\right) + \dpd{}{t}\left(\delta \psi_\sigma\dpd{\L}{\dot{\psi}_\sigma}\right) + \nabla \cdot \left(\delta \psi_\sigma\dpd{\L}{\nabla \psi_\sigma}\right) + (\psi_\sigma \iff \psi^{\dag\sigma})\right]
+\end{equation}
+We look at the second and third terms in the above integral. It is a four-divergence, so Gauss’s theorem allows us to rewrite its spacetime volume integral as a surface integral at the boundaries of space and time.
+While we don't concern ourselves with the details of Dirchlet vs. Neumann boundary conditions, we assume that there is some BC which makes the surface terms vanish:
+\begin{equation}
+    \dpd{}{t}\left(\delta \psi_\sigma\dpd{\L}{\dot{\psi}_\sigma}\right) = \nabla \cdot \left(\delta \psi_\sigma\dpd{\L}{\dot{\psi}_\sigma}\right) = 0
+\end{equation}
+So, if we set $\delta S = 0$, this tells us that the first quantity in brackets must vanish if $\delta \psi_\sigma(\v{x}, t)$ has an arbitrary profile; we thus get the Euler-Lagrange equations:
+\begin{equation}
+    \begin{split}
+        &\dpd{\L}{\psi_\sigma(\v{x}, t)} - \dpd{}{t}\dpd{\L}{\dot{\psi}_\sigma(\v{x}, t)} - \nabla \cdot \dpd{\L}{\nabla \psi_\sigma(\v{x}, t)} = 0
+        \\ &\dpd{\L}{\psi^{\dag\sigma}(\v{x}, t)} - \dpd{}{t}\dpd{\L}{\dot{\psi}^{\dag\sigma}(\v{x}, t)} - \nabla \cdot \dpd{\L}{\nabla \psi^{\dag\sigma}(\v{x}, t)} = 0
+    \end{split}
+\end{equation}
+In ``normal'' classical mechanics, we don't have the third term, but in our case we do have a spatial dependence. A note: one can see that this already lifts nicely to relativistic physics. Another note: potentials can cause some complication, here.
+
+We can get the field equations from the EL-equations, and we have already derived the commutator. There is still the issue of operator ordering. In this non-relativistic theory, it is the only place that we see it. But in general this is something one must keep in mind.
+
+Other than recovering what we previously had, we actually get more! This is in the context of classical field theory, and it has to do with symmetries. 
+
+\subsection{Symmetry and Noether's Theorem}
+The kinds of symmetry we are interested in are where there is some infinitesimal transformation (i.e. continuous symmetries). For example a rotation, or translation (an example of one without an infinitesimal transformation would be parity).
+
+We take our field variable, and we transform it to some other field variable:
+\begin{equation}
+    \begin{split}
+        &\psi_\sigma(\v{x}, t) \to \tilde{\psi}_\sigma(\v{x}, t) = \psi_\sigma(\v{x}, t) + \delta\psi_\sigma(\v{x}, t)
+        \\ &\psi^{\dag\sigma}(\v{x}, t) \to \tilde{\psi}^{\dag\sigma}(\v{x}, t) = \psi^{\dag\sigma}(\v{x}, t) + \delta\psi^{\dag\sigma}(\v{x}, t)
+    \end{split}
+\end{equation}
+Where we can take the transformation to be linear as we consider infinitesimal transformations (higher orders negligeble). We can now consider how the Lagrangian transforms under this. We say that this is a \emph{symmetry} (this is our definition) if $\delta \L$ can be organized (algebraically; without looking at the equations of motion) in the following way:
+\begin{equation}
+    \delta \L = \dpd{}{t}R(\v{x}, t) + \nabla \cdot \v{J}(\v{x}, t)
+\end{equation}
+If things drop off at infinity, then this is a way of saying that the action doesn't change. Some textbooks require the Lagrangian to be invariant; we do not enforce this constraint here.
+
+Now, having defined a symmetry, we can invoke the equations of motion and see what more we can learn. If we assume that the equation of motion is obeyed, then we have that:
+\begin{equation}
+    \delta \L = \dpd{}{t}\left(\delta \psi_\sigma\dpd{\L}{\dot{\psi}_\sigma}\right) + \nabla \cdot \left(\delta \psi_\sigma\dpd{\L}{\nabla\psi_\sigma}\right) + (\psi_\sigma \iff \psi^{\dag\sigma})
+\end{equation}
+So we now have two equations for $\delta \L$; their difference should then be zero:
+\begin{equation}
+    \begin{split}
+        &0=\frac{\partial}{\partial t}\left[\delta \psi_\sigma(\vec{x}, t) \dpd{\L}{\dot{\psi}_\sigma(\v{x}, t)} + \delta \psi^{\dag\sigma}(\vec{x}, t) \dpd{\L}{\dot{\psi}^{\dag\sigma}(\v{x}, t)} - R(\v{x}, t)\right] 
+        \\ &+ \nabla \cdot \left[\delta \psi_\sigma(\vec{x}, t) \dpd{\L}{\nabla\psi_\sigma(\v{x}, t)} + \delta \psi^{\dag\sigma}(\vec{x}, t) \dpd{\L}{\nabla\psi^{\dag\sigma}(\v{x}, t)} - \v{J}(\v{x}, t)\right]
+        \\ &\implies \dpd{}{t}\mathcal{R}(\v{x}, t) + \nabla \cdot \gv{\mathcal{J}}(\v{x}, t) = 0
+    \end{split}
+\end{equation}
+in other words, we have a conservation law! The symmetry implies a conservation law, and a systematic way of finding the conserved quantity; this is the power of the Lagrangian. This is \emph{Noether's Theorem}. $\mathcal{R}$ is the Noether charge density and $\gv{\mathcal{J}}$ is the Noether current density. If we now integrate, we find:
+\begin{equation}
+    \dpd{}{t}\int_\Omega d^3 x \mathcal{R}(\v{x}, t) = -\oiint_{\partial \Omega} d\v{n} \cdot \gv{\mathcal{J}}(\v{x}, t)
+\end{equation}
+In otehr words the change in the Noether charge is just the Noether current that flows across the boundary. We can now lift this to quantum field theories, where we will find great use of these results. Next time we will explore various examples of symmetries, and see what Noether's theorem has to say about their associated conserved quantities.
