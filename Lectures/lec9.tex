@@ -1,0 +1,138 @@
+\section{Symmetries \& Noether's Theorem}
+
+Last time we reverted from quantum to classical field theory. We did this to cast our field theory in terms of a Lagrangian and equations of motion derived from them; this had the benefit of allowing us to use Noether's theorem, which tells us about conserved quantities and how to determine what they are. We can then lift these equations of motion back into our QFT, showing that operators in our QFT are also conserved. There are two problems in the way; the first is operator ordering issues, and the second is that products of operators at the same point requires some mathematical definition, which can be add odds with the conservation law! This can actually lead to interesting physics though; in particle physics these are known as anomalies, e.g. in pion decay. The miracle is that this fooling around with operators leads to effects that are experimentally observable. Abstract and seemingly ad-hoc mathematics have physical impact!
+
+But we won't go there (at least for now); we will first study some examples of symmetries and Noether's Theorem. We need an example theory before we find symmetries of said theory; let's write down our favourite one:
+\begin{equation}
+    \L = \frac{i\hbar}{2}\psi^\dag \dpd{\psi}{t} - \frac{i\hbar}{2}\dpd{\psi^\dag}{t}\psi - \frac{\hbar^2}{2m}\nabla \psi^\dag \cdot \nabla \psi - \frac{\lambda}{2}(\psi^\dag \psi)^2
+\end{equation}
+where we have omitted the $\v{x}$s and spin indices for brevity. The symmetrized time derivative part ensures that it is real. We also don't include chemical potential for now. But note it is useful for operator ordering issues; changing the order of terms generates extra constants, and the chemical potential can be used to absorb these ambiguities.
+
+\subsection{Phase Symmetry}
+One transformation that leaves $\L$ invariant is to multiply $\psi$ by some phase (we can see this as each $\psi$ is paired with $\psi^\dag$). So we can write down an infinitesmal version of this transformation:
+\begin{equation}
+    \begin{split}
+        \delta \psi &= i\theta\psi
+        \\ \delta \psi^\dag &= -i\theta \psi^\dag
+    \end{split}
+\end{equation}
+we can test that this is indeed a symmetry by seeing if we can write the Lagrangian as a total derivative under it; but it is even easier than that here; just plugging it in, to linear order we see that:
+\begin{equation}
+    \delta \L = 0
+\end{equation}
+i.e. the Lagrangian density doesn't change at all. We call this \emph{phase symmetry}. Going back to our expression from last class of the Noether current and Noether charge density, we have:
+\begin{equation}
+    \mathcal{R}(\v{x}, t) = \delta \psi \dpd{\L}{\dot{\psi}} + \delta \psi^\dag \dpd{\L}{\dot{\psi}} = \hbar \theta \psi^\dag \psi = 0
+\end{equation} 
+We see what we would have called the number operator in the QFT popping out on the RHS; in other words, the particle number is a conserved Noether charge of some kind. We can also write:
+\begin{equation}
+    \gv{\mathcal{J}} = \delta \psi \dpd{\L}{\nabla \psi} + \delta \psi^\dag \dpd{\L}{(\nabla \psi^\dag)} = 0.
+\end{equation}
+so we also get information about the flux of the particle number. We have the following expression for the particle current:
+\begin{equation}
+    \gv{\mathcal{J}} = i\theta\frac{\hbar^2}{2m}(\nabla \psi^\dag)\psi - \frac{i\theta\hbar^2}{2m}(\psi^\dag \nabla \psi)
+\end{equation}
+If this follows a continuity equation, then so will the above multiplied by a constant; so we learn:
+\begin{equation}
+    \dpd{}{t}(\psi^\dag\psi) + \nabla \cdot \left(\frac{i\hbar}{2m}\nabla \psi^\dag \psi - \frac{i\hbar}{2m}\psi^\dag \nabla \psi\right) = 0
+\end{equation}
+We can define the density:
+\begin{equation}
+    \rho(\v{x}, t) = \psi^{\dag\sigma}(\v{x}, t)\psi_\sigma(\v{x}, t)
+\end{equation}
+and the current:
+\begin{equation}
+    \v{J}(\v{x}, t) = -\frac{i\hbar}{2m}\left(\psi^{\dag\sigma}(\v{x}, t)\nabla \psi_\sigma(\v{x}, t) - \nabla \psi^{\dag\sigma}(\v{x}, t)\psi_\sigma(\v{x}, t)\right)
+\end{equation}
+So this is our first example of a conservation law (note: this follows from Noether's Theorem, which we proved last time!); phase symmetry leads to the conservation of particle number. Note that the above example is operator ordering ambiguous, so it should lift nicely to QFT; it tells us if our theory has a phase symmetry, then:
+\begin{equation}
+    \dpd{}{t}\mathcal{N} = \dpd{}{t}\int d^3x \rho(\v{x}, t) = 0
+\end{equation}
+We knew this already for specific examples, but now we have a more general argument; we know it to be true for any theory with a phase symmetry. Now, what else can we do?
+
+\subsection{Translational Symmetry and the Stress Tensor}
+We would expect that our theory is translation invariant in both time and in space, as there are now explicit $t$s or $x$s anywhere. These should lead to conservation of energy and momentum, respectively. A time translation would be:
+\begin{equation}
+    \psi(\v{x}, t) \to \psi(\v{x}, t + \e) \approx \psi(\v{x}, t) + \e\dpd{}{t}\psi(\v{x}, t)
+\end{equation}
+and a space translation would be:
+\begin{equation}
+    \psi(\v{x}, t) \to \psi(\v{x} + \gv{\e}, t) \approx \psi(\v{x}, t) + \e\nabla \psi(\v{x}, t)
+\end{equation}
+So we could then write:
+\begin{equation}
+    \begin{split}
+        \delta \psi &= (\e\dpd{}{t} + \gv{\e} \cdot \nabla)\psi
+        \\ \delta \psi^\dag &= (\e\dpd{}{t} + \gv{\e} \cdot \nabla)\psi^\dag
+    \end{split}
+\end{equation}
+since $\L$ does not depend on $t$ or $\v{x}$, if we make the above infinitesimal transformations, the change in the Lagrangian would look like:
+\begin{equation}
+    \delta \L = (\e\dpd{}{t} + \gv{\e} \cdot \nabla)\L = \dpd{}{t}(\e\v{L}) + \nabla \cdot (\gv{\e}\L)
+\end{equation}
+so it satisfies a symmetry criterion, and therefore there is a conserved charge; in fact there are four, one for each component of $\e$ (like a conserved four-vector)! Then there are 3 conserved currents for each of these. The best way to write this is as a 4x4 matrix; let's set this up.
+\begin{equation}
+    \mathcal{R}(\v{x}, t) = \left(\e\dpd{}{t} + \gv{\e} \cdot \nabla\right) \psi \dpd{\L}{\dot{\psi}} + \left(\e\dpd{}{t} + \gv{\e} \cdot \nabla\right)\psi^\dag \dpd{\L}{(\nabla \psi^\dag)} - (\e\L)
+\end{equation}
+and there are one of these for each of the four $\e$s. The current densities are analogous:
+\begin{equation}
+    \gv{\mathcal{J}}(\v{x}, t) = \left(\e\dpd{}{t} + \gv{\e}\cdot\nabla\right)\psi\dpd{\L}{(\nabla \psi)} + \left(\e\dpd{}{t} + \gv{\e}\cdot\nabla\right)\psi^\dag \dpd{\L}{(\nabla \psi^\dag)} - \gv{\e}\L
+\end{equation}
+we now write this as a matrix, known as the energy-momentum (stress) tensor:
+\begin{equation}
+    \m{\mathbb{T}^{tt} &\mathbb{T}^{ta} \\ \mathbb{T}^{bt} & \mathbb{T}^{ba}}
+\end{equation}
+where the first row is the time row, and the latter three are the space rows (and analogously for the columns). $a, b$ range over $xyz$. The conservation laws for each of these quantities looks like:
+\begin{equation}
+    \dpd{}{t}\mathbb{T}^{tt} + \dpd{}{(x^b)}\mathbb{T}^{bt} = 0
+\end{equation}
+\begin{equation}
+    \dpd{}{t}\mathbb{T}^{ta} + \dpd{}{(x^b)}\mathbb{T}^{ba} = 0.
+\end{equation}
+where the derivatives act on the first indices, and the second label points to the symmetry we are talking about. We can then read off the components of the stress tensor:
+\begin{equation}
+    \mathbb{T}^{tt} = \dpd{\psi}{t}\dpd{\L}{\dot{\psi}} + \dpd{\psi^\dag}{(\dot{\psi}^\dag)}\dpd{\L}{(\dot{\psi}^\dag)} - \L = \H = \frac{\hbar^2}{2m}\nabla \psi^\dag \cdot \nabla \psi + \frac{\lambda}{2}(\psi^\dag\psi)^2
+\end{equation}
+we recognize this as the Hamiltonian density. So what is conserved here is the integral of this over space, i.e. the total energy! The other components are:
+\begin{equation}
+    \mathbb{T}^{ta} = \dpd{\psi}{(x^a)}\dpd{\L}{\dot{\psi}} + \dpd{\psi^\dag}{(x^a)}\dpd{\L}{(\dot{\psi}^\dag)}
+\end{equation}
+note we've stripped off the $\e$ as it is just an overall factor. We also don't include the $-\L$ term in the above. This we can recognize as the momentum density, whose integral is the spatial momentum; which is conserved. You can get the three space components by varying $a = x,y,z$, and each of these are conserved.
+
+Note that writing the stress tensor does not do anything except save us some writing. In conclusion, we have the conserved quantities:
+\begin{equation}
+    U = \int d^3 x \mathbb{T}^{tt}(\v{x}, t)
+\end{equation}
+\begin{equation}
+    P^a = \int d^3x \mathbb{T}^{ta}(\v{x}, t)
+\end{equation}
+Does this lift to the quantum field theory? The momentum is easy because it turns out to be quadratic. Just looking at $\mathbb{T}^{ta}$, we can see that it only depends on the first terms of the Hamiltonian; it doesn't care about the interactions. Any interaction that has space translation invariance will have the same expression for the momentum density and the moementum itself. Moreover, it is the same as the number operator case where there is no operator ordering ambiguity.
+
+However, there is an ambiguity for the $\mathbb{T}^{tt}/$energy term. This is more or less an ad-hoc procedure where we guess ordering until it works. Luckily we don't encounter this issue very much, and in this case we already know what the ordering is. So we know how to deal with it already.
+
+\subsection{Galilean Relativity}
+A teaser for next day: translation symmetry in space and time give us a tensor. There are some more symmetries, though; in a sense symmetries of a generic theory (symmetries that lots of theories share), which go in the direction of relativity. Even in non-relativistic physics, there are concepts of relativity. One example is Galilean symmetry/relativity (experiments in a moving car should yield the same results as that done in a stationary lab). On a primitive level, we can go back to Newtonian mechanics:
+\begin{equation}
+    m\ddot{\v{x}} = \v{0}
+\end{equation}
+and this equation has a Galilean symmetry. If we replace $\v{x}(t)$ with $\tilde{\v{x}}(t) = \v{x}(t) + \v{v}t$, we should still agree that Newton's second law holds. And they do, because the second derivative kills the $\v{v}t$ term. How does one lift this to quantum mechanics? Well, we have a Schrodinger equation:
+\begin{equation}
+    \left(i\hbar \dpd{}{t} + \frac{\hbar^2\nabla^2}{2m}\right)\psi(\v{x}, t) = 0
+\end{equation}
+How do we do a Galilean transformation here?  Inside the wavefunction, let's try changing our coordinate; $\psi(\v{x}, t) \to \psi(\v{x} + \v{v}t, t)$. But then this doesn't obey the original SE... we have to modify it:
+\begin{equation}
+    \left(i\hbar \dpd{}{t} - i\v{v}\cdot \nabla + \frac{\hbar^2\nabla^2}{2m}\right)\psi(\v{x} + \v{v}t, t) = 0.
+\end{equation}
+This looks strange (we would want the new wavefunction to obey the same equation, after all). So what if we introduce a phase factor, i.e. consider:
+\begin{equation}
+    \psi(\v{x}, t) \to e^{i\frac{m\v{v}\cdot \v{x}}{\hbar}}\psi(\v{x} + \v{v}t, t)
+\end{equation}
+But then we have:
+\begin{equation}
+    \left(i\hbar\dpd{}{t} + \frac{\hbar^2\nabla^2}{2m} + \frac{m\v{v}^2}{2}\right)e^{i\frac{m\v{v}\cdot \v{x}}{\hbar}}\psi(\v{x} + \v{v}t, t) = 0
+\end{equation}
+(look in the notes for the correct formula...) so still our transformed wavefunction doesn't obey the SE. But it does look a bit closer, at the very least. So we have another redefinition:
+\begin{equation}
+    \left(i\hbar \dpd{}{t} + \frac{\hbar^2\nabla^2}{2m}\right)e^{i\frac{m\v{v}\cdot\v{x}}{\hbar} - i\frac{mv^2}{2}t}\psi(\v{x} + \v{v}t, t) = 0.
+\end{equation}
+There isn't a great intuition for why this looks so complicated... but in any case, this is it, and we can lift this to our quantum field equation (as part of our field equation looks exactly like the SE), and then for the interaction term there are no explicit $\v{x}$s or $t$s and the whole theory is phase invariant, so these things cancel. Next day we will write down the infinitesimal transformations for this case, show that $\delta \L$ obeys the required relation, and write down a conservation law (but the quantity that is conserved is not so clear in this case; it will be derived quantity).
