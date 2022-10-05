@@ -1,0 +1,125 @@
+\section{Galilean Symmetry}
+Last time we ended up the middle of a discussion of Galilean symmetry. We observed there that if $\psi(\v{x}, t)$ was a solution of the Schrodinger equation, we could write down another solution:
+\begin{equation}
+    e^{-\frac{i}{\hbar}\frac{mv^2}{2}t - i\frac{m}{\hbar}\v{v}\cdot\v{x}}\psi(\v{x} + \v{v}t, t).
+\end{equation}
+This is a Galilean boost. Galilean symmetry is present in many classical mechanics systems. Landau and Lifschiz mention it in their textbook, where they argue that Galilean symmetry is the reason for why which $T = \frac{1}{2}mv^2$ (rather than any other power of $v$; see \url{https://physics.stackexchange.com/questions/535/why-does-kinetic-energy-increase-quadratically-not-linearly-with-speed/14752#14752} for a very nice argument that uses Galilean symmetry to show this). This seems to be a symmetry of our equation of motion; let us now test if it is a symmetry of our full theory. We showed that it was a symmetry for the free theory; and it should also be a symmetry for our interacting theory of the type we have been discussing. If we either have hyper-local interactions or interactions that only depend on relative distance, they should have this symmetry.
+
+\subsection{Verifying the Symmetry}
+To test this on the level of Lagrangians, we first write down the infinitesimal version of the transformation. We let the velocity be infinitesimal and taylor expand to first order, and then strip off $\v{v}$:
+\begin{equation}
+    \delta \psi = t\nabla^a \psi(\v{x}, t) - i\frac{m}{\hbar}x^a\psi(\v{x}, t)
+\end{equation}
+And the $\psi^\dag$ version of this is just replacing everything with its complex conjugate:
+\begin{equation}
+    \delta \psi^\dag = t\nabla^a \psi^\dag(\v{x}, t) + i\frac{m}{2}x^a\psi^\dag(\v{x}, t)
+\end{equation}
+To confirm that this is a symmetry, we calculate the first variation of the Lagrangian density, and use algebra to see if we can express it as in Eq. \eqref{eq-Lsymmetry}. In fact we can:
+\begin{equation}
+    \delta \L = \nabla^a(t\L(\v{x}, t))
+\end{equation}
+Let us go through this calculation for the free-field Lagrangian, looking at it term-by-term.
+\begin{equation}
+    \begin{split}
+        \delta(i\hbar\psi^\dag\dot{\psi}) &= i\hbar \delta \psi^\dag \dot{\psi} + i\hbar \psi^\dag \dpd{}{t}(\delta \psi)
+        \\ &= i\hbar(t \nabla^a \psi^\dag  + i\frac{m}{2x}x^a\psi^\dag)\dot{\psi} + i\hbar\psi^\dag(t\nabla^a - i\frac{m}{2}x^a)\psi + i\hbar \psi^\dag \nabla^a \psi
+        \\ &= i\hbar t \nabla^a(\psi^\dag\dot{\psi}) + i\hbar \psi^\dag \nabla^a \psi
+        \\ &+ \nabla^a(ti\hbar\psi^\dag\dot{\psi}) + i\hbar\psi^\dag\nabla^a\psi
+    \end{split}
+\end{equation}
+We have two terms; but the second term will be cancelled out by the next term in the Lagrangian density. It comes from the fact that $\delta \psi$ and $\delta \psi^\dag$ have gradients $\nabla^a$ acting on them and these do not commute with the $x^a$s. So cancelling the extra bits, we end up with:
+\begin{equation}
+    \delta \L = \nabla^a(t\L(\v{x}, t))
+\end{equation}
+We could also argue that the extra terms cancel out from the phase invariance. This demonstrates that this indeed is a symmetry from our technical definition. We could have expected this of course; we have a time dependent translation $\v{x} \to \v{x} + \v{x}t$, and we had a phase factor out front to cancel out everything.
+
+\subsection{Noether's Theorem and Galilean Symmetry}
+The Noether charge density is given by:
+\begin{equation}
+    B^a = t\mathbb{T}^{ta} + mx^a\rho
+\end{equation}
+i.e. time times the noether charge density for spatial translation (momentum/the stress tensor!) plus the Noether charge for phase (density, where $\rho = \psi^\dag\psi$). So this is the charge density conserved under Galilean boosts, and there are three of them corresponding to three directions. We also have a current density:
+\begin{equation}
+    \mathcal{B}^{ab} = t\mathbb{T}^{ba} + mx^aJ^b
+\end{equation}
+again, these are just components of the stress tensor plus the particle current. We don't actually derive much new here. We recall that translation symmetry tells us:
+\begin{equation}
+    \dpd{}{t}\mathbb{T}^{ta} + \nabla_b \mathbb{T}^{ba} = 0
+\end{equation}
+and phase symmetry tells us:
+\begin{equation}
+    \dpd{}{t}\rho + \nabla_b J^b = 0
+\end{equation}
+And the above two together almost imply:
+\begin{equation}
+    \dpd{}{t}B^a + \nabla_b \mathcal{B}^{ab} = 0
+\end{equation}
+But not quite, because the $\dpd{}{t}$ hits the $t$ and the $\nabla$ hits the $x$. We do have:
+\begin{equation}
+    \mathbb{T}^{ta} + mJ^a = 0.
+\end{equation}
+so this tells us that the momentum density is the mass times the particle current density; a very intuitive result, but one required by Galilean invariance. This is at the level of densities. What does it mean on a deeper sense? We can look at the conservation laws for Galilean symmetry. The following is a constant in time:
+\begin{equation}
+    t \int d^3x\mathbb{T}^{ta} + \int d^3x mx^a\rho = \text{Constant}
+\end{equation}
+where we have integrated the Noether charge density. We can think of the second term as the average position of the center of mass. Or, we can divide the entire equation by it and rewrite it as follows:
+\begin{equation}
+    \int d^3x x^a \rho(\v{x}, t) = -\frac{1}{m}
+\left[\int d^3x \mathbb{T}^{ta}(\v{x}, t)\right]t + \avg{x^a(0)}
+\end{equation}
+i.e. the average position of the COM is the initial position plus the average velocity times time... it simply means that the COM of the system moves at a constant speed. We already expected this, but now we have a concrete criteria to test for Galilean invariance!
+
+\subsection{Benefits of Lifting Galilean Symmetry to QFT}
+Can we learn something more practical from this? Let's look at something really cool; let's see what these symmetries tell us when we lift them to QFT. We won't go through the technicalities of this process (if it doesn't work, the problem tends to be really hard, or unsolvable anyway). We expect Galilean symmetry to survive this lifting\footnote{Of course we are assuming that the system is non-relativistic; relativistic corrections are not Galilean invariant. In the relativistic case we would look at Lorentz invariance, instead.} Let us see what the benefits of this symmetry are.
+
+Perhaps we want to calculate a correlation function like the following:
+\begin{equation}
+    W(\v{x_1}, t_1, \v{x}_2, t_2) = \bra{\O}\psi(\v{x}_1, t_1)\psi^\dag(\v{x}_2, t_2)\ket{\O}.
+\end{equation}
+Let's assume we have Galilean symmetry at the quantum level. Then presumably the ground state is Galilean invariant; even more primitively, it is translation invariant. Since it's an eigenstate of the Hamiltonian, time translation just gives rise to a phase which can be removed by shifting the Hamiltonian by a constant, anyway. Explicitly, we have the equation:
+\begin{equation}
+    \ket{\O} = e^{-\frac{i}{\hbar}Ht}\ket{\O}
+\end{equation}
+Space translation should look very similar, but instead of the Hamiltonian, we would put the momentum operator and space in the imaginary exponential:
+\begin{equation}
+    \ket{\O} = e^{-\frac{i}{\hbar}\v{p}\cdot\hat{a}}\ket{\O}
+\end{equation}
+A homogenous system should have these symmetries. Such translations should be generated by unitary operations, for which the ground state is invariant under. For Galilean symmetry, the situation is more complicated, but we may think that there is similarly a unitary operator associated with a Galilean boost. Let us assume there is one without knowing its form; we know it should have the action:
+\begin{equation}
+    \ket{\O} = U\ket{\O}
+\end{equation}
+\begin{equation}
+    U^\dag \psi(\v{x}, t)U = e^{-\frac{i}{\hbar}\frac{mv^2}{2}t - i\frac{m}{\hbar}\v{v}\cdot\v{x}}\psi(\v{x} + \v{v}t, t)
+\end{equation}
+in a system with this symmetry, $U$ with these properties should exist. What do they tell us about the correlation functions? If we generate the time translation, and plug in the translated object into the correlation function (i.e. put in):
+\begin{equation}
+    \bra{\O}U^\dag \psi(\v{x}_1, t_1)UU^\dag \psi^\dag(\v{x}_2, t_2)U\ket{\O}.
+\end{equation}
+where $U$ is the time translation, we learn that the correlation \emph{is only a function of $t_1 - t_2$}. This is because the $e^{iH}$ in the middle is only a function of $t_1 - t_2$ and the $e^{iH}$ at the end doesn't depend on anything. The only dependence is on the difference! The exact same argument follows for positions, where one can prove the correlation only depends on $\v{x}_1 - \v{x}_2$. In other words, symmetry has reduced the number of things that $W$ can depend on from 8 to 4. 
+
+Rotation symmetry is not discussed yet, but it is in HW3! But it is really the same story. We will find that the ground state is rotation invariant, and so we can generate a rotation, and so we learn that $W$ can only be a function of a rotationally invariant combination of $\v{x}_1, \v{x}_2$, i.e. $W$ only depends on $(\v{x}_1 - \v{x}_2)^2, t_2 - t_1$ (only on the magnitude of the vector!!) So there are only two variables that the correlation functions can depend on! And we haven't even used Galilean symmetry yet! If we do apply it, we find\footnote{Note; there might be some singular behaviour if the positions/times are equal; some more work might be necessary in this case}:
+\begin{equation}
+    W((\v{x}_1 - \v{x}_2)^2, t_1 - t_2) = e^{\frac{im}{\hbar}\frac{(\v{x}_1 - \v{x}_2)^2}{(2(t_1 - t_2))}}f(t_1 - t_2)
+\end{equation}
+so symmetry has reduced our problem appreciably. We can go no further with symmetry; for the free field theory $f$ is a constant. Interactions seem to only modify this by multiplying by some function of time. We should feel powerful at this point; for Galilean symmetry we only need to find some $f$ that depends on time. In conclusion: symmetry simplifies a lot! We can write objects such as correlation functions to depend on only one variable, for example.
+
+\subsection{Scale Invariance}
+The symmetries discussed so far have been in some sense ``generic'' in that they apply to many systems; but there are a few more interesting symmetries that occur only in very special systems. This perhaps makes them less interesting, but they have been studied in depth over the last 20 years or so, especially in systems such as cold atoms. These are symmetries relating to changing scales; scale transformations, and something related known as conformal transformations (also known as Special Schrodinger transformations). We will discuss them briefly here as they are likely to come up when one studies CM physics, cold atom physics etc\dots
+
+If we put the interaction to zero and look at the free field equation, we have an equation with a scale symmetry:
+\begin{equation}
+    \left(i\hbar \dpd{}{t} + \frac{\hbar^2\nabla^2}{2m}\right)\psi(\v{x}, t) = 0
+\end{equation}
+At first this might seem strange, as there appear to be dimensionful quantities like $\hbar, m$ in the above. But nevertheless, if $\psi(\v{x}, t)$ is a solution, then so is
+\begin{equation}
+    \Lambda^{d/2} \psi(\Lambda x, \Lambda^2 t)
+\end{equation}
+where the $\Lambda$ is the scaling factor, and the $\Lambda^{d/2}$ appears so that the transformed solution is still normalized. Going back to the example with the correlation functions, the scale invariance determines $f(t_1 - t_2) = (t_1 - t_2)^d$ times some overall constant and so up to a constant we have determined the correlation function completely! The two-point correlation functions have been completely solved for us. One might wonder; if we had interactions here, could we use this to solve interacting theories? The answer is yes, and this is what makes this very interesting. What makes this difficult is that if we add interactions, adding linear terms as operators in general messes up the scale symmetry; there are only few examples we can add. The Coulomb interaction is one that might seem scale-invariant (it doesn't seem to contain any dimensionful quantities at first) but when one tries to add it in, one finds that indeed scale invariance is violated. In the simple case we consider above, we are safe with no interactions. With interactions, if the coupling constant values are tuned very precisely (i.e. to ``fixed points'') then we do have scale invariance.
+
+Note that since in the free field equation the equation is symmetric, we might expect the same of the action. Indeed, one can confirm this by looking at the infinitesimal transformation:
+\begin{equation}
+    \delta \psi = \left(\v{x} \cdot \nabla - 2t\dpd{}{t} + \frac{d}{2}\right)\psi
+\end{equation}
+and if we construct the Noether charge and current density, because the above terms are like translations in space in time, algebraically what comes out is something that contains the stress tensor (again). 
+
+A philosophical question: Why is lifting classical field theory to QFT so successful? Because for many situations we have weak coupling (e.g. E\&M, gravity, weak interactions) and so the structure is preserved when we take the classical behaviour to quantum (and of course this is why the classical approaches to these topics are quite accurate, and we study it in undergrad).
