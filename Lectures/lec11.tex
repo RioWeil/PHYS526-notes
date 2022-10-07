@@ -1,0 +1,107 @@
+\section{Scale and Conformal Symmetry}
+\subsection{Non-Relativstic Conformal Field Theory}
+We've been studying the ``space-time'' symmetries of our non-relativistic QFT. Though space-time is a bit of a stretch, as the non-relativistic theories don't really have a grounding in geometry (though literature does exist on ``non-relativistic'' general relativity, casting Galilean transformations as isometries of non-relativistic spacetime. But this is a bit contrived...) In the real world, non-relativistic symmetries are just symmetries for things that are moving slowly (we should be able to derive them from SR by taking the non-relativistic limit)! This is a more useful point of view; in the world we live in, almost everything we would analyze with the kind of field theory we have been discussing is made of particles which have a relativistic foundation behind them. With that said, let us wrap up this discussion with a short introduction to non-relativistic CFT. 
+
+This isn't a particularly new subject; it's origin dates back to the 1970s. That said it has only been developed quite recently in the context of cold atoms, and critical behaviour (in the sense of a phase transition). The connection is that (in a rough sense); when something undergoes a phase transition (e.g. a paramagnet becoming ferromagnetic) there are fluctuations on all length scales; such that if we change the resolution at which we view the magnet, it does not look much different at different scales. This tends to characterize a phase transition; you get something roughly scale-invaraint. We started about the mathematical machinery behind scale invariance last day. If we have a theory that is symmetric under scale transformation, it looks the same under different scales!
+
+We've written down a free field theory (so we actually have an example of a theory for which this holds) that has the property of scale invariance:
+\begin{equation}
+    \left(i\hbar\dpd{}{t} + \frac{\hbar^2\nabla^2}{2m}\right)\psi(\v{x}, t) = 0
+\end{equation}
+so (for example) the degenerate Fermi gas we discussed has scale symmetry. A real Fermi gas may have interactions that break this scale invariance, but still perhaps in certain regimes it may look the same (e.g. a piece of copper looks the same $1\si{m}, 10\si{m}, 100\si{m}$ away; it is scale invariant at large distances/in the infrared, even though this may break at smaller scales). We identified the infinitesimal transformation:
+\begin{equation}
+    \delta \psi = \left(\v{x} \cdot \nabla + 2 t\dod{}{t} + \frac{d}{2}\right)\psi(\v{x}, t)
+\end{equation}
+and under this transformation, the Lagrangian density of this theory transforms (in what is known as the \emph{scale transformation}) as:
+\begin{equation}
+    \delta \L = \nabla \cdot (\v{x}\L) + \dod{}{t}\left(2t\L\right)
+\end{equation}
+so it can be written in terms of total derivatives; it is therefore a symmetry! We can now turn the crank and write down the Noether charges and currents. But before that, we note that the above is accompanied often with a \emph{conformal transformation} (also known as a Special Schrodinger transformation/symmetry), which reads:
+\begin{equation}\label{eq-conformalsymmetrytrans}
+    \delta \psi = \left(t^2\dod{}{t} + t\v{x}\cdot\nabla - i\frac{m}{\hbar}\frac{\v{x}^2}{2} + \frac{d}{2}t\right)\psi
+\end{equation}
+here it isn't really clear where this comes from; the origin will be clearer in the relativistic case. The free field Lagrangian density transforms as:
+\begin{equation}
+    \delta \L = \dpd{}{t}\left(t\L\right) + \nabla \cdot \left(t\v{x}\L\right)
+\end{equation}
+so again this is a symmetry. We will see why conformal symmetry often comes along in a theory with scale symmetry (and we will see some similar things in the assignment, where the symmetry of the stress tensor under the spatial indices implies rotational invariance. There is also a connection with translation/number invariance implying Galilean symmetry etc.)
+
+\subsection{Noether's Theorem for Scale Symmetry}
+We can write down the Noether charge as:
+\begin{equation}
+    D = \delta \psi \dpd{\L}{\dot{\psi}} + \delta \psi^\dag \dpd{\L}{(\dot{\psi}^\dag)} - 2t\L
+\end{equation}
+and the current as:
+\begin{equation}
+    \gv{\mathcal{D}} = \delta \psi \dpd{\L}{(\nabla \psi)} + \delta \psi^\dag \dpd{\L}{(\nabla \psi^\dag)} - \v{x}\L
+\end{equation}
+A handy tip if we work with fermions to deal with the potential signs: If we have a Lagrangian, and we want to compute $\delta \psi \pd{\L}{\dot{\psi}}$; then it's second order in the $\psi$s so it commutes with everything, until we get to $\do{\psi}$ and we replace it. We can now go look up the Lagrangian and see what we get:
+\begin{equation}
+    D = t2\mathbb{T}^{tt} + x_b\mathbb{T}^{tb} 
+\end{equation}
+The $a$th Noether charge is:
+\begin{equation}
+    \gv{\mathcal{D}}^a = 2t\mathbb{T}^{at} + x_b\mathbb{T}^{ab} - \frac{d}{2}\frac{\hbar^2}{2m}\nabla^a(\psi^\dag\psi)
+\end{equation}
+where we note the last $d/2$ piece gives us a bit of a mess (unlike the rest of the terms which come from the space/time transformations); it's like a phase transformation, but it's missing an $i$; so its really something else that we have not seen yet. This is indeed conserved:
+\begin{equation}
+    \dpd{}{t}D + \nabla_a \gv{\mathcal{D}}^a = 0
+\end{equation}
+by Noether's theorem. If we assume translation invariance:
+\begin{equation}\label{eq-transinvariance}
+    \begin{split}
+        &\partial_t \mathbb{T}^{tt} + \nabla_a\mathbb{T}^{at} = 0
+        \\ &\partial_t \mathbb{T}^{tb} + \nabla_a\mathbb{T}^{ab} = 0
+    \end{split}
+\end{equation}
+we then obtain:
+\begin{equation}
+    2\mathbb{T}^{tt} + \sum_a \mathbb{T}^{aa} - \frac{d}{t}\frac{\hbar^2}{2m}\nabla^2\rho = 0.
+\end{equation}
+where $\rho = \psi^\dag\psi$. This almost looks like the trace of the stress tensor (up to the junk at the end, and the factor of 2 in the front), so this is \emph{almost} saying that scale invariance implies a stress tensor. 
+
+\subsection{Improving the Stress Tensor}
+The stress tensor has an ambiguity; in fact, any Noether current does. Way at the beginning when we test for a symmetry, we try to see if $\delta \L$ can be written as a total derivative using algebra. This is an ambiguous process if there exist quantities in the variation which can be added to the two derivative terms and cancel. This ambiguity then carries through to the whole calculation, to the point where there may be additional things you can add to the current... so then which current is which? There isn't a great answer for non-relativistic physics; in the relativistic case, we have gravity and so we can pick the current that couples to gravity. In NR we have no right to do this, but we can pick a different stress tensor that is still consistent with the physics. The improvement proceeds as follows. We add something to our previous stress tensor. If the previous stress tensor was symmetric it should be symmetric, and it should obey the same conservation laws, and it should be written as some derivative. The candidate that satisfies all three of these qualifications are:
+\begin{equation}
+    \tilde{\mathbb{T}}^{ab} = \mathbb{T}^{ab} - \frac{d}{d-1}\left(\delta^{ab}\nabla^2 - \nabla^a\nabla^b\right)(\psi^\dag\psi)
+\end{equation}
+note that the time-time and time-space components to not change. With the above modification, note that we still have conservation, if $ \mathbb{T}^{ab}$ is symmetric then so is $ \tilde{\mathbb{T}}^{ab}$ etc. So indeed we have an ambiguity. Why is this improved? For this improved stress tensor,  scale invariance implies:
+\begin{equation}\label{eq-tracelesstensor}
+    2\tilde{\mathbb{T}}^{tt} + \sum_a \tilde{\mathbb{T}}^{aa} = 0
+\end{equation}
+We consider a homogenous/isotropic system, and take the expectation value of the above. The expectation value of the first term is the energy density, and the diagonal components of the stress tensor are pressures, which are all the same as we assume isotropy. We therefore find:
+\begin{equation}
+    2U - dP = 0.
+\end{equation}
+In other words:
+\begin{equation}
+    U = \frac{d}{2}P
+\end{equation}
+which is a prediction of scale invariance! We obtain an equation of state of a scale invariant theory. We computed this above for the degenerate Fermi gas; we can now go back and check that this indeed holds for $d = 3$! Also, note that Eq. \eqref{eq-tracelesstensor} can now be used as a criterion for scale invariance. Also also; note that if we add interaction, all bets are off!
+
+Note: the SE may look like a scale invariant problem, but the SE always has a bound state with a binding energy; how can we have a binding energy for a theory with no dimensionful paramaters? The problem is we have a singular potential (e.g. a dirac delta) so we need some extra boundary conditions for the behaviour of the wavefunction at these points. This turns out to be equivalent to specifying the binding energy, but quantifying this violates scale invaraince. Finding scale invariant theories is hard. Though, one can usually tune parameters/coupling constants to get there; unfortunately this usually appears in places where calculations are intractable; either coupling constants are too large to use perturbation theory, or we set them all to zero and we have a trivial/Gaussian fixed point). Other fixed points have been shown to exist, e.g. the unitarity point where a state just gains some binding symmetry, or the point where phase symmetry gets broken etc.
+
+\subsection{Noether's Theorem for ``Conformal'' Symmetry}
+There's certainly less intuititon for the conformal symmetry... it's not really a conformal symmetry in that conformal symmetries preserve angles. The transformation in Eq. \eqref{eq-conformalsymmetrytrans} doesn't really satisfy this. But, it is of interest, so we can write down the Noether current density (and let's assume we've done the whole song and dance of improving the stress tensor so as to get rid of the junk terms...) - actually we did not have time to do this. But let's see how we can get conformal symmetry:
+
+Let's assume we have translation symmetry in time and space as in Eq. \eqref{eq-transinvariance} and also have phase symmetry:
+\begin{equation}
+    \dpd{\rho}{t} + \nabla \cdot \v{J} = 0
+\end{equation}
+and Galilean symmetry:
+\begin{equation}
+    \mathbb{T}^{ta} = -mJ^a
+\end{equation}
+and scale invariance:
+\begin{equation}
+    2\tilde{\mathbb{T}}^{tt} + \sum_a \tilde{\mathbb{T}}^{aa} = 0
+\end{equation}
+These symmetries imply the conformal symmetry (intriguingly, we don't need rotational symmetry!). 
+
+Note that the effects of these symmetries constrain various (2/3) point correlation functions E.g. deuteron has a low binding energy relative to the masses, almost a critical system with conformal symmetry, one can do calculations of matrix elements and compare this to experimental scattering data etc.
+
+Next class: So far, there haven't been unintuitive leaps to what we have done. Everything has been methodical; just doing mathematics (doing nothing)! We've just been playing with things; there haven't been challenges to ou; physical intuition. To go to the next level, we need to understand special relativity to some level, and we will construct these relativistic systems. We will do this by couching SR as a type of symmetry (a true symmetry of spacetime). We can then build field theories that have these symmetries. We have the technical tools at our disposal, but we do require a bit of a leap. What is different? What we've learnt about QM is still QM, we've just placed it in another context. But for example take the pi-meson generator at TRIUMF. To describe this, we go from a state with a few nuclei to a state with a whole bunch of pions. We need a QM theory where the number of particles is not fixed. QFT is a natural place for this. $E = mc^2$ tells you that if you have the right energies and quantum numbers, you can create particles. The FT description is ideal for this; we can write down dynamical processes that do these things. This is why QFT is often called the natural marriage of QM and special relativity. But there is another deep reason, namely causality. What happens is if we ask ``what if we did single particle QM?'' with position $\v{x}$, momentum $\v{p}$, with commutation relations $[x_i, p_j] = i\hbar\delta_{ij}$, and the relativistic Hamiltonian:
+\begin{equation}
+    H = \sqrt{\v{p}^2c^2 + m^2c^4}.
+\end{equation}
+Things go very wrong! When we calculate wavepacket spreads, there is a nonzero probability that the particle could have travelled superliminally (because the wavepacket is a superposition of a huge range of possible momenta). We can show that sometimes we will detect it outside of the light cone. We violate some very fundamental principles. Causality is not a philosophical principle, but an experimental fact that we do not see particles that go faster than the speed of light\footnote{Throwback to the experiment that detected ``superliminal neutrinos'' because of a loose cabel}. So we would discard this theory because it doesn't describe nature (that said if we do find tachyons, maybe we dig this back up).
