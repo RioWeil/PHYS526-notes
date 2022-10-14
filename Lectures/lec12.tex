@@ -1,4 +1,4 @@
-\section{Relativistic Quantum Mechanics, Space-Time Symmetry}
+\section{Relativistic Quantum Mechanics, Space-Time Coordinates}
 \subsection{The Naive setup}
 Let us discuss for a few minutes a subject that ``doesn't exist'' - we will see why through the discussion! Think of a quantum-mechanical particle with position $\v{X}$, momentum $\v{P}$, such that these follow the canonical commutation relations $[X_i, P_j] = i\hbar \delta_{ij}$. We will give this particle a relativistic expression for the energy:
 \begin{equation}
@@ -40,18 +40,33 @@ The next problem is harder to patch up.
 
 \begin{figure}[htbp]
     \centering
-    \textcolor{blue}{TODO: Alice and bob}
-    \begin{tikzpicture}
-        \draw[] (0, 0) -- (1, 0);
-    \end{tikzpicture}
+    \includegraphics[]{Images/fig-RQMABcartoon.pdf}
+
+    \caption{Consider an experiment where Bob releases a particle and Alice is some distance away. Under naive relativistic QM, Alice has a non-zero chance of measuring the particle to be at her position, even if she is so far away such that light would not be able to reach her in that time from when Bob released it.}
+    \label{fig-RQMABcartoon}
+\end{figure}
+When we do the calculation for the probability of finding the particle some arbitrarily far distance away, we find that we have a non-zero probability regardless of the distance. To see this, let us return to the above transition probability. We can evaluate the integral approximately using the edge-of-the-wedge theorem. We note that $\bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i}$ is analytic in the lower half of the complex time plane; this comes from the fact that that there the $ e^{-\frac{i}{\hbar}\sqrt{p^2c^2 + m^2c^4}t}$ leads to an exponential supression of the integral. As time comes to the real axis, it becomes much less nice (it becomes something like a distribution). We can define the value on the real axis as the limit taken from the analytic lower half time plane. How does this tell us anything? If the theory were causal, for small $t$ we would have to find that the integral is zero. But then we have some arc in the complex plane for which the function is zero. But if this region is in the region where the function is analytic, then by analytic continuation we could show that it would be zero everywhere. 
+
+\begin{figure}[htbp]
+    \centering
+    \textcolor{blue}{Have: analyticity in the lower-half $t$ plane. In order for the theory to be causal, $t$ must be zero for small real $t$. But then we may use analytic continuation of the function to show that it is zero everywhere on the complex plane, since we have found an arc which it is zero on.}
     \caption{<caption>}
     \label{<label>}
 \end{figure}
-When we do the calculation for the probability of finding the particle some arbitrarily far distance away, we find that we have a non-zero probability regardless of the distance. To see this, let us return to the above transition probability. We can evaluate the integral approximately using the edge-of-the-wedge theorem. We note that $\bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i}$ is analytic in the lower half of the complex time plane (this comes from the exponential suppression). As time comes to the real axis, it becomes much less nice (it becomes something like a distribution). We can define the value on the real axis as the limit taken from the analytic lower half time plane. How does this tell us anything? If the theory were causal, for small $t$ we would have to find that the integral is zero. But then we have some arc in the complex plane for which the function is zero. But if this region is in the region where the function is analytic, then by analytic continuation we could show that it would be zero everywhere. So the last step to show is that it is indeed analytic in this region. In the lower-$t$ plane, we can use Cauchy's integral formula to write:
+
+
+So the last step to show is that it is indeed analytic in this region. In the lower-$t$ plane, we can use Cauchy's integral formula to write:
 \begin{equation}
     f(z_0) = \oint \frac{dz}{2\pi i}\frac{f(z)}{z - z_0}
 \end{equation}
 where $f = \bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i}$ is our integral of interest. The value of the integral does not depend on the contour taken; let us deform the contour so that part of the contour lies on the real axis. We can then push the $z_0$ up until it is on the real axis; at this point the formula still holds, and so $f(z_0)$ is an analytic function on the real axis as well. Therefore by analytic continuation, the integral is zero everywhere. Contradiction!
+
+\begin{figure}[htbp]
+    \centering
+    \textcolor{blue}{Contour integral + pushing it up}
+    \caption{<caption>}
+    \label{<label>}
+\end{figure}
 
 We therefore conclude that our theory violates causality. This would be ok if the universe actually behaved like this, but as far as we know we have never observed this; physics appears to be causal. So, this theory doesn't reflect reality, and we should throw it away.
 
@@ -69,7 +84,7 @@ i.e. we add a term that looks like time is running backwards. How do we interepr
 
 An interesting note: if we repeated this analysis with a massless particle, we would find that the probability only has support on the lightcone (As we would expect; massless particles should travel on the lightcone!)
 
-Another note: the addition of this second term destroys our analyticity argument as we now have one term that is analytic in the lower-$t$ plane and the other is analytic in the upper-$t$ plane.
+Another note: the addition of this second term destroys our analyticity argument as we now have one term that is analytic in the lower-$t$ plane and the other is analytic in the upper-$t$ plane. So we do not get the contradiction that the integral vanishes everywhere, as we did before.
 
 Does this fixup fix everything? It seems to. They seem to be Lorentz invariant, and causal. This is why QFT gains the title of the natural marriage of quantum mechanics and special relativity (and string theory is known as the natural marriage of QM and GR - each are the only currently known solution to unifying these theories). Although this cannot be said of string theory yet, QFT at least seems to pass some very stringent experimental tests.
 
