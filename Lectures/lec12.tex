@@ -30,7 +30,7 @@ but this final expression we derive with the standard (naive) assumptions has pr
 For one, it is not Lorentz invariant. Why should an probability distribution change if we put the experiment on a train? Or if we put ourselves on a train and interpret the experiment? It transforms something like a charge density; the time component of a four-vector. This is because we have setup $\psi^\dag\psi$ to transform like the time-component of a four-vector, even though we want to normalize the wavefunction and this normalization should hold between all frames.
 
 We could fix this up to be Lorentz invariant via an easy fix up; we insert a factor of the energy downstairs:
-\begin{equation}
+\begin{equation}\label{eq-RQMtransitionprob}
     \bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i} = \int \frac{d^3p}{(2\pi\hbar)^3}\frac{mc^2}{\sqrt{pc^2 + m^2c^4}}e^{i\frac{\v{p}}{\hbar}\cdot(\v{x}_f - \v{x}_i) -\frac{i}{\hbar}\sqrt{p^2c^2 + m^2c^4}t}
 \end{equation}
 there is nothing in our theory that tells us why we do this, but it does work (and it will be something we get from QFT). When $pc^2 \ll m^2c^4$ (i.e. in the non-relativistic limit) the factor is one so we recover the NRQM result. Another note: inserting this factor has significant effects, where we have difficulty localizing the particle (this carries through to quantum field theory - we cannot localize a particle to a position smaller than its wavelength. But in NRQM we can do this; the wavefunction of a particle can be as sharply peaked as we need it to be).
@@ -49,27 +49,30 @@ When we do the calculation for the probability of finding the particle some arbi
 
 \begin{figure}[htbp]
     \centering
-    \textcolor{blue}{Have: analyticity in the lower-half $t$ plane. In order for the theory to be causal, $t$ must be zero for small real $t$. But then we may use analytic continuation of the function to show that it is zero everywhere on the complex plane, since we have found an arc which it is zero on.}
-    \caption{<caption>}
-    \label{<label>}
+    \includegraphics[]{Images/fig-smalltanalyticity.pdf}
+
+    \caption{View of the complex $t$-plane. The integral for $\bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i}$ (Eq. \eqref{eq-RQMtransitionprob}) is analytic in the lower-half plane due to the exponential supression in the integral. For the theory to be causal, the integral must vanish for small real $t$ (in red). However, if this is indeed the case that the integral vanishes for an arc in $\CC$ and is analytic on the arc, we may use analytic continuation (taylor expanding the integral along the arc where it vanishes) to conclude that the integral vanishes throughout the entire complex plane; a contradiction.}
+    \label{fig-smalltanalyticity}
 \end{figure}
 
 
 So the last step to show is that it is indeed analytic in this region. In the lower-$t$ plane, we can use Cauchy's integral formula to write:
 \begin{equation}
-    f(z_0) = \oint \frac{dz}{2\pi i}\frac{f(z)}{z - z_0}
+    f(t_0) = \oint \frac{dt}{2\pi i}\frac{f(t)}{t - t_0}
 \end{equation}
-where $f = \bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i}$ is our integral of interest. The value of the integral does not depend on the contour taken; let us deform the contour so that part of the contour lies on the real axis. We can then push the $z_0$ up until it is on the real axis; at this point the formula still holds, and so $f(z_0)$ is an analytic function on the real axis as well. Therefore by analytic continuation, the integral is zero everywhere. Contradiction!
+where $f(t) = \bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i}$ is our integral of interest. The value of the integral does not depend on the contour taken; let us deform the contour so that part of the contour lies on the real axis. We can then push the $t_0$ up until it is on the real axis; at this point the formula still holds, and so $f(t_0)$ is an analytic function on the real axis as well. Therefore by analytic continuation, the integral is zero everywhere. Contradiction!
 
 \begin{figure}[htbp]
     \centering
-    \textcolor{blue}{Contour integral + pushing it up}
-    \caption{<caption>}
-    \label{<label>}
+    \includegraphics[]{Images/fig-RQMcontourintegral.pdf}
+
+    \caption{In the region where it is analytic (i.e. the lower-half plane), we can take $\bra{x_f}e^{-\frac{i}{\hbar}Ht}\ket{x_i}$ at some $t_0$ to be defined by an arbitrary contour integral in the lower-half plane by Cauchy's Integral Formula. However, we can then deform the contour such that that part of the contour lies on the small real $t$ region where the integral must vanish for the theory to be causal. We can then push up $t_0$ (take a limit) until it lies on the real axis in the small $t$ region. But then Cauchy's integral formula still holds there, so in fact the integral is analytic on the real axis, and in particular is analytic and vanishing in the small $t$ region; it therefore vanishes everywhere by the previous analytic continuation observation (giving us the desired contradiction).}
+    \label{fig-RQMcontourintegral}
 \end{figure}
 
 We therefore conclude that our theory violates causality. This would be ok if the universe actually behaved like this, but as far as we know we have never observed this; physics appears to be causal. So, this theory doesn't reflect reality, and we should throw it away.
 
+\newpage 
 \subsection{The QFT fix-up}
 
 How does QFT fix this? First, we get the factor of $\frac{mc^2}{\sqrt{pc^2 + m^2c^4}}$ to preserve lorentz invariance. But the other thing we do is we make use of the negative energy branch of the energy spectrum:
