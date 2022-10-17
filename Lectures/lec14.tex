@@ -1,0 +1,137 @@
+\section{Symmetries of Minkowski Space-Time, Conformal Transformations}
+\subsection{Metric Tensors}
+We have been discussing the metric tensor field $g_{\mu\nu}(x)$. This is special because it is used to measure proper times. There is one small thing we have forgot to mention which we should now fill in. What is $g^{\mu\nu}(x)$? The way we define this is the inverse of the metric with down indices. Therefore:
+\begin{equation}
+    g^{\mu\nu}(x)g_{\mu\lambda}(x) = \delta^\mu_\lambda
+\end{equation}w
+here $\delta^\mu_\lambda$ is the $4 \times 4$ matrix with ones on the diagonal and zeros everywhere else. We can study how this transforms (and the answer is: it will not!)
+\begin{equation}
+    \delta^\mu_\lambda = \dpd{x^\mu}{\tilde{x}^\rho}\dpd{\tilde{x}^\sigma}{x^\lambda}\tilde{\delta}^\sigma_\rho
+\end{equation}
+the above equation only holds if $\tilde{\delta}^\sigma_\rho$ is identically a unit matrix. So, it looks the same in every coordinate system. It is sometimes called an \emph{invariant tensor} for this reason (of which there are fairly few). 
+
+Note that $g^{\mu\nu}$ is also a tensor (a contravariant one).
+
+Note that we have here assumed that the metric is invertible. If it is not, then our proper time experiments would have some strange results indeed... the snail could travel and no time could pass on the wristwatch, for example. This doesn't seem very physical. So we say that this shouldn't be possible; the metric should be invertible everywhere (technical terminology: the metric should be non-degenerate).
+
+\subsection{Contracting Fields, Raising/Lowering Indices}
+We can consider the contraction of two vector fields:
+\begin{equation}
+    A_\mu(x)A'^{\mu}(x)
+\end{equation}
+this object transforms like a scalar field; this makes sense, as it should transform like something without any indices.
+
+In the same vein, once we have this tensor $g$, we can use it to raise indices on vector (tensor) fields:
+\begin{equation}
+    A^\mu(x) = g^{\mu\nu}(x)A_\nu(x)
+\end{equation}
+and similarly:
+\begin{equation}
+    A_\mu(x) = g_{\mu\nu}A^{\nu}(x)
+\end{equation}
+
+A note: haven't discussed spinors and their transformations; this is because there isn't really a transformation law for them. This might be a bit disquieting that this simple structure we have been exploring does not cover all possible physical objects (e.g. electrons are described by spinors). This will eventually be something we need to consider.
+
+\subsection{Symmetries of Space-Time}
+A symmetry of space-time is a coordinate transformation:
+\begin{equation}
+    x^\mu \to \tilde{x}^\mu = x^\mu + f^\mu(x)
+\end{equation}
+that leaves the metric invariant:
+\begin{equation}
+    \delta g_{\mu\nu}(x) = 0.
+\end{equation}
+So literally, $g$ looks the same in both coordinate systems. We can't tell if we are doing physics in one coordinate systems or the other. 
+
+An example of a coordinate transformation that \emph{isn't} a symmetry: the transformation that takes us from cartesian to polar coordinates. This is \emph{not} a symmetry transformation. The schrodinger equation looks different in this coordinate system!
+
+An example of a coordinate transformation that \emph{is} a symmetry: a transformation that rotates/changes the direction of the Cartesian axes. In this case the laws of physics look exactly the same.
+
+We can write explicitly the Killing equation:
+\begin{equation}
+    \hat{f}^\lambda(x) \p_\lambda g_{\mu\nu}(x) + \p_\mu \hat{f}^\lambda(x) g_{\lambda\nu}(x) + \p_\nu \hat{f}^\lambda(x) g_{\mu\lambda}(x) = 0.
+\end{equation}
+The solutions $\hat{f}^\lambda(x)$ of which are called Killing vectors.
+
+\subsection{Killing Equation and Vectors for Minkowski Space-Time}
+Let's look at the Killing vectors for Minkowski space. Recall that Minkowski space is defined by the fact that we can go to a coordinate system where the metric looks like:
+
+\begin{equation}
+    g_{\mu\nu}(x) = \eta_{\mu\nu} = \m{-1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1}
+\end{equation}
+
+We can plug this into the equation and find the Killing equation for Minkowski space:
+\begin{equation}
+    \p_\mu f^\lambda \eta_{\lambda\mu} + \p_\nu f^\lambda \eta_{\mu\lambda} = 0.
+\end{equation}
+If we now define:
+\begin{equation}
+    \hat{f}_\mu(x) = \eta_{\mu\nu}\hat{f}^\nu(x)
+\end{equation}
+then the Killing equation reads:
+\begin{equation}
+    \p_\mu \hat{f}_\nu + \eta_\nu \hat{f}_\mu = 0.
+\end{equation}
+and we can start searching for our Killing vectors. Note that the above is a homogenous equation, which helps us with our search (we can look for solutions of zeroth order and linear order). They are:
+\begin{enumerate}
+    \item $\hat{f}_\mu = C_\mu$, constants (of which there are 4). These correspond to time and space translation symmetry.
+    \item $\hat{f}_\mu  = \omega_{\mu\nu}x^\nu$. We observe that this is indeed a solution with $\omega_{\mu\nu}$ anti-symmetric, so $\omega_{\mu\nu} = -\omega_{\nu\mu}$. These are the Lorentz transformations (in the broader sense); 3 spatial rotations and 3 Lorentz boosts.
+\end{enumerate}
+Higher order polynomials do not solve the equation; this is it! This is as many Killing vectors as a space-time can have (Minkowski space is maximally symmetric) - there are 10 total for $D = 4$.
+
+\subsection{Conformal Transformations}
+Under a conformal transformation, the rules change slightly (this is a slight extension of our concept of symmetry). This is important as there are some QFTs that have this kind of enhanced symmetry (not technically a symmetry of the space as we have defined it). Conformal transformations are coordinate transformations for which the metric transforms to something proportional to the metric:
+\begin{equation}
+    \delta g_{\mu\nu}(x) = \Omega(x) g_{\mu\nu}(x).
+\end{equation}
+This is the Conformal Killing equation. In Minkowski space, it looks like:
+\begin{equation}
+    \p_\mu \hat{f}_\nu(x) + \p_\nu \hat{f}_\mu (x) - \frac{2}{D}\eta_{\mu\nu}\p_\lambda \hat{f}^\lambda (x) = 0.
+\end{equation}
+Where $D$ is the dimension of the space. One can check that the Killing vectors for Minkowski space are divergence free, so the third term vanishes and (of course) we have that the original Killing equation is satisfied. How many additional solutions are there? Not too many. Again it is homogenous so we can try the same strategy of looking for polynomial solutions. We find the conformal Killing vectors:
+\begin{enumerate}
+    \item $\hat{f}_\mu  C_\mu$
+    \item $\hat{f}_\mu = \omega_{\mu\nu}x^\nu$ for $\omega$ antisymmetric.
+    \item $\hat{f}^\mu = \lambda x^\mu$. A scale transformation.
+    \item $\hat{f}^\mu = x^\mu x^\nu b_\nu - b^\mu \frac{x^\nu x_\nu}{2}$ where $b$ is some constant four-vector (of which there are four possible choices).
+\end{enumerate}
+In the above, we have $x$ with a lower index. It is defined as:
+\begin{equation}
+    x_\nu = \eta_{\mu\nu}x^\mu
+\end{equation}
+once we are in Minkowski space and agree on using Cartesian coordinates, we can raise and lower the indices on $x$ (and on anything) with $\eta$. We can think of this as an inner product/space-time invariant:
+\begin{equation}
+    x^\nu x_\nu = \eta_{\mu\nu}x^\mu x^\nu = \v{x}^2 - (x^{0})^2
+\end{equation}
+and this may be familiar from a previous course in special relativity.
+
+As discussed before, conformal invariance can give us some extra symmetries when studying some systems; e.g. the classical Ising model on its second order phase transition; this turns out to be a QFT with $\hbar = 1$! It's not a quantum system, yet it obeys the rules of a QFT with a conformal symmetry. The conformal symmetry and some of its constraints have been exploited to calculate the critical exponents of the Ising model to world-record accuracy, matching numerical simulations perfectly.
+
+\subsection{Finite Lorentz Transformations}
+So, we've discussed the infinitesimal transformations. Let's say a few words about the finite case. We consider the Lorentz transforms:
+\begin{equation}
+    x^\mu \to \tilde{x}^\mu = x^\mu + \omega^\mu_\nu x^\nu
+\end{equation}
+So we write this as:
+\begin{equation}
+    \tilde{x}^\rho = \Lambda^\rho_{\mu}x^\mu
+\end{equation}
+where:
+\begin{equation}
+    \Lambda_\mu^\rho \approx \delta^\rho_\mu + \omega^\rho_\mu
+\end{equation}
+We consider the corresponding transformation for the metric:
+\begin{equation}
+    \eta_{\mu\nu} = \dpd{\tilde{x}^\rho}{x^\mu}\dpd{\tilde{x}^\sigma}{x^\mu}\eta_{\rho\sigma} = \Lambda^\rho_\mu \Lambda^\sigma_\nu \eta_{\rho\sigma}
+\end{equation}
+Lorentz transformations are the set of all $\Lambda$s which obey the above equation. We have been studying the infinitesimal ones. We know that:
+\begin{equation}
+    (\det \Lambda)^2 = 1
+\end{equation}
+and so:
+\begin{equation}
+    \det \Lambda = \pm 1
+\end{equation}
+The $\det \Lambda = 1$ transformations are known as proper. It can be shown that the $\Lambda$s here form a group. If $\Lambda_1, \Lambda_2$ obey the equation, then so do $\Lambda_1^{-1}$, $\Lambda_1\Lambda_2$ etc.
+
+(Some comment about objects that are invariant under Lorentz transformations, e.g. $A^\mu(x)A_\mu(x)$, that I didn't really understand).
