@@ -1,0 +1,192 @@
+\section{Real Scalar Field Theory}
+We've been discussing special relativity; now we use it to build up our relativistic quantum field theory. When we discussed our non-relativistic QFT, we didn't discuss geometry all too much; but here it will be useful to inform us about the kinds of space-time symmetries that our theory should possess as well. Our world doesn't look fairly symmetric; that said physics has had quite a bit of success exploring theories with symmetries to explain our universe; and elementary particle physics does appear to possess these.
+
+\subsection{Setting up the Real Scalar Field Theory}
+
+Let's look at a simple (in fact the simplest) example of a relativistic QFT. This will be simple in the sense that we will not have to worry about many indices. We consider a real scalar field theory. Consider a scalar field $\varphi(x)$, and we want to consider a dynamical system where $\varphi$ is a degree of freedom, and is relativistic. We can start writing down the Lagrangian density guided by what we have learned in the last few lectures. Some are convention dependent; there could be derivative terms in $\varphi$, and these are usually written first. The normalization of the derivative term fixes the normalization of the field $\varphi$, as well. We want to organize the derivatives such that they have Lorentz symmetry. We thus obtain the term:
+
+\begin{equation}
+    -\frac{1}{2}\p_\mu \varphi(x)\p^\mu \varphi(x)
+\end{equation}
+
+We could have terms with more derivatives (so-called effective field theories); while they would not be excluded in classical field theories, quantum field theories do not like them very much; so we do not consider them. We also could have something quadratic in $\varphi$:
+\begin{equation}
+    -\frac{m^2}{2}\varphi^2(x)
+\end{equation}
+
+We could in principle have a term linear in $\varphi$, but we can get rid of it assuming that the Lagrangian has a symmetry such that it is unchanged under replacing $\varphi$ with $-\varphi$.
+
+There are other terms that could contain $\varphi$, such as:
+\begin{equation}
+    -\frac{\lambda}{4!}\varphi^4(x)
+\end{equation}
+
+(of course all the odd terms have to vanish by the $-\varphi \leftrightarrow \varphi$ symmetry). Of course we could have in principle $\varphi^6, \varphi^8$ terms etc. but these are not allowed due to renormalizability conditions. So in principle we have written everything down that could be contained in our Lagrangian density:
+\begin{equation}
+    \L = -\frac{1}{2}\p_\mu \varphi(x) \p^\mu \varphi(x) - \frac{m^2}{2}\varphi^2(x) - \frac{\lambda}{4!}\varphi^4(x)
+\end{equation}
+We have tried to organize the Lagrangian density such that it transforms like a scalar under Lorentz transformations. Let's begin by studying what this Lagrangian tells us. The Euler-Lagrange equation in relativistic form for a scalar field is very nice; it reads:
+\begin{equation}
+    \p_\mu \dpd{\L}{(\p_\mu \varphi(x))} = \dpd{\L}{\varphi(x)}
+\end{equation}
+We thus find the equation of motion:
+\begin{equation}\label{eq-realscalarfieldEOM}
+    (-\p^2 + m^2)\varphi(x) + \frac{\lambda}{3!}\varphi^3(x) = 0.
+\end{equation}
+For $\lambda$ finite this is very hard to solve, so in general the approach is to treat this in perturbation theory with small $\lambda$. If we set $\lambda = 0$, we obtain the Klein-Gordon equation:
+\begin{equation}
+    (-\p^2 + m^2)\varphi(x) = 0.
+\end{equation}
+and this term in \eqref{eq-realscalarfieldEOM} is the Klein-Gordon term, with wave operator $-\p^2 + m^2$. The $\frac{\lambda}{3!}\varphi^3(x)$ non-linear term can be thought of the interaction term. This is in analogy to our previous non-relativistic QFT, where we had a free field equation and added on the interaction terms. Note there isn't really a place here for an operator ordering ambiguity; everything commutes with everything here. 
+
+\subsection{Natural Units}
+We work in a system of units where $\hbar = 1, c = 1$. Note that if we had not made this choice, then there would be factors of $\hbar, c$ in the $- \frac{m^2}{2}\varphi^2(x)$ term. We can of course figure out where these should go by studying the units, but with natural units we are saved the hassle.
+
+\subsection{Commutation Relations}
+Note that this is the kind of system where the Lagrangian has velocity squared times some function of position:
+\begin{equation}
+    \L = \frac{1}{2}\dpd{\varphi}{t}\dpd{\varphi}{t} + \ldots 
+\end{equation}
+so the canonical momentum is $P = \dpd{\varphi}{t}$, and the canonical position $X = \varphi$. We then have the Poisson bracket:
+\begin{equation}
+    \{\varphi, \dpd{}{t}\varphi\} = \delta()
+\end{equation}
+and lifting this to the QFT, we have the commutator relation:
+\begin{equation}
+    [\varphi(x), \dpd{}{t}\varphi] = i\hbar \delta()
+\end{equation}
+Concretely, we have the equal-time commutation relations of:
+\begin{equation}
+    [\varphi(x), \dpd{}{y^0}\varphi(y)]\delta(x^0 - y^0) = i\delta(x - y)
+\end{equation}
+Of course the positions commute with each other:
+\begin{equation}
+    [\varphi(x), \varphi(y)]\delta(x^0 - y^0) = 0
+\end{equation}
+As do the momenta:
+\begin{equation}
+    [\dpd{}{x^0}\varphi(x), \dpd{}{y^0}\varphi(y)]\delta(x^0 - y^0) = 0
+\end{equation}
+One might wonder if particle physicists are missing any theories by only considering Lagrangian ones; but this is a discussion for another day.
+
+\subsection{Symmetry}
+We recall the infinitesimal transformation of the scalar field:
+\begin{equation}
+    \delta \varphi(x) = -f^\mu(x)\p_\mu \varphi(x)
+\end{equation}
+where if this is a space-time symmetry then $f^\mu$ is a Killing vector; otherwise it is a generic change of coordinates. Let us keep it general for now; we see from algebra that:
+\begin{equation}
+    \delta \L(x) = -f^\mu(x)\p_\mu \L(x) + (\p_\mu f_\nu + \p_\nu f_\mu)\frac{1}{2}\p^\mu \varphi \p^\nu \varphi
+\end{equation}
+We need to show that this transforms like the derivative of something. So let us rearrange using the product rule:
+\begin{equation} 
+    \delta \L(x) = \p_\mu (-f^\mu(x)\L(x)) + (\p_\mu f_\nu + \p_\nu f_\mu)\frac{1}{2}\left(\p^\mu \varphi \p^\nu \varphi + \eta^{\mu\nu}\L\right)
+\end{equation}
+Now if $f^\mu$ is a Killing vector, then $\p_\mu f_\nu + \p_\nu f_\mu = 0$ from the Killing equation in Minkowski space! So $\delta \L$ can be written as a total derivative - it is a symmetry in the Noetherian sense if $f^\mu$ is a Killing vector/we have a space-time symmetry:
+\begin{equation}
+    \delta \L(x) = -f^\mu(x) \p_\mu \L(x)
+\end{equation}
+Applying Noether's theorem, we can obtain the Noether charge density and current. By Noether's theorem:
+\begin{equation}
+    \gv{\mathcal{J}}^\mu = \delta\varphi \dpd{\L}{\p_\mu\varphi} - \mathcal{R}^\mu = \hat{f}^\nu \p_\nu \varphi \p^\nu \varphi + \hat{f}^\mu\L
+\end{equation}
+where $\mathcal{R}^\mu = (R, \v{J})$ from our old formulation of Noether's theorem (not in relativistic notation). So by Noether's theorem, this is conserved:
+\begin{equation}
+    \p_\mu \gv{\mathcal{J}}^\mu = 0.
+\end{equation}
+
+\subsection{A Faster Noether's Theorem}
+We came here with a variation of $\phi$ where $f$ was arbitrary, obtaining:
+\begin{equation}
+    \delta \L(x) = \p_\mu (-f^\mu(x)\L(x)) + (\p_\mu f_\nu + \p_\nu f_\mu)\frac{1}{2}\left(\p^\mu \varphi \p^\nu \varphi + \eta^{\mu\nu}\L\right)
+\end{equation}
+Now, what if we actually imposed the equation of motion (something we have been told not to do)? If we vary the Lagrangian density and impose the the equations of motion (from the EL equation), then the above variation in $\L(x)$ has to be written as a total derivative. How do we make th esecond term in the above expression a total derivative? By writing $\p_\mu(\ldots)$ and $\p_\nu()$... but then this implies the $\p_\mu\left(\p^\mu \varphi \p^\nu \varphi + \eta^{\mu\nu}\L\right) = 0$ which gives us the result in a quick way! 
+
+\subsection{The Stress Tensor}
+Another connection; let us write the Noether current as a contraction of the Killing vector:
+\begin{equation}
+    \gv{\mathcal{J}}^\mu = \hat{f}^\nu \left(\p_\nu \phi \p^\mu \phi  + \eta_{\nu}^\mu \L\right)
+\end{equation}
+We may call the above expression in the brackets a stress tensor $\mathbb{T}_{\nu}^\mu(X)$ and from the conservation:
+\begin{equation}
+    \p_\mu \mathbb{T}^{\mu\nu}(x) = 0.
+\end{equation} 
+
+So, in our context here we have the Stress tensor definition:
+\begin{equation}
+    \mathbb{T}^{\mu\nu}(x) = \p_\nu \phi \p^\mu \phi  + \eta_{\nu}^\mu \L
+\end{equation}
+
+So: the Nother current for a symmetry $\delta \phi = -\hat{f}^\mu \p_\mu \phi$  is:
+\begin{equation}
+    \gv{\mathcal{J}}^\mu = \hat{f}_\nu (x) \mathbb{T}^{\mu\nu}(x).
+\end{equation}
+and this conserved stress tensor summarizes the conservation laws of spacetime symmetries. There are no operator ordering ambiguities, and the theory is not constructed to have any other symmetries, so we are in some sense done. But we still learn things. The time-time component gives the energy density, the time-space component gives the momentum density, and the other components give us stresses/strains and so on. Recall we also had this in non-relativistic physics, and this is exactly the analog. The construction of things like angular momentum operators from $\mathbb{T}$ in the non-relativistic setting generalizes here, by considering the various space-time symmetries of the form:
+\begin{equation}
+    \hat{f}_\nu(x) = C_\nu + \omega_{\nu\lambda}x^\lambda.
+\end{equation}
+
+\subsection{Non-Interacting Theory}
+In order to gain intuition, let us try to solve this theory in the limit where it is solvable, i.e. when we set the nonlinear term to $\lambda = 0$. In this case, the field equation looks as follows:
+\begin{equation}
+    (-\p^2 + m^2)\phi(x) = 0
+\end{equation}
+This can be solved (as usual) by the plane wave ansatz:
+\begin{equation}
+    \phi(x) \sim e^{ik_\mu x^\mu}
+\end{equation}
+this solves the equation if:
+\begin{equation}
+    k^\mu k_\mu + m^2 = 0.
+\end{equation}
+Which tells us the relativistic dispersion relation:
+\begin{equation}
+    k^0 = \pm \sqrt{\v{k}^2 + m^2}
+\end{equation}
+We need both solutions. The plane waves are intrinsically complex, but of course $\phi$ is an intrinsically real scalar field, i.e. $\phi = \phi^*$ in classical field theory of $\phi = \phi^\dag$ in quantum field theory. We need plane waves on both sides to superimpose them and cancel out the imaginary components:
+\begin{equation}
+    \phi(x) = \int \frac{d^3k}{\sqrt{(2\pi)^3 2\omega(k)}}\left(e^{i\v{k}\cdot \v{x} - i\omega t}a(\v{k}) - e^{-i\v{k}\cdot\v{x} + i\omega t}a^\dag(\v{k})\right)
+\end{equation}
+where $\omega(k) = \sqrt{k^2 + m^2}$. One could check that the plane waves were complete, orthonormal (and so on) and that this is a solution to the QFT. In the QFT the $a, a^\dag$s become operators with commutation relations:
+\begin{equation}
+    [a(\v{k}), a^\dag(\v{l})] = \delta^3(\v{k} - \v{l})
+\end{equation}
+which implies that:
+\begin{equation}
+    [\phi(x), \dpd{}{y^0}\phi(y)]\delta(x^0 -y^0) = \delta^3(\v{x} - \v{y})
+\end{equation}
+
+In fact if we look at the Hamiltonian:
+\begin{equation}
+    H = \int d^3x \mathbb{T}^{00}(x)
+\end{equation}
+and we plug in our solution and do some algebra, we find:
+\begin{equation}
+    H = \int d^3k \omega(\v{k})a^\dag(\v{k})a(\v{k}) + C
+\end{equation}
+i.e. a bunch of (non-interacting) harmonic oscillators plus a constant (which comes from the operator ordering), which many QFT courses tell you is harmless (as we are only interested in relative energies) but is not quite physically true... of course we have things like gravity which depend on the total energy density. But since we don't feel ourselves gravitating to some infinite energy density from the scalar field, then we should set it to zero to be consistent with physics:
+\begin{equation}
+    H = \int d^3k \omega(\v{k})a^\dag(\v{k})a(\v{k}).
+\end{equation}
+
+This in some sense is an ambiguity of the theory (and one of the mysteries of QFT)! It is an arbitrary constant, but gets a bit hairy when you think about it too much; e.g. the dark energy density in our theory here would be infinite, but it is finite in our universe. We won't need it for anything because we won't be venturing off into quantum gravity, but it would be important there.
+
+The momentum are:
+\begin{equation}
+    P^a = \int d^3x \mathbb{T}^{0a}(x) = \int d^3k k^a a^\dag(\v{k})a(\v{k}) + C
+\end{equation}
+here we might be able to argue that the constant is zero by an isotropy argument, but we run into troubles with frame dependence etc.... but let us not worry about it too much and just set it to zero.
+
+Finally, let us construct quantum states for our theory. We have the vacuum $\ket{0}$, which is normalized:
+\begin{equation}
+    \braket{0}{0} = 1
+\end{equation}
+and is annhilated by the annhilation operators:
+\begin{equation}
+    a(\v{k})\ket{0} = 0, \quad \bra{0}a^\dag(\v{k}) = 0 \quad \forall \v{k}
+\end{equation}
+We then have our basis:
+\begin{equation}
+    \set{\ket{0}, a^\dag(\v{k})\ket{0}, \frac{a^\dag(\v{k}_1)a^\dag(\v{k}_2)\ket{0}}{\sqrt{2}}, \ldots }
+\end{equation}
+and we now more or less have a complete solution of our theory. As soon as we turn on $\lambda$ we have no solution, but can obtain a solution via perturbation theory, where we learn how to include corrections. The whole course here on in is learning how to include these corrections in a systematic way, and in fact this is all we know how to do (other than trying to solve the theory numerically). For this particular theory, things have been studied up to $\lambda^8$, with roughly $8!$ Feynman diagrams...
