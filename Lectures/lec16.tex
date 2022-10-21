@@ -1,0 +1,176 @@
+\section{Correlation Functions, Real Scalar Field Theory II}
+\subsection{A Review of Defining Field Theories}
+The discussion is getting excited! We are finally getting to a non-relativistic quantum field theory; albeit one that we are not, in general, able to solve. However, it is a fact that there are very few solvable field theories. They tend to have special properties, e.g. be in dimension 1 (can still be useful for studying some QM systems) but the systems for which QFT was developed for (i.e. Quantum Electrodynamics) is analytically unsolvable. So our procedure will be to remove the interactions, solve it exactly, and add back the interactions in perturbation theory. And this is basically the state of the art; doing free field theory and perturbation theory on top. And standard model/particle physics is basically based completely on this.
+
+We also had a few different presentations of our theory. We began by writing down a Lagrangian that looks symmetric. Then if there is any doubt, we check that this is indeed the case. This then defines the field theory, as all of the data of the field theory is encoded in the Lagrangian (really the Lagrangian density, but the entire world calls it the Lagrangian). For our free real scalar field theory, we had:
+\begin{equation}\label{eq-freescalarfieldtheorylagrangian}
+    \L = -\frac{1}{2}\p_\mu \varphi \p^\mu \varphi - \frac{m^2}{2}\varphi^2
+\end{equation}
+We alternatively could take our starting point as the field equation and commutation relations:
+\begin{equation}\label{eq-kgeqn}
+    (-\p^2 + m^2)\varphi = 0
+\end{equation}
+\begin{equation}\label{eq-freescalarfieldtheorycommutations}
+    [\varphi(x), \dot{\varphi}(y)]\delta(x^0 - y^0) = i\delta^3(\v{x} - \v{y})
+\end{equation}
+but the Lagrangian method gives us a little more structure from Noether's theorem. We could be clever and guess the conservation laws using the field equation/commutation relation approach, but we would have to be quite clever. Today, we will want to discuss yet a third way of encoding the data of the field theory; and that is in correlation functions.
+
+\subsection{Correlation Function Definition of Field Theories}
+By a correlation function, we mean:
+\begin{equation}
+    \bra{0}\varphi(x_1) \ldots \varphi(x_n)\ket{0}
+\end{equation}
+and another way to write down our QFT is to write down all possible correlation functions. At first this seems like a clumsy way to proceed; in the other methods we can write down the theory in a few lines. In this method we have an (infinite) set of correlation functions to write down. Fortunately, there will be a great simplifying principle.
+
+This set of expectation values are given the name of Wightmom functions (Wightmom being a scientist who tried to axiomatize field theories - to some small level of success). We therefore write:
+\begin{equation}
+    W(x_1 \ldots x_n) = \bra{0}\varphi(x_1) \ldots \varphi(x_n)\ket{0}
+\end{equation}
+Note that we will like to consider time-ordered correlation functions:
+\begin{equation}
+    \bra{0}T\varphi(x_1) \ldots \varphi(x_n)\ket{0}
+\end{equation}
+where $T$ is an operator that orders the $\varphi(x_i)$s to go from earlier to later times. This is nice as it makes the correlator symmetric in the $x$s. This was realized by Dyson early on in modern field theory, who noticed that time-dependent perturbation theory in QFT simplifies significantly if correlation functions are written in this time-ordered form. For this reason they are called Dyson correlation functions, and we denote:
+\begin{equation}
+    \Gamma(x_1 \ldots x_n) = \bra{0}T\varphi(x_1) \ldots \varphi(x_n)\ket{0}
+\end{equation}
+and these $\Gamma$s tend to be the useful/tractable correlation functions that we will generally consider.
+
+There are places where this formulation of field theory is useful, e.g. in Monte Carlo approaches to field theories.
+
+\subsection{Returning to our Real Scalar Relativistic Free  Field Theory}
+Last time we found that our real scalar relativistic free field theory (with Lagrangian in Eq. \eqref{eq-freescalarfieldtheorylagrangian} and field equation/commutation relations given in Eqs. \eqref{eq-kgeqn}, \eqref{eq-freescalarfieldtheorycommutations}) and we found the solutions to be:
+\begin{equation}
+    \varphi(x) = \int \frac{d^3k}{\sqrt{(2\pi)^3 2\omega(\v{k})}}\left(e^{i\v{k}\cdot \v{x} - i\omega t}a(\v{k}) - e^{-i\v{k}\cdot\v{x} + i\omega t}a^\dag(\v{k})\right)
+\end{equation}
+with commutation relations:
+\begin{equation}
+    [a(\v{k}), a^\dag(\v{l})] = \delta^3(\v{k} - \v{l})
+\end{equation}
+
+Note that there are other conventions for the $\frac{1}{\sqrt{2\omega(\v{k})}}$; we have a real scalar field, so it should be invariant under Lorentz transformations. But the $\delta(\v{k} - \v{l})$ and the $a$s do not. So we introduce the $\frac{1}{\sqrt{2\omega(\v{k})}}$ in our free field theory solution to compensate for the weird transformations that the $a$s obey. At this point, some textbooks avoid this problem by introducing a different normalization for the commutators:
+\begin{equation}
+    [a(\v{k}), a^\dag(\v{l})] = 2\omega(\v{k})\delta^3(\v{k} - \v{l})
+\end{equation}
+and then the integration measure:
+\begin{equation}
+    \int \frac{d^3k}{2\omega(\v{k})}
+\end{equation}
+would be Lorentz invariant. So there is a more invariant way to write all of these things. It is left as an exercise to the reader tha the above is a Lorentz invariant measure, and that $2\omega(\v{k})\delta^3(\v{k} - \v{l})$ is Lorentz invariant.
+
+Here we have an explicit solution to the theory! We have a vacuum state $\ket{0}$ where:
+\begin{equation}
+    a(\v{k})\ket{0} = 0 \quad \forall \v{k}
+\end{equation}
+we also have the dual statement:
+\begin{equation}
+    \bra{0}a^\dag(\v{k}) = 0 \quad \forall \v{k}
+\end{equation}
+And then we can establish a basis:
+\begin{equation}
+    \set{\ket{0}, a^\dag(\v{k})\ket{0}, \frac{a^\dag(\v{k}_1)a^\dag(\v{k}_2)\ket{0}}{\sqrt{2}}, \ldots }
+\end{equation}
+And there is of course a natural inner product we get in this space we get from contracting with the dual and using the commutation relations and so on. We then would investigate Cauchy sequences and all of their limits, and then the space of all Cauchy sequences + their limits gives us the Hilbert space we want. These details aren't needed really, but they are of course there. As we discussed previously, we can write down the energy-momentum tensor and from there obtain things such as the momentum and the Hamiltonian:
+\begin{equation}
+    P^\mu = \int d^3 x T^{0\mu}(x) 
+\end{equation}
+and so:
+\begin{equation}
+    P^0 = H = \int d^3k \omega(\v{k})a^\dag(\v{k})a(\v{k})
+\end{equation}
+\begin{equation}
+    \v{P} = \int d^3k \v{k}a^\dag(\v{k})a(\v{k})
+\end{equation}
+
+\subsection{Transformations of the Real Scalar Field}
+note that we can therefore find:
+\begin{equation}
+    [P^\mu, \varphi(x)] = i\p^\mu \varphi(x)
+\end{equation}
+i.e. the momentum generates some space-time translation of the field! We could also write down a Noether charge corresponding to Lorentz invariance
+\begin{equation}
+    M^{\mu\nu} = \int d^3x(x^\mu T^{0\nu} - x^\nu T^{0\mu})
+\end{equation}
+which looks a lot like the angular momentum operator we are familiar with. We could then calculate:
+\begin{equation}
+    [M^{\mu\nu}, \varphi(x)] = i(x^\mu p^\nu - x^\nu \p^\mu)\varphi(x)
+\end{equation}
+(note that in the above computation we can set the time to be whatever we like; $t=0$ may be convenient). So we have the infinitesimal Lorentz transformations. In more detail:
+\begin{equation}
+    \Lambda^\mu_\nu \approx \delta^\mu_\nu + \omega^\mu_\nu
+\end{equation}
+and to first order we have:
+\begin{equation}
+    \delta\varphi(x) = -f^\nu \p_\nu \varphi
+\end{equation}
+the coordinates transform under the transformations as:
+\begin{equation}
+    x^\mu = \tilde{x}^\mu = \Lambda^\mu_\nu x^\nu = x^\mu + \omega^\mu_\nu x^\nu.
+\end{equation}
+and therefore:
+\begin{equation}
+    \delta \varphi(x) = \omega_{\mu\nu}x^\mu \p^\nu \varphi = \frac{1}{2}\omega_{\mu\nu}(x^\mu\p^\nu - x^\nu \p^\mu)\varphi.
+\end{equation}
+
+Note: It is a pretty hard job to get the finite transformations from the infinitesimal ones, as the former are more complicated. But all we really need to do is that it is indeed possible (e.g. via exponentiation).
+
+Before we move on: We see that $M^{\mu\nu}$ is a Hermitian operator that produces an infinitesimal transformation. So exponentiating it gives us a unitary operator that implements the finite Lorentz transform $U(\Lambda)$. This has the action:
+\begin{equation}
+    U(\Lambda)\varphi(x) U^\dag (\Lambda) =  \varphi(\Lambda^{-1}x)
+\end{equation}
+where we have considered the coordinate transformation $\tilde{\varphi}(\tilde{x}) = \varphi(x)$ with $\tilde{x} = \Lambda x$, and so $\tilde{\varphi}(\Lambda x) = \varphi(x)$ and therefore $\tilde{\varphi}(x) = \varphi(\Lambda^{-1}x)$. So some transformation $U(\Lambda)$ certainly exists, but we will not worry too much about precisely its form. The translation operator is a bit simpler:
+\begin{equation}
+    e^{iP_\mu a^\mu}\varphi(x) e^{-iP_\mu a^\mu} = \varphi(x + a)
+\end{equation}
+where this identity could be realized by Taylor expanding the exponentials and using $[P^\mu, \varphi(x)] = i\p^\mu \varphi(x)$.
+
+Some comments before we move on; the transformation operators are infinite dimensional, while if we considered fields with spin this would have finite representations. Here we have a non-compact group, so they are not Hermitian. There is no finite-dimensional unitary representations of the Lorentz group (theorem). But $U(\Lambda)$ is a unitary operator, so it must be infinite dimensional.
+
+Another comment; let us throw away the vacuum energy term in our Hamiltonian. Because then we have that the vacuum state satisfies:
+\begin{equation}
+    P^\mu \ket{0} = 0
+\end{equation}
+and so:
+\begin{equation}
+   e^{iP_\mu a^\mu}\ket{0} = \ket{0}
+\end{equation}
+and further:
+\begin{equation}
+    M^{\mu\nu}\ket{0} = 0
+\end{equation}
+\begin{equation}
+    U(\Lambda)\ket{0} = \ket{0}.
+\end{equation}
+Physically, one can think of these relations as "moving, or transforming nothing gives us nothing". 
+
+These are important relations and they tell us something interesting. 
+
+\subsection{Correlation Functions for Relativistic Scalar Field theory}
+One thing we can do is calculate correlation functions. For example:
+\begin{equation}
+    W(x_1. x_2) = \bra{0}\varphi(x_1)\varphi(x_2)\ket{0}
+\end{equation}
+we previously learned that this is only a function of $x_1 - x_2$, but let us see if we can recover this result here in a different way:
+\begin{equation}
+    \begin{split}
+        W(x_1, x_2) &= \bra{0}e^{iP_\mu x_1^\mu} \varphi(0)e^{-iP_\mu (x_1^\mu - x_2)} \varphi(0)e^{-iP_\mu x_2^\mu}\ket{0}
+    \\ &= \bra{0} \varphi(0)e^{-iP_\mu (x_1^\mu - x_2^\mu)} \varphi(0)\ket{0}
+    \\ &\sim W(x_1 - x_2)
+    \\ &\sim W((x_1 - x_2)^2) = W((x_1 - x_2)^\mu \eta_{\mu\nu}(x_1 - x_2)^\nu)
+    \end{split}
+\end{equation}
+(Sorry, I missed the explanation for why we can then conclude that it only depends on the square).
+
+We could also insert a sum over a complete set of states $\mathbb{I} = \sum_n \dyad{n}{n}$ inside the correlator to find:
+\begin{equation}
+    W(x_1, x_2) = \sum_n \abs{\bra{n}\varphi(0)\ket{0}}^2 e^{iP_\mu (x_2 - x_1)^\mu}
+\end{equation}
+Note that:
+\begin{equation}
+    e^{iP_\mu (x_2 - x_1)^\mu} = e^{-iP^0(x_2 - x_1)^0 + i\v{p} \cdot (\v{x}_1 - \v{x}_2)}
+\end{equation}
+We can note that as a function of $(x_2 - x_1)^0$, the function is analytic in the lower half plane. Here we learn that if we have the $P_\mu$ generator, even in an interacting field theory, if the vacuum is invariant we would obtain an analyticity property for correlation functions. This is in some sense a universal truth about relativistic scalar field theories. To see if what we are doing makes sense, we can always check this analyticity property.
+
+As a teaser; this kind of analyticity can be used to prove a very radical theorem whose applications are not very well understood. That theorem is the Reeh-Schlieder Theorem. (there is a beautiful lecture by Ed Witten about this). This theorem says that if we take an open set $\Omega$ of spacetime, and take $x_i \in \Omega$, then the set of states $\varphi(x_1)\ldots \varphi(x_n)\ket{0}$ we can generate are dense in the Hilbert space of our quantum field theory, i.e. this class of states allows us to approximate \emph{any} state in our QFT arbitrarily well. If you give me 5 minutes and a patch of grass, I suddenly have all the states I need to make Jupiter! This seems like nonsense; but it is in fact true! We will also discuss more conventional uses of analyticity, later on...
+
+Gordon wonders: Can Reeh-Schlieder be proven for a non-relativistic theory; e.g. that of the electron gas? Then we could prove it experimentally.
