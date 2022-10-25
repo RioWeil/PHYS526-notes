@@ -22,6 +22,15 @@ where the Heaviside step functions enforce the time ordering. We can take and pl
 \end{equation}
 notice how the second term is just the first term with $x, y$ interchanged; the time ordering makes things symmetric as a function of the coordinates. Last time, we discussed the analyticity of Wightman functions; the first term is analytic in the lower half plane, and then has support in the the right half plane due to the Heaviside, so is analytic in the fourth quadrant. The second term is analytic in the upper half plane and has support in the left half plane due to the Heaviside, so is analytic in the second quadrant. This turns out to be a very useful observation; this is because this allows us to change what we mean by time by adding a complex number to it (analytically continuing where the time goes); in some sense putting $t \mapsto it$. This is known as a Wick rotation, and doing this we can make Minkowski space look like Euclidean space. This can be a useful starting point for our field theory; it is technically a wonderful thing! We get to work with a much nicer metric without the minus sign.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.8]{Images/fig-analyticregionwickrotation.pdf}
+    \caption{The first term in the above integral is analytic in the fourth quadrant and the second term in the above integral is analytic in the second quadrant. We can then take our contour integral for time which goes along the real axis, and rotate it so it lies on the imaginary axis (Wick rotation). Doing so, our Minkowski space looks Euclidean!}
+    \label{fig-analyticregionwickrotation}
+\end{figure}
+
+
+
 \subsection{Another way to derive the Free-Field Feynman Propagator}
 We have derived the two-point function, but not as it appears in most textbooks, or the most useful form for us. We could do it the technical/long way or we can take a pedagogical shortcut. Recall the solution to our QFT solves the field equation:
 \begin{equation}
@@ -61,6 +70,13 @@ which fixes the ambiguity and gives us a time-ordered boundary condition. We lea
 The discussion of analyticity follows exactly as we had before as we have the same expression. There is also a comment we can make about $k^0$. We have poles on the real axis originally, which we add a small $+i\e$ to the denominator to shift them above/below it so we can integrate over the real axis. This enforces boundary conditions. 
 
 We can also consider doing an path integral whose interior does not contain either of the poles (pictured below). Adding it to the integral along the real axis, and taking the boundary to infinity, we get an integral just along the imaginary axis; something that looks Euclidean. This turns out to be extremely useful when we do calculations; we go from a slightly fishy Minkowski space integral to a Euclidean integral that is completely well-defined.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.8]{Images/fig-propogatorcontour.pdf}
+    \caption{The poles (in red) which originally sat on the time axis have been shifted above/below the real axis via the inclusion of the $-i\e$ in the denominatr of the propogator integral. This allows for a meaningful integral to be taken over the real axis. We can also consider a path integral whose interior contains none of the poles; adding this with the integral over the real axis, we obtain our integral over the imaginary time axis, wherein Minkowski space looks Euclidean.}
+    \label{fig-propogatorcontour}
+\end{figure}
 
 A few other comments; recall in our discussion of wavepacket dispersion where we added two terms, one for particle and one for antiparticle. This is not the same as the addition of two terms we see here. We were seeing a different kind of Green's function, i.e. a retarded Green's functions (vs. the time-ordered Green's function we see here). This is the appropriate Green's function if we want the past to influence the future. This is a bit of an interesting subtle point; to get causality, we need to do a bit more work compared to what we have done here.
 
