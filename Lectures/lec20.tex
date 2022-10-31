@@ -1,0 +1,159 @@
+\section{Dirac Theory IV, Photon Field I}
+To finish up our discussion of the Dirac field, we discuss its solutions. We then move onto the photon field. One thing we notice as we get to more realistic fields is that they get more complicated. We started by looking at the scalar field, which corresponds to the Higgs field (and some other emergent fields). The more realistic field is the Dirac field, which describes electrons and other spin-1/2 massive particles. The quantization is only a tiny bit more complicated than it was with the scalar field. The next level up is gravity, or Yang-Mills, which have the same sort of complications, but more complicated.
+
+
+\subsection{Solving the Dirac Equation}
+We wish to solve the Dirac equation:
+\begin{equation}
+    (\dirac + m)\psi(x) = 0.
+\end{equation}
+in other words, find the kernel of the $\dirac + m$ operator. We notice there are no $x$s or $t$s in the expression, so it is automatic what we have to do; make a plane wave ansatz!
+\begin{equation}
+    \psi(x) = \psi_ke^{ik^\mu x_\mu} = \m{u(k) \\ v(k)}e^{i\v{k} \cdot \v{x} - i\omega(\v{k}) t}
+\end{equation}
+This is part of it. The other part is we need to know what the $\gamma^\mu$ matrices are; it is easier to solve the equation if we choose an explicit representation. We choose the representation:
+\begin{equation}
+    \gamma^0 = \m{0 & \mathbb{I} \\ -\mathbb{I} & 0}, \quad \gamma^a = \m{0 & \sigma^a \\ \sigma^a & 0}
+\end{equation}
+With this ansatz and choice of representation, the dirac equation becomes:
+\begin{equation}
+    \m{m & -i\omega + i\gv{\sigma} \cdot \v{k} \\ i\omega + i\gv{\sigma} \cdot \v{k} & m} \m{u \\ v} = 0.
+\end{equation}
+where if there is just a number, there is implicitly a 2x2 identity matrix. We have to solve the above; this is easy! The only complications are with the $\gv{\sigma} \cdot \v{k}$; we will to this end look for $u, v$ that are eigenvectors of this:
+\begin{equation}
+    \gv{\sigma} \cdot \v{k} v_\lambda = \lambda v_\lambda
+\end{equation}
+And this will have the very nice effect of reducing the matrix we are diagonalizing into a matrix of only numbers. Solving for the eigenvalues is very easy; notice:
+\begin{equation}
+    (\gv{\sigma} \cdot \v{k})^2 = k^ak^b \sigma^a\sigma^b = \frac{1}{2}k^ak^b \{\sigma^a, \sigma^b\} = \frac{1}{2}k^ak^b 2\delta_{ab} =  \v{k}^2
+\end{equation}
+and so:
+\begin{equation}
+    \lambda^2 = \v{k}^2 \implies \lambda = \pm \abs{\v{k}}
+\end{equation}
+How do we figure out if they are plus or minus? Well of course $\Tr(\sigma^a) = 0$ and so the eigenvalues must sum to zero, so there is one $+\abs{\v{k}}$ eigenvalue and one $-\abs{\v{k}}$ eigenvalues. So:
+\begin{equation}
+    \gv{\sigma} \cdot \v{k} v_s = s\abs{\v{k}}v_s, \quad s = \begin{cases}
+        +1 \\ -1
+    \end{cases}
+\end{equation}
+So we can plug this back into our matrix equation; since the matrix mixes $u, v$ we can write them with the same eigenvalue:
+\begin{equation}
+    \m{m & -i\omega + is\abs{\v{k}} \\ i\omega + is\abs{\v{k}} & m}\m{u_s \\ v_s} = 0.
+\end{equation}
+for this to have a solution, we have to have a non-empty kernel, i.e. the determinant must vanish, so writing down the determinant of the above:
+\begin{equation}
+    m^2 - (\omega^2 - s^2\v{k}^2) = 0
+\end{equation}
+with $s^2 = 1$, we easily find the frequency to be:
+\begin{equation}
+    \omega = \pm \sqrt{\v{k}^2 + m^2}
+\end{equation}
+From this we can find a relation between the spinors $u_s, v_s$:
+\begin{equation}
+    i(\omega + s\abs{\v{k}})u_s + mv_s = 0
+\end{equation}
+which then we obtain:
+\begin{equation}
+    v_s = -i\frac{\omega + s\abs{\v{k}}}{m}u_s
+\end{equation}
+we may want to normalize the spinors:
+\begin{equation}
+    \abs{u_s}^2 + \abs{v_s}^2 = 1
+\end{equation}
+and so:
+\begin{equation}
+    \abs{u_s}^2 + \left(\frac{\omega + s\abs{\v{k}}}{m}\right)^2 \abs{u_s}^2 = 1
+\end{equation}
+Therefore:
+\begin{equation}
+    \frac{m^2 + \v{k}^2 + \omega^2 + 2s\omega\abs{\v{k}}}{m^2}\abs{u_s}^2 = 1
+\end{equation}
+And since the first two terms in the above add up to $\omega^2$, we find:
+\begin{equation}
+    \frac{2\omega(\omega + s\abs{\v{k}})}{m}\abs{u_s}^2 = 1
+\end{equation}
+and so:
+\begin{equation}
+    u_s = \frac{m}{\sqrt{2\omega(\omega + s\abs{\v{k}})}}\hat{u}_s
+\end{equation}
+where is a spinor which satisfies:
+\begin{equation}
+    \gv{\sigma} \cdot \v{k} \hat{u}_s = s\abs{\v{k}}\hat{u}_s
+\end{equation}
+\begin{equation}
+    \hat{u}_s^\dag \hat{u}_s = 1.
+\end{equation}
+
+Let us review; we have found four solutions; we have the defining equation for $\hat{u}_s$ which gives us two solutions 
+(one for $s = \pm 1$) and then we get two solutions each when plugging into the equation for $u_s$ (as we have $\omega = \pm \sqrt{\v{k}^2 + m^2}$) which determines $v_s$. This makes sense with our expectation that a four-by-four matrix equation should have four solutions!
+
+So, we have the solutions to the Dirac equation:
+\begin{equation}
+    \psi_{s\omega} = \m{u_{s\omega} \\ v_{s\omega}}
+\end{equation}
+with:
+\begin{equation}
+    \psi^\dag_{s\omega}\psi_{s\omega} = 1.
+\end{equation}
+
+The most general solution would be a superposition (over $\v{k}, \omega, s$), so:
+\begin{equation}
+    \psi(x) = \int \frac{d^3k}{(2\pi)^{3/2}}\left[e^{i\v{k} \cdot \v{x} - i\sqrt{\v{k}^2 + m}t}\sum_s \m{u_{s\omega}(\v{k}) \\ v_{s\omega}(\v{k})}a_s(\v{k}) + e^{-i\v{k} \cdot \v{x} + i\sqrt{\v{k}^2 + m^2}t}\sum_s \m{u_{s-\omega}(\v{k}) \\ v_{s-\omega}(\v{k})} b_s^\dag(\v{k}) \right]
+\end{equation}
+note that we don't have all the junk we did in the scalar field case, as here our objects are more akin to non-relativistic fermions, which only had the plane wave normalization. $s$ is known as the Helicity. It is not its spin projection along some fixed axis, but rather the projection of spin along its motion (which is some axis, but not a fixed one; it can change as it moves around). To get the equal time commutation realtions for the field $\psi$, we enforce:
+\begin{equation}
+    \{a_s(\v{k}), a^\dag_{s'}(\v{l})\} = \delta_{ss'}\delta^3(\v{k} - \v{l})
+\end{equation}
+\begin{equation}
+    \{b_s(\v{k}), b^\dag_{s'}(\v{l})\} = \delta_{ss'}\delta^3(\v{k} - \v{l})
+\end{equation}
+(and all other combinations that we do note write are zero). which implies:
+\begin{equation}
+    \{\psi_a(\v{x}), \psi_b^\dag(\v{y})\}\delta(x^0 - y^0) = \delta_{ab}\delta^4(x - y)
+\end{equation}
+so in some sense we have solved our quantum field theory! We can proceed to create our Hilbert (more accurately, Fock) space. We have our vacuum state $\ket{\mathcal{O}}$, which corresponds to the state with all the negative energy states (in the Dirac sea) filled and all of the positive energy ones empty. This is normalized:
+\begin{equation}
+    \braket{\mathcal{O}}{\mathcal{O}} = 1
+\end{equation}
+and such that it is annihilated by the particle/hole annihilation operators:
+\begin{equation}
+    a_s(\v{k})\ket{\mathcal{O}} = 0, \quad b_s(\v{k})\ket{\mathcal{O}} = 0
+\end{equation}
+and we have the basis states:
+\begin{equation}
+    \ket{\mathcal{O}}, a_s^\dag(\v{k})\ket{\mathcal{O}}, b_s^\dag(\v{k})\ket{\mathcal{O}}, a_{s_1}^\dag(\v{k}_1)a_{s_2}^\dag(\v{k}_2)\ket{\mathcal{O}}, \ldots
+\end{equation}
+We can integrate the $\mathbb{T}^{tt}$ component of the stress tensor to get the Hamiltonian:
+\begin{equation}
+    H = \int d^3 \mathbb{T}^{00} = \sum_s \int d^3k \sqrt{k^2 + m^2}\left(a_s^\dag(\v{k})a_s(\v{k}) + b_s^\dag(\v{k})b_s(\v{k})\right)
+\end{equation}
+and we can see these are just the number operators times the energies of the particles/holes (anti-particles) they are counting. This is a stable system. If we had made the mistake of considering this system as bosonic, what would have happened? We would replace the anti-commutators with commutators, and it would follow from our Lagrangian density. We could have gone down what turns out to be the wrong path, and everything would be fine up to the construction of the Fock space (we would have more space because no exclusion principle), but anyway. But something goes wrong when we look at the Hamiltonian. If we had bosons instead of fermions, we would have:
+\begin{equation}
+    H = \int d^3 \mathbb{T}^{00} = \sum_s \int d^3k \sqrt{k^2 + m^2}\left(a_s^\dag(\v{k})a_s(\v{k}) - b_s^\dag(\v{k})b_s(\v{k})\right)
+\end{equation}
+this is terrible! The Hamiltonian is not bounded from below. By exciting the $b$s, we can get an arbitrarily low energy. This would be ok for a free field theory, but as soon as we try to apply it to something in the real world (which couples it to things), we would get transitions, which pushes the system to lower energy states, making it highly unstable. This construction only makes sense if the fields are fermions. It is not a stable theory if we have bosons. This is part of a bigger theorem known as the spin-statistics theorem (a complicated spinoff of our discussion about analyticity). This can be proved that a Lorentz invariant theory has a spin-statistics theorem. It has to do with the fact that if you have a half integer spin, the field is double valued; (spinors have $R_n(2\pi) = -1$, $R_n(4\pi) = 1$), and combining this with lorentz invariance yields the spin-statistics theorem.
+
+By the way, if we calculate the number operators:
+\begin{equation}
+    \mathcal{N} = \int d^3x \psi^\dag(x)\psi(x) = \sum_s \int d^3k (a_s^\dag(\v{k})a_s(\v{k}) - b_s^\dag(\v{k})b_s(\v{k}))
+\end{equation}
+This makes the number operators very suitable for describing electric charge; the $a$s create electrons, $b$s create positrons.
+
+\subsection{The Photon Field and Maxwell's Equations}
+We now proceed to study the quantum field theory for the photons. This will be a weakly coupled bosonic theory. Recall from our initial discussion about bosonic fields that Bose fields act somewhat classically. We can proceed to get the Lagrangian from this, and we get something that we are intimately familiar with; classical electrodynamics! So, we can carry these equations of motion over and use them to study the theory of quantum electrodynamics. This might be suspect; how might we know that there aren't terms proportional to $\frac{1}{\hbar}$ etc.? In some sense we don't know, but being a QFT there are certain conditions that need to be mathematically satisfied. These constraints tell us that we don't need to correct Maxwell's equations.
+
+This isn't to say that there aren't effective field theories, which (e.g.) can be used to study photon-photon scattering (a rare event) which looks like something beyond classical electrodynamics (as classical waves do not scatter off of each other) but this is understood as a quantum process, where the photons disintegrate into ``virtual'' electrons and positrons which scatter from each other and reannhilate etc.
+
+In any case, we have a pretty good guess for how to start with talking about photons; just write down maxwell's equations! In nonrelativistic notation, they are written in any classical electrodynamics textbook. But they are much more consisely written in relativistic notation. We consider the electromagnetic tensor $\mathcal{F}^{\mu\nu}$ with $\mathcal{F}^{0a} \sim E^a$ and $\mathcal{F}^{ab} \sim \e^{abc}B^c$. We can then forget about how Lorentz transforms work, and just use that $\mathcal{F}^{\mu\nu}$ transforms like a tensor! When we stick the electromagnetic fields into $F^{\mu\nu}$, the Maxwell equations are simple to write (we have two sets):
+\begin{equation}
+    \p_\mu \mathcal{F}^{\mu\nu}(x) = -\mathcal{J}^\nu(x)
+\end{equation}
+\begin{equation}
+    \p_\mu \mathcal{F}_{\nu\lambda}(x) + \p_\nu \mathcal{F}_{\lambda \mu}(x) + \p_\lambda \mathcal{F}_{\mu\nu}(x) = 0.
+\end{equation}
+What is normally done to proceed from here is to write down a solution to the above equation. This might be familiar as a Bianchi identity. The equation tells us that it is closed, and on simple spaces this tells us it is exact, and so a solution of this is written as:
+\begin{equation}
+    \mathcal{F}_{\mu\nu}(x) = \p_\mu A_\nu - \p_\nu A_\mu
+\end{equation}
+i.e. in terms of a four-vector field $A_\mu$. Given some topology and boundary considerations, this is a unique solution. After determining this, we can take $A_\mu$ to be the dynamical variable, and then use the first set of Maxwell equations to determine how it is governed. At the classical level, $A_\mu$ is not particularly important 
