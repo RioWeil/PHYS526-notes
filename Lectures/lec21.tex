@@ -1,0 +1,164 @@
+\section{The Photon Field II}
+In the last lecture we concluded our discussion of the Dirac Field, and started our discussion of the Photon Field. Let us continue this now.
+
+\subsection{Relativistic Classical Electrodynamics - Getting the Field Equation}
+As we said last time, to get the degrees of freedom and the classical equations of motion/classical structure of the theory, we should be able to use Maxwell's theory. This statement comes with the assumption that the theory is weakly coupled, and when this happens the physics is dominated by classical behavior. If we assume that classical electrodynamics is this behavior, then Maxwell's equations provide us with the equations of motion. We wrote them in the relativistic form:
+\begin{equation}
+    \p_\mu \mathcal{F}^{\mu\nu} = \mathcal{J}^\nu
+\end{equation}
+\begin{equation}
+    \p_\mu \mathcal{F}_{\nu\lambda} + \p_\nu \mathcal{F}_{\lambda\mu} + \p_\lambda \mathcal{F}_{\mu\nu} = 0
+\end{equation}
+and we then said that the solution to the second equation could be cast in terms of a vector potential as:
+\begin{equation}
+    F_{\mu\nu} = \p_\mu A_\nu - \p_\nu A_\mu
+\end{equation}
+Note that the first set of Maxwell's equations describes a kind of divergence, and the above equation a curl. We can plug this curl equation back into the divergence one to obtain equations of motion. We can also obtain the equations of motion from a Lagrangian density:
+\begin{equation}
+    \L = -\frac{1}{4}\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu} + A_\mu \mathcal{J}^{\mu}
+\end{equation}
+The Euler-Lagrange equations give us back the first set of Maxwell's equations:
+\begin{equation}
+    \p_\lambda \dpd{\L}{(\p_\lambda A_\nu)} - \dpd{\L}{A_\nu} = 0.
+\end{equation}
+computing the derivatives:
+\begin{equation}
+    -\p_\lambda F^{\lambda \nu} + \mathcal{J}^\nu = 0 \implies \p_\lambda F^{\lambda \nu} = \mathcal{J}^\nu
+\end{equation}
+We therefore have obtained the equation of motion, or the field equation; it is nothing more than Maxwell's equations. The other Maxwell's equation is solved automatically as $\mathcal{F}$ depends on $A$. 
+
+So we obtain the field equation; the other piece of structure we need is the commutators.
+
+\subsection{Commutator Relations and Covariant Quantization}
+In order to obtain these, we should study the time dependent terms in the Lagrangian density. These are something like:
+\begin{equation}
+    \L = \frac{1}{2}\left(\dpd{}{t}\v{A}(x)\right)^2 - \dpd{}{t}\v{A}(x) \cdot \nabla A_0(x) + \ldots
+\end{equation}
+We see immediatley that $\pd{}{(x^0)}A^0$ does not appear. This means that we are working in a constrained system. A great reference for this is a paper by Dirac in the Canadian Journal of Mathematics. However, we don't solve it in this way. Solving it like a constraint system, it is not clear that the system is Lorentz convariant (though the process may be more logically clear). In our process, we try to keep things as Lorentz covariant as long as possible, as this helps us a lot when we consider calculations. So, we proceed via the method of \emph{covariant quantization}. Gordon used to not like this, and physically oriented colleagues like Bill Unruh also dislikes it. But it is very handy in quantization of bosonic string theory, so those doing HEP theory may become used to it. It does give the same answer, so it seems alright, though it does have some strange aspects.
+
+We note that our theory is currently Gauge invariant, as if we take:
+\begin{equation}
+    A_\mu \to A_\mu + \p_\mu \Lambda
+\end{equation}
+then $\mathcal{F}_{\mu\nu}$ remains unchanged. Further, the other term in the Lagrangian goes as:
+\begin{equation}
+    A^\mu \mathcal{J}^\mu \to A^\mu \mathcal{J}^\mu + \p_\mu \Lambda \mathcal{J}^\mu = A_\mu \mathcal{J}^\mu + \p_\mu (\Lambda \mathcal{J}^\mu)
+\end{equation}
+where the last equality follows if $\p_\mu \mathcal{J}^\mu = 0$ (which is true if the Maxwell equations hold). This qualifies this as a symmetry of the system, but it's not just any symmetry as $\Lambda$ is a fairly arbitrary function. Really it should not be treated as a symmetry, but rather a signal that $A^{\mu}$ has too many degrees of freedom in it. We could have perhaps expected this; $A^{\mu}$ is a four field, but a photon only has two polarizations; so somehow we should expect that there is some redundancy. We can make use of this redundancy, however, as we can always gauge transform:
+\begin{equation}
+    \mathcal{A}_\mu \to \tilde{\mathcal{A}}_\mu = A_\mu + \p_\mu \Lambda
+\end{equation}
+such that $\p^\mu \tilde{\mathcal{A}_\mu} = 0$ (fixing the Gauge). This allows us to cancel out a term in the Maxwell's equations:
+\begin{equation}
+    \p^2 A^\nu - \cancel{\p^\nu \p^\mu A_\mu} = J^\nu 
+\end{equation}
+which looks more familiar. The Lagrangian density looks like:
+\begin{equation}
+    \tilde{\mathcal{L}} = -\frac{1}{2}\p_\mu A^\nu \p^\mu A_\nu + A_\nu \mathcal{J}^\nu
+\end{equation}
+so we can take our theory to be defined by the above equation plus the condition that $\p_\mu A^\mu = 0$. Now, if we look at the time-dependent terms here, we have:
+\begin{equation}
+    \L = \left(\dpd{\v{A}}{x^0}\right)^2 - \left(\dpd{A^0}{x^0}\right)^2 + \ldots
+\end{equation}
+We also see that:
+\begin{equation}
+    \p^2 A_\mu = \mathcal{J}_\mu
+\end{equation}
+and:
+\begin{equation}
+    \p^2\left(\p^\mu A_\mu\right) = 0
+\end{equation}
+where we use that $\p_\nu \mathcal{J}^\nu = 0$. Note that if this condition holds at the initial time, the condition $\p_\mu A^\mu = 0$ remains to hold.
+
+(Some comment about a term that will plague us and lead to complications, which I missed)
+
+We can look now at the canonical position and momenta, consider their Poisson bracket, and promote them to commutation relations:
+\begin{equation}
+    [A_\mu(x), \dpd{}{y^0}A_\nu(y)]\delta(x^0 - y^0) = i\eta_{\mu\nu}\delta^4(x - y)
+\end{equation}
+
+\subsection{The Zero-Current Case}
+Let us for the moment set $\mathcal{J}^\mu = 0$ so we can solve something. We then have:
+\begin{equation}
+    \p^2 A^\mu = 0
+\end{equation}
+but we also recall that $\p_\mu A^\mu = 0$ that we should impose somehow. The strategy we should take to impose it is to take the commutation relations and the field equations, solve them and make a Fock space for their solutions, and in the Fock space, impose the Gauge fixing condition as a physical state condition (restricting ourselves to a subset of the Fock space where the physical space condition is obeyed).
+
+As we have done many times, we solve the field equation as a superposition of plane waves:
+\begin{equation}
+    A_\mu(x) = \int \frac{d^3k}{\sqrt{(2\pi)^2 2\abs{\v{k}}}}\left[e^{i\v{k} \cdot \v{x} - i\abs{\v{k}}t}a_\mu (\v{k}) + e^{-i\v{k} \cdot \v{x} + i\abs{\v{k}}t}a_\mu^\dag(\v{k})\right]
+\end{equation}
+Note that in the classical case, the electromagnetic fields are real; in the quantum case, this translates to $A_\mu$ being Hermitian. To this end we add the negative frequency states in the above equation. In order for the equal-time commutation relations to hold, we require that:
+\begin{equation}
+    [a_\mu(\v{k}), a_\nu^\dag(\v{k})] = \eta_{\mu\nu}\delta^3(\v{k} - \v{l})
+\end{equation}
+This looks like a solution to the first state of things! We can in fact define a vacuum state $\ket{0}$ which is annihilated by all of the $a_\mu$s:
+\begin{equation}
+    a_\mu(\v{k})\ket{0} = 0, \quad \bra{0}a^\dag_\mu(\v{k}) = 0
+\end{equation}
+and is normalized:
+\begin{equation}
+    \braket{0}{0} = 1
+\end{equation}
+and we can use this to construct a basis for our Fock space:
+\begin{equation}
+    \set{\ket{0}, a^\dag_\mu\ket{0}, a^\dag_{\mu_1}(\v{k}_1)a^\dag_{\mu_2}(\v{k}_2)\ket{0}, \ldots}
+\end{equation}
+if we then look at what the Hamiltonian is for this space, we find that the Hamiltonian is diagonal in this basis. This solves the first part of the theory; everything is fixed about the space of states.
+
+Now, consider the norm of the one-photon states:
+\begin{equation}
+    \abs{\int d^3k \mathcal{J}^\mu(\v{k})a_\mu^\dag(\v{k})\ket{0}}^2 = \int d^3k \xi^\mu(\v{k})\xi^*_\mu(\v{k})
+\end{equation}
+However we run into a problem; the RHS is not positive! It seems like with our construction we run into space with non-positive norm, which is nonsensical. We are therefore interested in some physical subspace of the entire space, where the constraint $\p_\mu A^\mu(x) = 0$ is realized. One thing we could try is to say that:
+\begin{equation}
+    \p_\mu A^\mu(x)\ket{\text{phys}} = 0.
+\end{equation}
+for all physical states $\ket{\text{phys}}$. This seems like the obvious thing, but like many places in field theory, the obvious thing does not work as we find that there are no physical states at all, as the above operator has no kernel. We can try something a bit weaker; take the positive frequency components:
+\begin{equation}
+    \p_\mu A^{\mu}(x)^{(+)}\ket{\text{phys}} = 0.
+\end{equation}
+We find that this does imply:
+\begin{equation}
+    \bra{\text{phys}}\p_\mu A^{\mu}(x)\ket{\text{phys}} = \bra{\text{phys}}(\p_\mu A^{\mu}(x)^{(+)} + \p_\mu A^{\mu}(x)^{(-)})\ket{\text{phys}} = 0.
+\end{equation}
+We now ask if our generic one-photon case:
+\begin{equation}
+    \int d^3q J^\mu(\v{q})a^\dag_\mu(\v{q})\ket{0}
+\end{equation}
+is physical. So we operate $k_\mu a^\mu(k)$ on it and see when it vanishes. This will give the result that the state is a physical state if it obeys:
+\begin{equation}
+    k_\mu \xi^\mu(k) = 0.
+\end{equation}
+This determines:
+\begin{equation}
+    \xi^0(k) = \frac{1}{\abs{\v{k}}}\v{k} \cdot \gv{\xi}(k)
+\end{equation}
+and the norm of our field becomes:
+\begin{equation}
+    \abs{\int \xi^\mu a_\mu^\dag\ket{0}}^2 = \int d^3k \xi^\mu(k)\xi^*_\mu(k) = \int d^3k \xi^i(k)\left(\delta_{ij} - \frac{k_ik_j}{\v{k}^2}\right)\xi^i(k)^*
+\end{equation}
+where we have written the norm entirely in terms of the spatial pieces, using that the time component is no longer independent.
+
+Now we ask if we have fixed our problem? We are close. The eigenvalues of $\left(\delta_{ij} - \frac{k_ik_j}{\v{k}^2}\right)$ are $1, 1, 0$. So there are no negative norm states anymore (good)! but there are still zero norm states which is quite strange. Note that we looked at one photon states here, but the textbook goes through the easy generalization for multi-photon states:
+
+\begin{equation}
+    \abs{\int d^3k_1 \ldots d^3k_n \eta^{\mu_1 \ldots \mu_n}(k_1 \ldots k_n) a^\dag_{\mu_1}(k_1) \ldots a^\dag_{\mu_n}(k_n)\ket{0}}^2 = n!\int d^3 k_1 \ldots d^3k_n \xi^{\mu_1 \ldots \mu_n}(k_1 \ldots k_n)\xi^*_{\mu_1 \ldots \mu_n}(k_1 \ldots k_n)
+\end{equation}
+But the physical state condition is that $k_{\mu_i}\eta^{\mu_1 \ldots \mu_n}(k_1 \ldots k_n) = 0$ and so we get:
+\begin{equation}
+    = n!\int d^3 k_1 \ldots d^3 k_n \xi^{i_1 \ldots i_n}(k_1 \ldots k_n)T_{i_1j_1\ldots i_nj_n}\xi^{j_1 \ldots j_n}(k_1 \ldots k_n)^*
+\end{equation}
+this is now non-negative, but it can still be zero as the $T$s do have zero eigenvalues.
+
+In summary, there are physical states with zero norm. This is actually not good enough as states have positive norm in a normal quantum mechanical system. In a normal quantum mechanical system, we would say a state with zero norm is just the zero vector. We have to therefore get rid of these somehow.
+
+We consider an equivalence relation on physical states $\ket{\text{phys}} \sim \ket{\text{phys}'}$ if:
+\begin{equation}
+    \norm{\ket{\text{phys}} - \ket{\text{phys}}'}^2 = 0
+\end{equation}
+This gets rid of the zero norm states, because if $\norm{\ket{\text{phys}}}^2 = 0$, then:
+\begin{equation}
+    \norm{\ket{\text{phys}} - \v{0}}^2 = 0
+\end{equation}
+and so the physical state is equivalent to the zero vector in the physical space. The equivalence class of zero norm vectors is just the trivial state equivalent to zero. Other vectors outside of this equivalence class will have nonzero norm. This makes sense as an equivalence relation partitions a set into disjoint equivalence classes. These classes become our physical states. We still have to argue that this equivalence relation is sensible, however. We will show this next time - however what does sensible mean? In real QM, this means that if i take the expectation value of any operator with two equivalent states, they take the same answer. If this is not the case, then the equivalence relation is just nonsense. So at most we have to show that this is reproduced.
