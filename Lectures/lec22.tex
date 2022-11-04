@@ -1,0 +1,154 @@
+\section{Photon Field III, Functional Methods I}
+Last time, we studied the physical states of the photon field. We took these as the states for which:
+\begin{equation}
+    \p_\mu A^\mu(x)^{(+)}\ket{\text{phys}} = 0.
+\end{equation}
+From this we obtained:
+\begin{equation}
+    \int dq_1 \ldots dq_n \xi^{\mu_1 \ldots \mu_n}(q_1 \ldots q_n)a^\dag_{\mu_1}(q_1) \ldots a^\dag_{\mu_n}(q_n)\ket{0}
+\end{equation}
+The physical state condition is that $q_1 \xi^{\mu_1 \ldots \mu_n}(q_1 \ldots q_n) = 0$. After imposing the condition, we find:
+\begin{equation}
+    \braket{\xi}{\xi} = n!\int dq_1 \ldots dq_n \xi^{i_1 \ldots i_n}(q_1 \ldots q_n)T_{i_1j_1} \ldots T_{i_nj_n}\xi^{j_1 \ldots j_n}(q_1 \ldots q_n)
+\end{equation}
+Where:
+\begin{equation}
+    T_{ij} = \delta_{ij} - q_1q_j/\v{q}^2
+\end{equation}
+which have eigenvalues $1,1,0$. So, the physical state condition has removed the negative norm states (it chooses the subset of states where the norm is non-negative). We still need to remove the zero norm states, however.
+
+\subsection{An aside - Massive photons}
+Note: If we have a massive photon, to the Lagrangian density we would add a photon mass term:
+\begin{equation}
+    \L = -\frac{1}{4}\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu} - \frac{m^2}{2}A_\mu A^\mu + \ldots
+\end{equation}
+in this theory, we obtain the equation of motion:
+\begin{equation}
+    -\p_\mu \mathcal{F}^{\mu\nu} + m^2A^\nu = 0
+\end{equation}
+Taking a four-divergence of this, we would get a different dispersion relation, and the $T_{ij}$s would differ, in particular:
+\begin{equation}
+    T_{ij} = \delta_{ij} - \frac{q_iq_j}{q^2+m^2}
+\end{equation}
+Note that this object does \emph{not} have zero eigenvalues, however; it has eigenvalues $1, 1, \frac{m^2}{q^2 + m^2}$. Really this is describing a spin-1 photon with three polarizations. For massive photons we are already done just by imposing the physical state condition, as the zero eigenvalue goes away (but note in the $m \to 0$ limit we find that the eigenvalue is 0). 
+
+Although experimental bounds on the photon mass are tiny, tiny small ($10^{-39}m_e$), it doesn't rule out a zero mass entirely. There are some famous field theory textbooks (and in some technical computations) where they take $m$ to be finite all the way through to avoid the complicated argument we will proceed to do.
+
+\subsection{Correcting the Zero-Norm States}
+We still need to cure the zero norm condition. To this end we enforce an equivalence relation:
+\begin{equation}
+    \ket{\text{phys}} \sim \ket{\text{phys}'}
+\end{equation}
+If
+\begin{equation}
+    \norm{\ket{\text{phys}} - \ket{\text{phys}'}}^2 = 0.
+\end{equation}
+this immediately rules out the zero norm states, as if $\ket{\text{phys}}$ is zero norm, then:
+\begin{equation}
+    \braket{\text{phys}}{\text{phys}} = 0
+\end{equation}
+and so:
+\begin{equation}
+    \norm{\ket{\text{phys}} - \v{0}}^2 =  \norm{\ket{\text{phys}}}^2 = \braket{\text{phys}}{\text{phys}} = 0.
+\end{equation}
+So, every zero norm state is equivalent to the zero vector.
+
+However, we still have to show the following. If $\ket{\text{phys}} \sim \ket{\text{phys}'}$, then:
+\begin{equation}
+    \bra{\text{phys}}O\ket{\text{phys}} = \bra{\text{phys}'}O\ket{\text{phys}'}.
+\end{equation}
+for an observable $O$. Further, $O$ must be a gauge invariant operator, so:
+\begin{equation}
+    O(a_\mu(k), a_\mu^\dag(k)) = O(a_\mu + k_\mu \xi(k), a_\mu^\dag + k_\mu \xi^*(k))
+\end{equation}
+
+Ok, let's try to make an argument for this. Consider one particle states $a_\mu^\dag(k)\ket{0}$. We decompose this state; this is a bit of a complicated story (recall polarization in undergraduate quantum and electrodynamics)... but to this end let us consider projections $e^\mu_s$. They are orthogonal to $k_\mu$ (the direction of propogation) and so:
+\begin{equation}
+    e^\mu_s k_\mu = 0
+\end{equation}
+but the projectors have zero time component so $e^0_s = 0$. This tells us that the spatial component of the vectors are orthogonal:
+\begin{equation}
+    e^a_sk^a = 0
+\end{equation}
+There is a two-dimensional subspace orthgonal to $k^a$, which gives us two projectors. For example if $\v{k} = (0, 0, k)$ then $e^\mu_1 = (0, 1, 0, 0)$ and $e^\mu_2 = (0, 0, 1, 0)$. 
+
+So we get two physical polarization states of the photon:
+\begin{equation}
+    e^\mu_s a_\mu^\dag(k)\ket{0}.
+\end{equation}
+for $s = 1, 2$. We can also consider $k^\mu$ (which is orthogonal to the two polarization part by construction). For the final vector we can consider $e^\mu_L = \delta^{\mu}_0 = (1, 0, 0, 0)$ So we have the two additional states:
+\begin{equation}
+    k^\mu a_\mu^\dag(k)\ket{0}
+\end{equation}
+\begin{equation}
+    e_L^\mu a_\mu^\dag(k)\ket{0} = \delta_0^\mu a_\mu^\dag(k)\ket{0} = a_0^\dag(k)\ket{0}
+\end{equation}
+The physical state condition is that:
+\begin{equation}
+    k_\nu a^\nu(x)\ket{\text{phys}} = 0.
+\end{equation}
+We then find that $e^\mu_s a_\mu^\dag(k)\ket{0}, k^\mu a_\mu^\dag(k)\ket{0}$ pass the condition, and $a_0^\dag(k)\ket{0}$ fails; so we just keep the first two.
+
+We now consider that since $ k_\nu a^\nu(x)\ket{\text{phys}} = 0$, then:
+\begin{equation}
+    \norm{k^\mu a_\mu^\dag(k)\ket{\text{phys}}}^2 = 0.
+\end{equation}
+
+Let's consider then the equivalence class of $e^\mu_sa_\mu(k)\ket{0}$. The equivalence class will be:
+\begin{equation}
+    e^\mu_s a_\mu(k)\ket{0} + k^\mu a^\dag_\mu(k)\ket{\text{phys}}
+\end{equation}
+where $\ket{\text{phys}}$ ranges over all physical states. This is a huge equivalence class! Now, if we have an operator $O(a, a^\dag)$, we can see that it will have the same expectation value for members of the same equivalence class. So $\avg{O}$ will be representative independent, so long as:
+\begin{equation}
+    [O(a, a^\dag), k^\mu a_\mu^\dag(k)] = 0
+\end{equation}
+and
+\begin{equation}
+    [O(a, a^\dag), k^\mu a_\mu(k)] = 0
+\end{equation}
+
+This concludes the discussion of the theory of the photon for now; hopefully we have a good sense of the gymnastics required to have sensible photon states. Already things are complicated, without a straightforwards quantization. Although perhaps this was not the clearest presentation, the result is exactly the same as if we used constraints instead; and at least this formalism is covariant!
+
+\subsection{A First Look at Quantum Electrodynamics}
+We have our theory of the photon field, and then we add electrons and positrons by adding the dirac field; we then couple them together:
+\begin{equation}
+    \L = -\frac{1}{4}\mathcal{F}_{\mu\nu}\mathcal{F}^{\mu\nu} - i\bar{\psi}(\dirac + m)\psi - e\bar{\psi}\gamma^\mu \psi A_\mu(x)
+\end{equation}
+where we have coupled the vector potential to the number current (times the charge). The thing we need for the coupling is that the current is conserved. 
+
+People like to emphasize that the above is gauge invariant; recall that the Gauge transformations read:
+\begin{equation}
+    A_\mu \to A_\mu + \p_\mu \Lambda
+\end{equation}
+The new theory above is not gauge invariant as written, but we can make it Gauge invariant by transforming the dirac field as:
+\begin{equation}
+    \psi \to e^{ie\Lambda}\psi, \quad \bar{\psi} \to \bar{\psi}e^{-ie\Lambda}
+\end{equation}
+so if we combine the free photon gauge invariance condition with the above phase transformation conditions, we obtain a gauge invariance for the coupled theory.
+
+Note that if we already had renormalizability in mind as a condition we require, this is already the most general model we could write down.
+
+We can now proceed to discuss the equations of motion of the theory, commutation relations etc. We will not really do this yet, because we will take another detour and finish recasting our QFT in terms of correlation functions. We will discuss perturbation theory at length - however you may recall from QM that ordinary PT is quite difficult and gets messy quite quickly. So, we will want to do the most elegant formulation.
+
+\subsection{Intro to Functional Methods}
+We will build up our toolbox for calculating correlation functions. We are interested in calculating time-ordered correlation functions, e.g.:
+\begin{equation}
+    \bra{0}T A_{\mu_1}(x_1)\ldots A_{\mu_n}(x_n)\psi_{a_1}(y_1)\ldots \psi_{a_k}(y_k)\bar{\psi}_{b_1}(z_1) \ldots \bar{\psi}_{b_k}(z_k)\ket{0}
+\end{equation}
+Note that we have the same number of dirac fields $k$ in the correlation function. We had phase symmetry in the classical field theory which we lifted to the quantum field theory. This means that our correlation functions should also have phase symmetry. This implies that correlation functions vanish unless they have the same number of $\psi$ and $\bar{\psi}$. Note that we have enforced a gauge symmetry here yet (and the above is not gauge invariant), so we do slightly wrong things, and at some point we will enforce conditions in order to ensure that we only discuss gauge invariant objects.
+
+As a teaser for next class; we will study functional calculus, where we study functionals. Functionals are mappings from functions to numbers, $F[f]$. They do not have to be real numbers (they can be complex) and similarly $f$ can be real or complex. The interesting question is then how can we take derivatives/integrals of functionals w.r.t. functions. E.g. how do $\frac{\delta}{\delta f(x)}F[f]$ behave? We can jump straight to the gun with taking path integrals, but in this course we will develop some functional calculus first, reformulate field theory in terms of functional differential equations, and then look at the solutions of these.
+
+A little more of a teaser of how we can consider derivatives. If we expand in a complete set of square integrable functions:
+\begin{equation}
+    f(x) = \sum_n c_n f_n(x)
+\end{equation}
+and plug it into the functional:
+\begin{equation}
+    F[f] = F[c_n]
+\end{equation}
+the functional becomes a function of an infinite number of a coefficients. We can then define:
+\begin{equation}
+    \frac{\delta F}{\delta f(x)} = \sum_n \dpd{F}{c_n}f_n(x)
+\end{equation}
+this we look at next time and figure out some properties; we can then use these derived rules instead of referring to the definition next day.
