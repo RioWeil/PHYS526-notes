@@ -1,0 +1,132 @@
+\section{Functional Methods}
+A functional $F[\phi]$ takes in a function $\phi(x)$ and outputs a number (a function of a function). Today we will study how to do calculus with functionals.
+
+\subsection{Functional Derivative}
+Is it possible to take a derivative of a functional? We might think to do something like $F[\phi + \delta \phi] - F[\phi]$ and divide by the variation in $\phi$... we can therefore define:
+\begin{equation}
+    F[\phi + \delta \phi] - F[\phi] = \int dx \delta \phi(x) \frac{\delta F}{\delta \phi(x)} + \ldots 
+\end{equation}
+However we may want to be a little more concrete about this. We therefore consider a complete set of functions $\set{f_1(x), f_2(x), \ldots f_n(x), \ldots}$ of which some examples that come to mind are plane waves and the eigenfunctions of the quantum harmonic oscillator. If we have a complete set of functions, we can expand out $\phi$ in these functions:
+\begin{equation}
+    \phi(x) = \sum_n c_n f_n(x)
+\end{equation}
+Let us also assume that our set of functions are orthonormal:
+\begin{equation}
+    \int dx f_n(x)f_m(x) = \delta_{mn}
+\end{equation}
+and the completeness condition gives:
+\begin{equation}
+    \sum_n f_n(x)f_n(y) = \delta(x - y)
+\end{equation}
+
+So, the coefficients in our derivative are obtained in the straightforward way using the orthogonality relation:
+\begin{equation}
+    c_n = \int dx \phi(x) f_n(x)
+\end{equation}
+And so in principle if we know the $c_n$s we can reconstruct $\phi$, and if we know $\phi$ we can calculate the $c_n$s. IF we now consider plugging in $\phi$ into the functional $F$ in this expanded form, we have that $F$ has now become a function of all of the $c_n$s:
+\begin{equation}
+    F[\phi] \to F[c_1, c_2, \ldots, c_n, \ldots]
+\end{equation}
+We could then define the functional derivative as:
+\begin{equation}
+    \frac{\delta F}{\delta \phi(x)} = \sum_n f_n \dpd{}{c_n}F[c_1, c_2, \ldots]
+\end{equation}
+This is not a formula because there is an infinite number of $c_n$s (in general) and thus we have an infinite series, but we can get by only manipulating ordinary derivatives, something we should be familiar from first-year calculus. With this definition we can derive various formulas for the functional derivative:
+\begin{equation}
+    \frac{\delta}{\delta \phi(x)}(F_1F_2) = \frac{\delta F_1}{\delta \phi(x)}F_2 + F_1\frac{\delta F_2}{\delta\phi(x)}
+\end{equation}
+\begin{equation}
+    \frac{\delta}{\delta \phi(x)}g(F[\phi]) = \dpd{g}{F}\frac{\delta F}{\delta \phi (x)}
+\end{equation}
+I.e. analogs to the familiar product rule and chain rule formulas. We also obtain (treating $\phi(y)$ as a functional):
+\begin{equation}
+    \frac{\delta}{\delta \phi(x)}\phi(y) = \delta(x - y)
+\end{equation}
+These rules are generally all we need to know about a functional derivative, and we will rarely have to refer back to the full definition. For example if we consider:
+\begin{equation}
+    K[\phi] = \int dx_1 \ldots dx_n K(x_1, \ldots x_n)\phi(x_1) \ldots \phi(x_n)
+\end{equation}
+then:
+\begin{equation}
+    \frac{\delta K[\phi]}{\phi(x)} = n \int dx_1 \ldots dx_{n-1}K(x, x_1, \ldots, x_{n-1})\phi(x_1) \ldots \phi(x_{n-1})
+\end{equation}
+Another thing we might think to do is the functional derivative of an exponential:
+\begin{equation}
+    \frac{\delta}{\delta \phi}e^{i \int dx' J(x'
+    )\phi(x')} = iJ(x)e^{i \int dx' J(x')\phi(x')}
+\end{equation}
+Or take the functional derivative of a Gaussian functional:
+\begin{equation}
+    \frac{\delta}{\delta \phi(x)}e^{-\frac{1}{2}\int dx'dy\phi(x')\Delta(x', y)\phi(y)} = -\int dy \Delta (x, y)\phi(y)e^{-\frac{1}{2}\int dx'dy\phi(x')\Delta(x', y)\phi(y)} 
+\end{equation}
+and we can even consider taking the second derivative:
+\begin{equation}
+   \frac{\delta}{\delta \phi(x)}\frac{\delta}{\delta \phi(y)} = -\Delta(x, y)e^{-\frac{1}{2}\int \phi \Delta \phi} + \int dz_1dz_2\Delta(x, z_1)\Delta(x, z_2)\phi(z_1)\phi(z_2)e^{-\frac{1}{2}\int \phi \Delta \phi} 
+\end{equation}
+
+\subsection{Functional Integral}
+While functional differentiation is relatively easy, functional integrals are more difficult. How do we make sense of something like $\int d\phi(x) F[\phi]$? We really are integrating over an infinite-dimensional space, so things get a bit tricky; not all functions will be integrable here. We do the same expansion of $\phi(x) = \sum_n c_n f_n(x)$. There is a question of boundary conditions here; perhaps we want $\phi$s that go to zero exponentially quickly at infinity, and so we might pick a basis (for the $f_n$s) that has the same property, for example the harmonic oscillator basis.
+
+Having chosen a basis\footnote{Note that the actual value of the integral is not basis-dependent, despite the seemingly basis-dependent definition we have written down; up to a possible complication with boundary conditions, the transformation between various bases will be some unitary transformation, and hence the functional integral will be equivalent up to the absolute value of a determinant of a unitary transformation - which is just $\abs{e^{i\phi}} = 1$.}, we can define our functional integral as:
+\begin{equation}
+    \int d\phi(x) F[\phi] \equiv \int dc_1 dc_2 \ldots F[c_1, c_2, \ldots]
+\end{equation}
+so we have an infinite number of integrals over real variables. This is still hard, but sensible. In general there are very few cases in which this can actually be solved, and if it was possible to solve all functional integrals all of QFT would be resolved.
+
+\subsection{Functional Gaussian Integral}
+As an example - we will need to know the functional integral of the Gaussian $e^{-\frac{1}{2}\int dxdy \phi(x)\Delta(x, y)\phi(y)}
+$. But we cannot just integrate any Gaussian; the $\Delta$ appearing in it should have a positive definite kernel (positive eigenvalues). We want to find:
+\begin{equation}
+    I = \int [d\phi(x)]e^{-\frac{1}{2}\int dxdy \phi(x)\Delta(x, y)\phi(y)} = \int dc_1dc_2\ldots e^{-\frac{1}{2}\sum_{mn}\Delta_{mn}c_n}
+\end{equation}
+Where $\Delta_{mn} = \int dxdy f_m(x)\Delta(x, y)f_n(y)$. $\Delta_{mn}$ here is real and symmetric. The integral is still quite ugly because of the infinite number of $c_n$s - we would know how to do the finite case. We do the physicist's hack and stop the sum at some integer $K$. Then $\Delta$ is a $K \times K$ (finite!) real symmetric matrix. Recalling our linear algebra course, we know that such a matrix can be diagonalized by a unitary transformation:
+\begin{equation}
+    \Delta_{mn} = \mathcal{O}_{mp}\Delta_p \mathcal{O}^\dag_{pn}
+\end{equation}
+where the $\mathcal{O}$s are unitary (I guess we say orthogonal here because they are real):
+\begin{equation}
+    \mathcal{O}\mathcal{O}^\dag = \mathcal{O}^\dag\mathcal{O} = \II
+\end{equation}
+So then we write the sum as:
+\begin{equation}
+    -\frac{1}{2}\sum_{mnp}c_m\mathcal{O}_{mp}\Delta_p \mathcal{O}^\dag_{pn}c_n
+\end{equation}
+We can then change our variables of integration $c \to \mathcal{O}c$. When we do so, the integration measure changes by the Jacobian (absolute value); but here the Jacobian is orthogonal and hence $\det\mathcal{O} = \pm 1$ and so the absolute value is just one. So, the integral becomes:
+\begin{equation}
+    I = \int dc_1dc_2 \ldots e^{-\frac{1}{2}\sum_p \Delta_p c_p^2}
+\end{equation}
+we've done something that is valid for finite matrices... we will later push the upper limit to infinity to recover our original functional integral. Doing this integral is now easy! We just need to remember how to do a Gaussian integral:
+\begin{equation}
+    I = \prod_p \int dc e^{-\frac{1}{2}\Delta_p c^2}
+\end{equation}
+To compute this, we can recall the trick of going into polar coordinates:
+\begin{equation}
+    \int dc e^{-\frac{1}{2}\Delta c^2} = \sqrt{\int dc_1dc_2 e^{-\frac{1}{2}\Delta \v{c}^2}} = \sqrt{\int_{0}^{2\pi}d\phi \int_0^\infty cdc e^{-\frac{1}{2}\Delta c^2}} = \sqrt{\frac{2\pi}{\Delta}}
+\end{equation}
+Therefore we conclude:
+\begin{equation}
+    I = \prod_{p=1}^K \sqrt{\frac{2\pi}{\Delta_p}}
+\end{equation}
+we now recall the intiial comment that $\Delta$ should have positive definite kernel. The reason for this is because we require the eigenvalues to be positive in the product above. If $\Delta_p$ is negative we get imaginary terms, and if $\Delta_p = 0$ then the product diverges. We can write $I$ as:
+\begin{equation}
+    I = \frac{1}{\sqrt{\det(\Delta/2\pi)}}
+\end{equation}
+where we use that the determinant of a real matrix is just the product of the eigenvalues.
+
+There are not many $\Delta$s for which this integral makes sense, if we make it go to infinity. Most of the time how we make it sensible is to restore the cutoff in some way. We will not really encounter this integral in this course, though we will see it in stat mech next term. What we will be interested in is doing these integrals with correlation fucntions, and then dividing by the integrals without the insertions, e.g:
+\begin{equation}
+    I = \frac{\int [d\phi(x)] e^{-\frac{1}{2}\int dxdy\phi(x)\Delta(x, y)\phi(y)}\phi(z_1)\phi(z_2)\ldots \phi(z_l)}{\int [d\phi(x)] e^{-\frac{1}{2}\int dxdy\phi(x)\Delta(x, y)\phi(y)}}
+\end{equation}
+here the determinants cancel so we do not have to worry about it very much. We will want to find this integral, and it is not very hard but there is a fast way to do it, by equating it to:
+\begin{equation}
+    I = \frac{\delta}{\delta J(z_1)} \ldots \frac{\delta}{J(z_l)}\left[\frac{\int [d\phi(x)]e^{-\frac{1}{2}\int \phi\Delta\phi + \int dyJ(y)\phi(y)}}{\int [d\phi(x)]e^{-\frac{1}{2}\phi \Delta \phi}}\right]_{J = 0}
+\end{equation}
+i.e. the functional derivatives of a generating functional. Using the symmetry of the integration domain and the symmetry of the integration measure in function space, we can do a change of variable $\phi \to \phi + \Delta^{-1}J$; then we find the $J$s and $\phi$s decouple into two quadratic terms:
+\begin{equation}
+    I = \frac{\delta}{\delta J(z_1)} \ldots \frac{\delta}{J(z_l)}\left[\frac{\int [d\phi]e^{-\frac{1}{2}\phi\Delta \phi}e^{\frac{1}{2}\int J \Delta J}}{\int [d\phi] e^{-\frac{1}{2}\int \phi \Delta \phi}}\right]_{J=0}
+\end{equation}
+Then the integrals in $\phi$ cancel, and we are just left with the $J$ part; we end up with the simple answer of:
+\begin{equation}
+    I = \sum_{\text{pairings}}\prod_{\avg{i,j} \text{pairs}}\Delta^{-1}(z_i, s_j)
+\end{equation}
+Next time we will apply these techniques to our real simple scalar field theory. We will find (at least for the free field theory) that this will be quite a nice description.
