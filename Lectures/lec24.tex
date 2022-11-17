@@ -2,7 +2,7 @@
 
 \subsection{Reviewing the Free Scalar Field Theory}
 
-Last time, we learned how to do functional derivatives and functional integrals. In this lecture we study how to analyze a quantum field theory using functional methods. We will take an example of the simplest possible quantum field theory, that is of the real scalar field $\phi(x)$. 
+Last time, we learned how to do functional derivatives and functional integrals. In this lecture we study how to analyze a quantum field theory using functional methods. We will take an example of the simplest possible quantum field theory, that is of the real scalar field $\varphi(x)$. 
 
 We start with the free field theory - we will discuss interacting fields later. We have the action given by:
 \begin{equation}
@@ -10,23 +10,23 @@ We start with the free field theory - we will discuss interacting fields later. 
 \end{equation}
 and the Lagrangian:
 \begin{equation}
-    \L(x) = -\frac{1}{2}\p_\mu \phi(x) \p^\mu\phi(x) - \frac{m}{2}\phi^2(x)
+    \L(x) = -\frac{1}{2}\p_\mu \varphi(x) \p^\mu\varphi(x) - \frac{m}{2}\varphi^2(x)
 \end{equation}
 
 Equivalently, we can describe the theory with the field equation (the Klein-Gordon equation):
 \begin{equation}
-    (-\p^2 + m^2)\phi(x) = 0.
+    (-\p^2 + m^2)\varphi(x) = 0.
 \end{equation}
 and the equal time-commutation relations of:
 \begin{equation}
-    [\phi(x), \dpd{}{y^0}\phi(y)]\delta(x^0 - y^0) = i\delta^4(x - y)
+    [\varphi(x), \dpd{}{y^0}\varphi(y)]\delta(x^0 - y^0) = i\delta^4(x - y)
 \end{equation}
 
 We can solve this via the superposition of plane waves:
 \begin{equation}
-    \phi(x) = \int \frac{d^3k}{\sqrt{(2\pi)2k^0}}\left(e^{ik_\mu x^\mu}a(\v{k}) + e^{-ikx}a^\dag(\v{k})\right)
+    \varphi(x) = \int \frac{d^3k}{\sqrt{(2\pi)2k^0}}\left(e^{ik_\mu x^\mu}a(\v{k}) + e^{-ikx}a^\dag(\v{k})\right)
 \end{equation}
-and for $\phi$ to have the correct commutation relations, $a, a^\dag$ satisfy:
+and for $\varphi$ to have the correct commutation relations, $a, a^\dag$ satisfy:
 \begin{equation}
     [a(\v{k}), a^\dag(\v{l})] = \delta^3(\v{k} - \v{l})
 \end{equation}
@@ -52,11 +52,11 @@ This is free-field theory; it is nice and solveable. We want to now cast it into
 \subsection{Correlation Function Recasting}
 We consider $n$-point functions:
 \begin{equation}
-    \bra{\O}T\phi(x_1) \ldots \phi(x_n)\ket{\O}
+    \bra{\O}T\varphi(x_1) \ldots \varphi(x_n)\ket{\O}
 \end{equation}
 where $T$ is the time-ordering operator:
 \begin{equation}
-    T\phi(x_1)\phi(x_2) = \theta(x_1^0 - x_2^0)\phi(x_1)\phi(x_2) + \theta(x_2^0 - x_1^0)\phi(x_2)\phi(x_1)
+    T\varphi(x_1)\varphi(x_2) = \theta(x_1^0 - x_2^0)\varphi(x_1)\varphi(x_2) + \theta(x_2^0 - x_1^0)\varphi(x_2)\varphi(x_1)
 \end{equation}
 where $\theta$ is the Heaviside step function:
 \begin{equation}
@@ -65,46 +65,46 @@ where $\theta$ is the Heaviside step function:
         \\ 0 & x \leq 0
     \end{cases}
 \end{equation}
-Note that $T\phi(x_1)\phi(x_2)$ is symmetric in $x_1 \leftrightarrow x_2$! We can see this immediately in the 2-point function here, and it is easy to see that it generalizes to $n$-point functions, as the time-ordering will always reorganize the order of the $\phi$s regardless of how we might write the $x_i$s. 
+Note that $T\varphi(x_1)\varphi(x_2)$ is symmetric in $x_1 \leftrightarrow x_2$! We can see this immediately in the 2-point function here, and it is easy to see that it generalizes to $n$-point functions, as the time-ordering will always reorganize the order of the $\varphi$s regardless of how we might write the $x_i$s. 
 
 It seems a bit strange to go from a compact definition of the field theory with the Lagrangian to an infinite number of correlation functions. It indeed would be totally silly if there was not a way to compactly write down the set of correlation functions. To this end, we will use functional techniques.
 
 \subsection{The Generating Functional}
 To begin, we search for a generating functional $Z[J]$. The way it is defined is if we take our $n$-point function, and multiply them by these functions $J$, integrate over the points, then sum to infinity and define the leading term as one. I.e.:
 \begin{equation}
-    Z[J] = 1 + \sum_{n=1}^\infty \frac{i^n}{n!}\int d^4x_1 \ldots d^4x_n J(x_1)\ldots J(x_n)\bra{\O}T\phi(x_1) \ldots \phi(x_n)\ket{\O}
+    Z[J] = 1 + \sum_{n=1}^\infty \frac{i^n}{n!}\int d^4x_1 \ldots d^4x_n J(x_1)\ldots J(x_n)\bra{\O}T\varphi(x_1) \ldots \varphi(x_n)\ket{\O}
 \end{equation}
 We can see that this contains all of our correlation functions. In order to get them out, we take functional derivatives and take $J$ to zero:
 \begin{equation}
-    \bra{\O}T\phi(x_1) \ldots \phi(x_n)\ket{\O} = \left.\frac{1}{i}\frac{\delta}{\delta J(x_1)} \ldots \frac{1}{i}\frac{\delta}{\delta J(x_n)}Z[J]\right|_{J=0}
+    \bra{\O}T\varphi(x_1) \ldots \varphi(x_n)\ket{\O} = \left.\frac{1}{i}\frac{\delta}{\delta J(x_1)} \ldots \frac{1}{i}\frac{\delta}{\delta J(x_n)}Z[J]\right|_{J=0}
 \end{equation}
 So if we can study this nice compact form. Note that there is an equivalent way of writing this as:
 \begin{equation}
-    Z[J] = 1 + \sum_{n=1}^\infty \frac{1}{n}\bra{\O}T(i\int d^4x J(x)\phi(x))^n \ket{\O}
+    Z[J] = 1 + \sum_{n=1}^\infty \frac{1}{n}\bra{\O}T(i\int d^4x J(x)\varphi(x))^n \ket{\O}
 \end{equation}
 where we have correctly assumed the commutativity of the time-ordering and the integral. We can then use the definition of the exponential function and write:
 \begin{equation}
-    Z[J] = \bra{\O}Je^{i\int d^4x J(x)\phi(x)}\ket{\O}.
+    Z[J] = \bra{\O}Je^{i\int d^4x J(x)\varphi(x)}\ket{\O}.
 \end{equation}
 We want to understand $Z[J]$ a little bit better.
 
 \subsection{Finding a Functional Differential Equation}
 In order to do so, we look for a functional differential equation it solves, and then solve that differential equation. To begin, we look at the first derivative of $Z[J]$:
 \begin{equation}
-    \frac{1}{i}\frac{\delta Z[J]}{\delta J} = \sum_{n=0}^\infty \frac{i^n}{n!}\int dx^1 \ldots dx_n J(x_1) \ldots J(x_n) \bra{\O}T\phi(x)\phi(x_1) \ldots \phi(x_n)\ket{\O}
+    \frac{1}{i}\frac{\delta Z[J]}{\delta J} = \sum_{n=0}^\infty \frac{i^n}{n!}\int dx^1 \ldots dx_n J(x_1) \ldots J(x_n) \bra{\O}T\varphi(x)\varphi(x_1) \ldots \varphi(x_n)\ket{\O}
 \end{equation}
 
-What I do next is to operate the wave operator (Klein-Gordon operator) on the above object. We are cavalier, and move the operator through all of the integrals. We might think that this results in the RHS vanishing, as $(-\p^2 + m^2)\phi = 0$. But this is not quite correct. This is because we have a time-derivative in the wave operator, and the time-ordering operator makes the product of fields have a discontinuity in the time. Thus we should get delta functions in time when we look at the time derivatives. Let's work it out:
+What I do next is to operate the wave operator (Klein-Gordon operator) on the above object. We are cavalier, and move the operator through all of the integrals. We might think that this results in the RHS vanishing, as $(-\p^2 + m^2)\varphi = 0$. But this is not quite correct. This is because we have a time-derivative in the wave operator, and the time-ordering operator makes the product of fields have a discontinuity in the time. Thus we should get delta functions in time when we look at the time derivatives. Let's work it out:
 \begin{equation}
     \begin{split}
         &(-\p^2 + m^2)\frac{1}{i}\frac{\delta Z[J]}{\delta J(x)} 
-        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!} \int dx_1 \ldots dx_n J(x_1)\ldots J(x_n) (-\p^2 + m^2)\bra{\O}T\phi(x)\phi(x_1) \ldots \phi(x_n)\ket{\O}
-        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!}\int dx_1 \ldots dx_n J(x_1) \ldots J(x_n)\left(\left(\dpd{}{x^0}\right)^2\bra{\O}T\phi(x)\phi(x_1) \ldots \phi(x_n)\ket{\O} - \bra{\O}T\left(\dpd{}{x^0}\right)^2 \phi(x)\phi(x_1) \ldots \phi(x_n)\ket{\O}\right)
-        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!} \int dx_1 \ldots dx_n J(x_1)\ldots J(x_n)\dpd{}{x^0}\bra{\O}\delta(x^0 - x_1^0)[\phi(x), \phi(x_1)] \ldots \ket{\O} + \ldots 
-        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!} \int dx_1 \ldots dx_n J(x_1)\ldots J(x_n)\sum_{i=1}^m -i\delta^4(x - x_i) \bra{\O}T\phi(x_1) \ldots \phi(x_{i-1})\phi(x_{i+1}) \ldots \phi(x_n)\ket{\O}
+        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!} \int dx_1 \ldots dx_n J(x_1)\ldots J(x_n) (-\p^2 + m^2)\bra{\O}T\varphi(x)\varphi(x_1) \ldots \varphi(x_n)\ket{\O}
+        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!}\int dx_1 \ldots dx_n J(x_1) \ldots J(x_n)\left(\left(\dpd{}{x^0}\right)^2\bra{\O}T\varphi(x)\varphi(x_1) \ldots \varphi(x_n)\ket{\O} - \bra{\O}T\left(\dpd{}{x^0}\right)^2 \varphi(x)\varphi(x_1) \ldots \varphi(x_n)\ket{\O}\right)
+        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!} \int dx_1 \ldots dx_n J(x_1)\ldots J(x_n)\dpd{}{x^0}\bra{\O}\delta(x^0 - x_1^0)[\varphi(x), \varphi(x_1)] \ldots \ket{\O} + \ldots 
+        \\ &= \sum_{n=0}^\infty \frac{i^n}{n!} \int dx_1 \ldots dx_n J(x_1)\ldots J(x_n)\sum_{i=1}^m -i\delta^4(x - x_i) \bra{\O}T\varphi(x_1) \ldots \varphi(x_{i-1})\varphi(x_{i+1}) \ldots \varphi(x_n)\ket{\O}
     \end{split}
 \end{equation}
-where we note that how the discontinuity due to the time ordering results in step functions, which when we take the time derivatives results in a dirac delta. Note the first time derivative commutes with the ordering, but the second time derivative gives us nonzero terms. The final expression has a sum over all of the $\phi$s, with the $\phi(x)$ dropping out and the $\phi(x_i)$ dropping out to be a dirac delta in each term. Using this, we can compare this back to the first term. One delta function per term liberates a $J$, and the rest sums up to the generating functional again. Hence, the slightly messy but absolutely correct discussion can be summarized in the result:
+where we note that how the discontinuity due to the time ordering results in step functions, which when we take the time derivatives results in a dirac delta. Note the first time derivative commutes with the ordering, but the second time derivative gives us nonzero terms. The final expression has a sum over all of the $\varphi$s, with the $\varphi(x)$ dropping out and the $\varphi(x_i)$ dropping out to be a dirac delta in each term. Using this, we can compare this back to the first term. One delta function per term liberates a $J$, and the rest sums up to the generating functional again. Hence, the slightly messy but absolutely correct discussion can be summarized in the result:
 \begin{equation}
     (-\p^2 + m^2)\frac{1}{i}\frac{\delta}{\delta J(x)}Z[J] = J(x)Z[J]
 \end{equation}
@@ -137,15 +137,15 @@ We can fix the constant by the boundary condition $Z[0] = 1$, so $C = 0$. Then, 
 \end{equation}
 so if we know the Green function, we have obtained a beautifully compact representation of the correlation functions! So, let's find it. What we do know is that two functional derivatives give us the two-point function:
 \begin{equation}
-    \bra{\O}T\phi(x_1)\phi(x_2)\ket{\O} = \left.-\frac{\delta^2}{\delta J(x_1)J(x_2)} Z[J]\right|_{J=0} = -ig(x_1, x_2)
+    \bra{\O}T\varphi(x_1)\varphi(x_2)\ket{\O} = \left.-\frac{\delta^2}{\delta J(x_1)J(x_2)} Z[J]\right|_{J=0} = -ig(x_1, x_2)
 \end{equation}
 i.e. the two-point functions are Green functions! From this we obtain the specific Green function that we want; it is specifically the two-point function! To confirm this, let's operate the wave operator on it:
 \begin{equation}
-    (-\p^2 + m^2)\bra{\O}T\phi(x_1)\phi(x_2)\ket{\O} = \Delta(x_1, x_2) = -ig(x, y)
+    (-\p^2 + m^2)\bra{\O}T\varphi(x_1)\varphi(x_2)\ket{\O} = \Delta(x_1, x_2) = -ig(x, y)
 \end{equation}
 We can use the time derivative and the product rule (keeping in mind the stepside functions that come from the time ordering) to find that indeed:
 \begin{equation}
-    (-\p^2 + m^2)\bra{\O}T\phi(x_1)\phi(x_2)\ket{\O} = -i\delta(x_1 - x_2)
+    (-\p^2 + m^2)\bra{\O}T\varphi(x_1)\varphi(x_2)\ket{\O} = -i\delta(x_1 - x_2)
 \end{equation}
 so this is a Green's function.
 This is known as the \emph{Feynman propogator}. Note that in specifying it as the two-point function we have fixed a boundary condition that resolves the ambiguity in the Green function. We can get an explicit form of $\Delta(x_1, x_2)$ (down to some integrals which can't be evaluated fully - they evaluate to some modified Bessel functions) by plugging in the solution to the field theory:
@@ -162,7 +162,7 @@ Now, if we do the $k^0$ integral using Cauchy's integral formula (noting the pol
 
 When we find this, we are convinced that we know what $\Delta$ is. Given this concrete expression, and given that it is proportional to the Green function, we can come back to the generating functional and put in $\Delta$:
 \begin{equation}
-    \Delta(x, y) = \bra{\O}T\phi(x)\phi(y)\ket{\O} = -i \int \frac{d^4k}{(2\pi)^4}e^{ik(x - y)}\frac{1}{k^2 + m^2 - i\e}
+    \Delta(x, y) = \bra{\O}T\varphi(x)\varphi(y)\ket{\O} = -i \int \frac{d^4k}{(2\pi)^4}e^{ik(x - y)}\frac{1}{k^2 + m^2 - i\e}
 \end{equation}
 and this compact expression contains all information about the time-ordered correlation functions in our QFT! Just take a bunch of functional derivatives of it.
 

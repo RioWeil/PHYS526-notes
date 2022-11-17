@@ -1,0 +1,121 @@
+\section{Functional Integrals for the Scalar Field}
+
+Last time, we discussed how to find the generating functional for the correlation functions of a free scalar theory. Recall that a free scalar field theory obeys the free field equation:
+\begin{equation}
+    (-\p^2 + m^2)\varphi(x) = 0
+\end{equation}
+and the generating functional is given by:
+\begin{equation}
+    Z[J] = \bra{\O}Te^{i \int dy J(y)\varphi(y)}\ket{\O}
+\end{equation}
+We then found the explicit expression:
+\begin{equation}
+    Z[J] = e^{-\frac{1}{2}\int dxdy J(x) \Delta(x, y)J(y)}
+\end{equation}
+where:
+\begin{equation}
+    \Delta(x, y) = \bra{\O}T\varphi(x)\varphi(y)\ket{\O} = -i \int \frac{d^4k}{(2\pi)^4}e^{ik(x - y)}\frac{1}{k^2 + \mu^2 - i\e}
+\end{equation}
+note where not shown, $k^2 = k_\mu k^\mu$ and $kx = k_\mu x^\mu$ etc. Mote that it is easy to show that $\Delta$ is a Green function:
+\begin{equation}
+    (-\p^2 + m^2)\Delta(x, y) = -i\int \frac{d^4k}{(2\pi)^4}\frac{e^{ik(x-y)}}{k^2 + m^2 - i\e}(k^2 + m^2) = -i\delta^4(x - y)
+\end{equation}
+This is something very special to us; it is the Feynman propogator. 
+
+\subsection{Rewriting the Generating Functional}
+What we will now do is take this beautiful compact formula, and undo it just a little bit. This is not to understand the free field theory better (we can't really do better than what we have done already) but rather to give something which we can more easily generalize to interacting quantum field theory. Let us write the generating functional as the ratio of Gaussian integrals of classical fields:
+\begin{equation}
+    Z[J] = \frac{\int [d\varphi] e^{i\int d^4x \left(-\frac{1}{2}\p_\mu \varphi(x) \p^\mu \varphi - \frac{m^2}{2}\varphi^2(x) + J(x)\varphi + i\frac{\e}{2}\varphi^2(x)\right)}}{\int [d\varphi] e^{i\int d^4x\left(-\frac{1}{2}\p_\mu \varphi \p^\mu \varphi - \frac{m^2}{2}\varphi^2 + i\frac{\e}{2}\varphi^2(x)\right)}}
+\end{equation}
+When we do the Gaussian integral, we get a Gaussian in $J$ with an inverse of the quadratic form $\varphi(x)(-\p^2 + m^2)\delta(x - y)\varphi(y)$, which is just the Green function, so:
+\begin{equation}
+    Z[J] = e^{\frac{i}{2}\int dxdy J(x)g(x, y)J(y)}
+\end{equation}
+Now, we discussed that $\Delta(x, y) = -ig(x, y)$, so the result of doing this functional integral is exactly:
+\begin{equation}
+    Z[J] = e^{-\frac{1}{2}\int dxdy J(x)\Delta(x, y)J(y)}.
+\end{equation}
+How does the functional integral know that the Green function is the Feynman propogrator? Really, we should be integrateing with a little damping factor; thats the $\frac{i\e}{2}\varphi^2(x)$ in the numerator. It makes the integral more convergent. That gives us an $i\e$ that tells us what the Green function should be; it should be:
+\begin{equation}
+    g(x, y) = \frac{1}{-\p^2 + m^2 - i\e}
+\end{equation}
+which gives the correct expression under the fourier transform. Note that the $i\e$s in the integral are almost always implicit; they are rarely written. In this form, we can note that the integrand is just a classical action. Note that before this $\varphi(x)$ was an operator/quantum field, but in this integration formula it is a classical function. 
+
+\subsection{Wick's Theorem}
+Another way to write the functional integral is to write it as:
+\begin{equation}
+    \bra{\O}T\varphi(x_1) \ldots \varphi(x_n)\ket{\O} = \frac{\int [d\varphi]e^{iS[\varphi]}\varphi(x_1) \ldots \varphi(x_n)}{\int [d\varphi]e^{iS[\varphi]}}
+\end{equation}
+Where the action is:
+\begin{equation}
+    S[\varphi] = \int d^4x \left(-\frac{1}{2}\p_\mu \varphi \p^\mu \varphi - \frac{m^2}{2}\varphi^2\right)
+\end{equation}
+this integral we can do easily. The way to do it is to come back to it as its representation as a generating function. Doing so, these integrals become a sum of products of two point functions:
+\begin{equation}
+    \bra{\O}T\varphi(x_1) \ldots \varphi(x_n)\ket{\O} = \sum_{\text{pairings ij}}\prod_{\text{pairs}} \Delta(x_i, x_j)
+\end{equation}
+Note that this is only possible when $n$ is even; when $n$ is odd we cannot do this pairing. But actually by symmetry considerations the integral vanishes when $\varphi$ is odd, so this case is trivial anyway. This expression of the correlation function as the sum of products of two-point functions is known as Wick's theorem - which will be a very useful one indeed.
+
+As an example, Wick's theorem says:
+\begin{equation}
+    \frac{\int [d\varphi]e^{iS}\varphi(x_1)\varphi(x_2)\varphi(x_3)\varphi(x_4)}{\int [d\varphi]e^{iS}} = \Delta(x_1, x_2)\Delta(x_3, x_4) + \Delta(x_1, x_3)\Delta(x_2, x_4) + \Delta(x_1, x_4)\Delta(x_2, x_3)
+\end{equation}
+So, this concludes our discussion of the free field. To find correlation functions, we just take our classical action and throw in the fields for which we wish to compute the correlation function for.
+
+\subsection{Interacting Scalar Field}
+We consider the Interacting Scalar Field, with Lagrangian:
+\begin{equation}
+    \L(X) = -\frac{1}{2}\p_\mu \varphi \p^\mu \varphi - \frac{m^2}{2}\varphi^2 - \frac{\lambda}{4!}\varphi^4
+\end{equation}
+
+Note that we do not add the $\varphi^3$ term given the desired invariance under $\varphi \to -\varphi$. We obtain the field equation:
+\begin{equation}
+    (-\p^2 + m^2)\varphi(x) = -\frac{\lambda}{3!}\varphi^3(x)
+\end{equation}
+which is a nonlinear equation which we do not know how to solve. The commutation relations remain unchanged:
+\begin{equation}
+    [\varphi(x), \dpd{}{y^0}\varphi(y)]\delta(x^0 - y^0) = i\delta(x - y)
+\end{equation}
+Now, let's consider the time-ordered correlation functions
+\begin{equation}
+    \bra{\O}T\varphi(x_1)\ldots\varphi(x_n)\ket{\O}
+\end{equation}
+Note that since the theory is not analytically solvable, we do not have a clear definition for $\ket{\O}$ as before. Instead, we assume that somewhere in the background here that there is some Hamiltonian for which $\ket{\O}$ is the ground state. There is more dicussion to be had about this, e.g. Lorentz invariance might constrain the energy to be zero, but let us move on for now. We take this vacuum and take the expectation of the product of $n$ interacting fields. To figure out what these correlation functions are, we might again look for a generating functional:
+\begin{equation}
+    Z[J] = \bra{\O}Je^{i\int d^4x J(x)\varphi(x)}\ket{\O}
+\end{equation}
+How do we look for the generating functional? In the free field theory we looked for a functional differential equation. We can try to find the same here. Let us operate the KG wave operator on the time-ordered correlation function; unlike the free field case, we get $(-\p^2 + m^2)\varphi = -\frac{\lambda}{3!}\varphi$ whenever the KG operator acts on terms of that form. So:
+\begin{equation}
+    (-\p^2 + m^2)\bra{\O}T\varphi(x_1)\ldots\varphi(x_n)\ket{\O} = -\frac{\lambda}{3!}\bra{\O}T\varphi^3(x_1)\varphi(x_2)\ldots\varphi(x_j)\ket{\O} - i\sum_{l=1}^n \delta(x_1 - x_l)\bra{\O}J\varphi(x_2)\ldots \varphi(x_{l-1})\varphi(x_{l+1})\ldots\varphi(x_n)\ket{\O}
+\end{equation}
+Multiplying by $\frac{i^{n-1}}{(n-1)!}\int dx_2 \ldots dx_n J(x_2)\ldots J(x_n)$, we obtain:
+\begin{equation}
+    (-\p^2 + m^2)\frac{1}{i}\frac{\delta}{\delta J(x)}Z = J(x)Z - \frac{\lambda}{3!}\left(\frac{1}{i}\frac{\delta}{\delta J(x)}\right)^3Z[J]
+\end{equation}
+Unlike what we had before which was a first order functional differential equation (and hence solvable), we now have a third order functional differential equation which we cannot solve analytically. We can however construct a formal solution which will be useful. Consider:
+\begin{equation}
+    Z[J] = e^{-i\int dy \frac{\lambda}{4!}\left(\frac{1}{i}\frac{\delta}{\delta J(y)}\right)^4}e^{-\frac{1}{2}\int dxdy J(x)\Delta(x, y)J(y)}
+\end{equation}
+and it is possible to show that this satisfies the above differential equation.If we take $\lambda \to 0$ and compute $\Delta(x, y)$, we find that the Green function that goes into the above is just $i\delta^4(x- y)$ ($i$ times the Feynman propogator) as we had before. This is a formal solution as we don't have a closed form expression for this fourth order functional derivative in the exponential. It is however an excellent starting point for doing perturbation theory, as we can taylor expand in powers of the coupling constant $\lambda$. Then, by computing functional derivatives (easy), we can compute the generating functional order by order in $\lambda$. We will come back to this formula once in a while, because it is a rather nice and compact expression. However, there is another useful expression, and that will be to rewrite the RHS as a functional integral:
+\begin{equation}
+    Z[J] = \frac{\int [d\varphi] e^{iS[\varphi] + i\int dx J(x)\varphi(x)}}{\int [d\varphi]e^{iS[\varphi]}}
+\end{equation}
+with:
+\begin{equation}
+    S[\varphi] = \int d^4x \left(-\frac{1}{2}\p_\mu \varphi(x) \p^\mu \varphi(x) - \frac{m^2 - i\e}{2}\varphi^2(x) - \frac{\lambda}{4!}\varphi^4(x)\right)
+\end{equation}
+So then:
+\begin{equation}
+    \bra{\O}T\varphi(x_1) \ldots \varphi(x_n)\ket{\O} = \frac{\int [d\varphi]e^{iS[\varphi]}\varphi(x_1)\ldots \varphi(x_n)}{\int [d\varphi]e^{iS[\varphi]}}
+\end{equation}
+For the generic field theory, this cannot be solved. We can however expand things out in a Taylor series:
+\begin{equation}
+    \bra{\O}T\varphi(x_1) \ldots \varphi(x_n)\ket{\O} = \frac{\sum_{k=0}^\infty \frac{i^k}{k!}\left(\frac{-\lambda}{4!}\right)^k \int d\varphi e^{iS_0[\varphi]} \left(\int d^4x \varphi^4(x)\right)^k \varphi(x_1)\ldots\varphi(x_n)}{\sum_{k=0}^\infty \frac{i^k}{k!}\left(\frac{-\lambda}{4!}\right)^k \int d\varphi e^{iS_0[\varphi]}\left(\int d^4k \varphi^4(x)\right)^k}
+\end{equation}
+where:
+\begin{equation}
+    S_0[\varphi] = \int d^4y \left(-\frac{1}{2}\p_\mu \varphi(xy \p^\mu \varphi(y) - \frac{m^2 - i\e}{2}\varphi^2(y)\right)
+\end{equation}
+Since we just have the free-field action here, we can use Wick's theorem to compute the $n$-point functions as the sum of products of two-point functions.
+
+We will continue to pursue the route of perturbation theory to study these non-analytically solvable theories. Stay tuned!
