@@ -1,0 +1,18 @@
+\section{Perturbation Theory}
+We've been discussing scalar field theory for a while now, and this is because we want to use it as an example for how to use perturbation theory to study systems that are not analytically solvable.
+
+We wish to calculate $\bra{\O}T\phi(x_1)\ldots\phi(x_n)\ket{\O}$ as a series in $\lambda$. These correlation functions tell us a lot about the theory. For example, the spectral theorem (which is a technical point which we may come back to later) tells us that we can use the two-point functions to deduce something about the energy and momentum of the field theory. From other correlation functions beyond two-point functions, we can use them to calculate scattering matrix element. Scattering ($S$) matrix elements describe a scattering event, where fields interact (go in and come and out in a reorganized form). The matrix elements give quantum amplitudes for reorganization - somewhat analogous to transition amplitudes that you would have computed in your quantum mechanics course. 
+
+We have already started this process - we have already found the $\lambda = 0$ contribution, in the form of Wick's theorem. As a reminder, Wick's theorem told us that for the free field theory:
+\begin{equation}
+   \bra{\O}T\phi(x_1)\ldots\phi(x_n)\ket{\O} = \sum_{\text{pairings}}\prod_{\text{pairs}}\Delta(x_i, x_j)
+\end{equation}
+So for the interacting field theory:
+\begin{equation}
+    \bra{\O}T\phi(x_1)\ldots\phi(x_n)\ket{\O} = \sum_{\text{pairings}}\prod_{\text{pairs}}\Delta(x_i, x_j) + O(\lambda)
+ \end{equation}
+and we now want to probe the $O(\lambda)$ part. This is in some sense where the interesting things occur - if we neglect it, then the particles do not interact so the scattering matrix is highly uninteresting indeed (but of course this makes sense, as the $\lambda = 0$ limit is the free/non-interacting QFT). 
+
+\subsection{Counterterms}
+\emph{Lecture got cut short here due to connectivity issues - will continue on Monday}
+
