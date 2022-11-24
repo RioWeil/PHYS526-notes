@@ -28,46 +28,39 @@ so to get a closed form expression, the only thing we have to do is calculate th
 One last thing is the counterterms sitting there; we can choose $z_m^{(1)}$ to cancel the integral and $z^{(1)} = 0$ as there is no other $k^2$ dependence. This would be an ok thing to do, but there is an arbitrariness in choosing the counterterms, known as scheme dependence. If the integral had $k$ dependence, we would have to be more carful...
 
 The second thing to notice is the form of this expression. Drawing them diagramatically, we have:
-\begin{figure}[htbp]
-    \centering
-    \textcolor{blue}{TODO}
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+
+\begin{center}
+    \includegraphics[scale=0.3]{Images/fig-lec27feynman1.png}
+\end{center}
 
 If we continued to higher orders, we first have repetitions of what came before (but now in pairs):
 
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.3]{Images/fig-lec27feynman2.png}
+\end{center}
 
 But also new terms:
 
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.3]{Images/fig-lec27feynman3.png}
+\end{center}
 
 Which is all the terms to order $\lambda^2$ - this already seems like a lot! Is there any way to systematically simplify or distinguish? Yes, you can topologically characterize the diagrams . It would be useful if it allowed us to forget about some terms. In fact we can. We can categorize reducible and irreducible diagrams. Irreducible - can't snip somewhere and retain something non-trivial. So, the reducible ones are the repeated (paired) diagrams here, and the irreducible ones are the new ones. The question is then; is it possible to just focus on the irreducible diagrams and obtain all diagrams from there?
 
 \subsection{Simplification 2 - Compute Connected, Irreducible Diagrams}
 Yes. We consider an expansion as follows:
 
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.3]{Images/fig-lec27feynman4.png}
+\end{center}
 
 Where the black dots correspond to irreducible diagrams. Ones that are repetitions of what we have already calculated are obtained by joining irreducible (sometimes called one-particle irreducible) diagrams together. This cuts down on the multiplicity significantly. Note that when we put things together, the combinatorial factors organize themselves such that this is just a simple geometric series. Gordon doesn't know an easy way to prove this; every QFT textbook simply states it. The textbook gives a proof sketch, but it is complicated.
 
 Consider the computation of a four-point function. Some diagrams that contribute here are disconnected two-point diagrams. These contribute a lot of multiplicity and it would be nice to only have to focus on the connected ones. However, we need a well-defined way to put them back together to get the full result. It turns out there is a rather clever way. We've chosen a field theory with a symmetry such that every diagram needs two legs coming out of it.
+
+\begin{center}
+    \includegraphics[scale=0.3]{Images/fig-lec27feynman5.png}
+\end{center}
 
 We already knew it before this discussion, but also note a \textbf{Simplification 0} of sorts - \textbf{Goldstone's Theorem}!
 
