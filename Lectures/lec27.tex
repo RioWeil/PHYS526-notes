@@ -84,31 +84,31 @@ Note - see the proof in the textbook for more details - we see that the expansio
 \subsection{Generating Functional for Irreducible Correlation Functions}
 We will just talk about correlation functions for a moment, not Feynman diagrams. We will then define what we mean by irreducible in this context, and then it can be shown that such correlation functions can be written as a sum of irreducible Feynman diagrams. What we do is we return to $W[J]$, the connected generating functional. Let us define the one-point function as:
 \begin{equation}
-    \phi(x) = \frac{1}{i}\frac{\delta}{\delta J(x)}W[J]
+    \varphi(x) = \frac{1}{i}\frac{\delta}{\delta J(x)}W[J]
 \end{equation}
 which differs a lot from the connected one-point function as we do not set $J = 0$. Then, take $W$ and do a Legendre transform:
 \begin{equation}
-    \Gamma[\phi] = W[J] - i\int J(x)\phi(x)
+    \Gamma[\varphi] = W[J] - i\int J(x)\varphi(x)
 \end{equation}
-What we must do is take the equation for $\phi$ and solve it for $J$ - this is terrible, so we solve it perturbatively. We then plug it in to get $\Gamma$ as a functional of $\phi$. And then, using the same terrible notation, the irreducible $n$-point function is obtained via functional derivatives of the classical field:
+What we must do is take the equation for $\varphi$ and solve it for $J$ - this is terrible, so we solve it perturbatively. We then plug it in to get $\Gamma$ as a functional of $\varphi$. And then, using the same terrible notation, the irreducible $n$-point function is obtained via functional derivatives of the classical field:
 \begin{equation}
-    \Gamma_I(x_1, \ldots x_n) = \left.\frac{1}{i}\frac{\delta}{\delta \phi(x_1)} \ldots \frac{1}{i}\frac{\delta}{\delta \phi(x_n)}\Gamma[\phi]\right|_{\phi = ?}
+    \Gamma_I(x_1, \ldots x_n) = \left.\frac{1}{i}\frac{\delta}{\delta \varphi(x_1)} \ldots \frac{1}{i}\frac{\delta}{\delta \varphi(x_n)}\Gamma[\varphi]\right|_{\varphi = ?}
 \end{equation}
-and then we set $J = 0$, which seems hard as we've lost track of $J$. We can see that taking the functional derivative of $\Gamma[\phi]$:
+and then we set $J = 0$, which seems hard as we've lost track of $J$. We can see that taking the functional derivative of $\Gamma[\varphi]$:
 \begin{equation}
-    \frac{1}{i}\frac{\delta \Gamma[\phi]}{\delta \phi(x)} = -J(x)
+    \frac{1}{i}\frac{\delta \Gamma[\varphi]}{\delta \varphi(x)} = -J(x)
 \end{equation}
-so to put $J = 0$, we find a $\phi$ which is a soloution to the above equation, so $\Gamma$ is at an extremum as a functional of $\phi$:
+so to put $J = 0$, we find a $\varphi$ which is a soloution to the above equation, so $\Gamma$ is at an extremum as a functional of $\varphi$:
 \begin{equation}
-    \Gamma_I(x_1, \ldots x_n) = \left.\frac{1}{i}\frac{\delta}{\delta \phi(x_1)} \ldots \frac{1}{i}\frac{\delta}{\delta \phi(x_n)}\Gamma[\phi]\right|_{\phi = \bar{\phi}}
+    \Gamma_I(x_1, \ldots x_n) = \left.\frac{1}{i}\frac{\delta}{\delta \varphi(x_1)} \ldots \frac{1}{i}\frac{\delta}{\delta \varphi(x_n)}\Gamma[\varphi]\right|_{\varphi = \bar{\varphi}}
 \end{equation}
 where:
 \begin{equation}
-   \left. \frac{1}{i}\frac{\delta \Gamma}{\delta \phi}\right|_{\phi = \bar{\phi}} = 0.
+   \left. \frac{1}{i}\frac{\delta \Gamma}{\delta \varphi}\right|_{\varphi = \bar{\varphi}} = 0.
 \end{equation}
-Usually $\bar{\phi} = 0$, but it doesn't have to be, e.g. when we have spontaneous symmetry breaking, where we have multiple zeroes and have to choose based on stability criteria, e.g. taking the second derivative and seeing if one has a sensible two-point function. We won't worry too much about this. What we really need is just a systematic realtionship between $\Gamma_I$ and the $\Gamma$ connected, $\Gamma$ unindexed... for example:
+Usually $\bar{\varphi} = 0$, but it doesn't have to be, e.g. when we have spontaneous symmetry breaking, where we have multiple zeroes and have to choose based on stability criteria, e.g. taking the second derivative and seeing if one has a sensible two-point function. We won't worry too much about this. What we really need is just a systematic realtionship between $\Gamma_I$ and the $\Gamma$ connected, $\Gamma$ unindexed... for example:
 \begin{equation}
-    \left.\frac{1}{i^2}\frac{\delta^2\Gamma}{\delta\phi(x_1)\delta\phi(x_2)}\right|_{\phi = \bar{\phi}} = D^{-1}(x, y)
+    \left.\frac{1}{i^2}\frac{\delta^2\Gamma}{\delta\varphi(x_1)\delta\varphi(x_2)}\right|_{\varphi = \bar{\varphi}} = D^{-1}(x, y)
 \end{equation}
 and then we can calculate higher ones, and the relationship between them and the ordinary correlation functions is one that removes all the pieces. Then, one can actually prove that the sum of irreducible diagrams produces an irreducible correlation functions.
 
