@@ -2,21 +2,15 @@
 \subsection{Review of the One-Loop Integral Calculation}
 Last time, we studied the computation of the one loop integral $\Gamma_I(k_1, k_2, k_3, k_4)$:
 
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.5]{Images/fig-lec29feynman1.png}
+\end{center}
 
 These integrals are generally tabulated in the literature, but it is instructive to go through it - they form the backbone of QFT calculations. Let us review it briefly. It is order two in the coupling, so we have a factor of $(-i\lambda)^2$. We then did the combinatorics, to find that we had a factor of $\frac{1}{2}$. The sophisticated Feynman diagrammers would tell you that this two is just the order of the discrete symmetries in this diagram. Going to the irreducible diagram we have to the general diagrams (Which can be reducible), all we do is attatch two-point functions on the external legs, e.g.
 
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.5]{Images/fig-lec29feynman2.png}
+\end{center}
 
 and this yields the correct combinatorics, and the reason why we know this formally is because we can go back to the generating functional, take 4 functional derivatives, do the combinatorics, and see that it indeed works out. We had an integral over the loop momentum (recall - one integral per closed loop in the diagram):
 \begin{equation}
@@ -73,20 +67,14 @@ We get a singularity coming from kinematics when the reaction can produce real p
 
 If we stay in the Euclidean regime (rather than going into Minkowski) where $k^2 > 0$, we do not have to worry about this. Som there's our result for this particular Feynman diagram! There were more Feynman diagrams then this one that contributed to the two-point function, which had to do with how the legs were attatched:
 
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.5]{Images/fig-lec29feynman3.png}
+\end{center}
 
 Summing over these is imposing bose symmetry, i.e. it should not matter how we permute the momenta. So then summing this with the lower order ($-i\lambda$) term of:
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.5]{Images/fig-lec29feynman4.png}
+\end{center}
 as well as the counterterm of $-i\lambda^2 z^{(1)}_\lambda$, we are done!
 
 So in conclusion:
@@ -101,12 +89,9 @@ Let us to the same order compute the two-point function, and then deal with the 
 
 \subsection{Computing the Two-Point function}
 Recall:
-\begin{figure}[htbp]
-    \centering
-    
-    \caption{<caption>}
-    \label{<label>}
-\end{figure}
+\begin{center}
+    \includegraphics[scale=0.5]{Images/fig-lec29feynman5.png}
+\end{center}
 which corresponds to:
 \begin{equation}
     \Pi(k^2) = -\frac{i\lambda}{2}\int \frac{d^4q}{(2\pi)^4} \frac{-i}{q^2 + m^2 - i\e} - i\lambda \left(z^{(1)}k^2 + z^{(1)}_m m^2\right)
